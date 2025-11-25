@@ -29,26 +29,16 @@ jobs:
       - name: Run overlay application script
         run: python apply_overlay.py
 
-      - name: Check for changes
-        id: check_changes
-        run: |
-          if git diff --quiet openapi.json; then
-            echo "changes=false" >> $GITHUB_OUTPUT
-          else
-            echo "changes=true" >> $GITHUB_OUTPUT
-          fi
-
       - name: Commit and push changes
-        if: steps.check_changes.outputs.changes == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add openapi.json
-          git commit -m "Update OpenAPI enhanced spec [automated]"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update OpenAPI enhanced spec [automated]"
+            git push
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: No changes detected
-        if: steps.check_changes.outputs.changes == 'false'
-        run: echo "No changes to commit"
