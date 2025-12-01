@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 OpenAPI Overlay Application Script
 Downloads an OpenAPI specification and applies overlay transformations.
@@ -7,7 +6,6 @@ Downloads an OpenAPI specification and applies overlay transformations.
 import json
 import requests
 import yaml
-import re
 from typing import Any, Dict, List
 import sys
 
@@ -71,10 +69,8 @@ class OverlayProcessor:
         parts = self._parse_path(target)
 
         current = self.openapi_spec
-        parent = None
 
         for part in parts:
-            parent = current
 
             if isinstance(current, dict):
                 if part in current:
@@ -132,12 +128,27 @@ class OverlayProcessor:
         return parts
 
 
-def download_openapi_spec(url: str) -> Dict[str, Any]:
-    """Download OpenAPI specification from URL."""
-    print(f"Downloading OpenAPI spec from {url}...")
-    response = requests.get(url, timeout=30)
-    response.raise_for_status()
-    return response.json()
+def download_and_convert_spec(url: str) -> Dict[str, Any]:
+    """Download and convert OpenAPI specification to OpenAPI 3.0."""
+    print(f"Downloading and converting spec from {url}...")
+    converter_url = "https://converter.swagger.io/api/convert"
+
+    try:
+        response = requests.get(
+            converter_url,
+            params={"url": url},
+            timeout=60
+        )
+        response.raise_for_status()
+        converted_spec = response.json()
+        print(f"[OK] Downloaded and converted to OpenAPI {converted_spec.get('openapi', '3.0')}")
+        return converted_spec
+    except requests.RequestException as e:
+        print(f"Warning: Conversion failed: {e}", file=sys.stderr)
+        print("Falling back to direct download...")
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
+        return response.json()
 
 
 def load_overlay(file_path: str) -> Dict[str, Any]:
@@ -164,11 +175,8 @@ def main():
     OUTPUT_FILE = "openapi.json"
 
     try:
-        # Step 1: Download OpenAPI spec
-        openapi_spec = download_openapi_spec(OPENAPI_URL)
-        print(
-            f"[OK] Downloaded OpenAPI spec (version: {openapi_spec.get('openapi', openapi_spec.get('swagger'))})"
-        )
+        # Step 1: Download and convert to OpenAPI 3.0
+        openapi_spec = download_and_convert_spec(OPENAPI_URL)
 
         # Step 2: Load overlay
         overlay_spec = load_overlay(OVERLAY_FILE)
