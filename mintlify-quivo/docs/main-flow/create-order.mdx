@@ -1,0 +1,139 @@
+---
+title: Create a Fulfillment Order
+description: Programmatically submit a new fulfillment order to the Quivo Connector using the REST API
+---
+
+By the end of this guide, you have successfully triggered a "Pick & Pack" process in the warehouse for your product.
+
+**Time to complete:** 10 minutes  
+**API Version:** v1 (Connector)
+
+## Prerequisites
+
+Before you start, make sure you have the following:
+
+- **Authentication Token:** A valid Bearer token obtained via the endpoint `POST /login`. Note that the token is valid for one hour.
+- **Seller ID:** The unique integer ID for your merchant account. Use `GET /sellers` to find it.
+- **Product SKU:** You must have created at least one product in the system via the endpoint `POST /articles` before you can order it.
+
+## Step 1: Authenticate
+
+You must authenticate every request to the Quivo API with a session token. Exchange your credentials for this token, which remains valid for one hour via the endpoint `POST /login`.
+
+Following the example below, replace the placeholder values with your actual data.
+
+```bash
+curl -X POST "${BASE_URL}/login" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+  -d '{
+    "username": "<YOUR_USERNAME>",
+    "password": "<YOUR_PASSWORD>"
+  }'
+```
+
+The API returns a token string (for example, `eyJhbGciOi...`). You must use this token in the `Authorization` header for all subsequent requests in this guide.
+
+<Tip>
+  **Best Practice:** Automate token refreshing. Because the token expires after one hour, your integration should verify the API response. If you receive a 401 Unauthorized error, your script should automatically repeat this login step to generate a new token.
+</Tip>
+
+## Step 2: Prepare the order payload
+
+To create an order, construct a JSON object that matches the `OrderPost` schema.
+
+You must provide four main components in the payload:
+
+1. **Seller Context:** Identifies the merchant account.
+2. **Identifiers:** Unique IDs to track the order and prevent duplicates.
+3. **Recipient:** The destination for the package (`deliveryAddress`).
+4. **Content:** The list of items to ship (`positions`).
+
+### Required fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `sellerId` | Integer | The ID of your merchant account. |
+| `orderIdentifier` | String | A unique ID from your shop (for example, `"SHOPIFY-1001"`). Use this to prevent duplicate orders. |
+| `orderReference` | String | The reference visible to the end customer (for example, `"#DE38678"`). |
+| `deliveryAddress` | Object | Contains `street`, `city`, `countryIso2` (2-letter code), and the recipient's name. |
+| `positions` | Array | A list of items. For each item, you must specify `sku`, `name`, and `quantity`. |
+
+The following example shows a complete order request payload. Replace the placeholder values with your actual data.
+
+```json
+{
+  "sellerId": <YOUR_SELLER_ID>,
+  "orderIdentifier": "<YOUR_ORDER_IDENTIFIER>",
+  "orderReference": "<YOUR_ORDER_REFERENCE>",
+  "deliveryAddress": {
+    "company": "<YOUR_COMPANY_NAME>",
+    "name": "<RECIPIENT_NAME>",
+    "email": "<RECIPIENT_EMAIL>",
+    "street": "<YOUR_STREET_ADDRESS>",
+    "city": "<YOUR_CITY>",
+    "zip": "<YOUR_ZIP_CODE>",
+    "countryIso2": "<YOUR_COUNTRY_CODE>"
+  },
+  "positions": [
+    {
+      "sku": "<YOUR_SKU>",
+      "name": "<PRODUCT_NAME>",
+      "quantity": <QUANTITY>
+    },
+    {
+      "sku": "<YOUR_SKU>",
+      "name": "<PRODUCT_NAME>",
+      "quantity": <QUANTITY>
+    }
+  ]
+}
+```
+
+<Note>
+  Replace the placeholders with your actual values:
+  - `<YOUR_SELLER_ID>`, `<YOUR_ORDER_ID>`, and `<QUANTITY>` should be integers
+  - All other placeholders should be strings
+</Note>
+
+## Step 3: Send the request
+
+Submit the payload to the `/orders` endpoint using `POST` following the example below. You must include both the `X-Api-Key` and the `Authorization` token in your headers.
+
+```bash
+curl -X POST "${BASE_URL}/orders" \
+  -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+  -H "Authorization: <YOUR_SESSION_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '@payload.json'
+```
+
+## Step 4: Handle the response
+
+When the request succeeds, the API returns a 200 OK status code and an `OrderPostResult` object.
+
+```json
+{
+  "status": "OK",
+  "message": "Order created successfully",
+  "orderId": <YOUR_ORDER_ID>
+}
+```
+Capture the `orderId` from the response. You need this ID to track the order status later.
+
+### Common errors
+
+| Status Code | Description | Solution |
+|-------------|-------------|----------|
+| `400 Bad Request` | This error usually indicates a missing required field (for example, you omitted `countryIso2`). | Check your payload against the schema. |
+| `401 Unauthorized` | Your token is invalid or has expired. | Repeat Step 1 to generate a new token. |
+| `404 Not Found` | The `sku` you provided in `positions` does not exist in the warehouse system. | Verify your product list. |
+| `409 Conflict` | An order with this `orderIdentifier` already exists. | Ensure you generate unique identifiers for each new order. |
+
+## Next steps
+
+Now that you have created the order, the warehouse team receives the Pick & Pack instruction automatically.
+
+- **Track order status:** Use `GET /orders/{orderId}` to monitor when the order status changes to `SHIPPED`.
+- **Manage webhooks:** Set up a subscription to receive automatic notifications when the system generates a tracking number.
+
