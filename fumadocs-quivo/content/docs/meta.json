@@ -1,12 +1,16 @@
 {
+  "title": "Documentation",
   "pages": [
     "---Introduction---",
-    "overview",
+    "index",
     "---Quickstart---",
     "send-inventory",
     "create-order",
     "track-order",
     "manage-returns",
-    "manage-webhooks"
+    "manage-webhooks",
+    "---API Reference---",
+    "api-reference/introduction",
+    "api-reference/authentication"
   ]
 }

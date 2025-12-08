@@ -1,0 +1,100 @@
+---
+title: API Overview
+og:description: Learn about the Quivo API and how to get started with integration
+sidebarTitle: Overview
+---
+
+Welcome to the Quivo API Developer Portal. We offer a comprehensive REST API designed to provide seamless integration with our logistics and fulfillment platform. This documentation is structured to support your integration journey, from initial setup to detailed implementation.
+
+## Your Path to Integration
+
+We recommend following these steps for a smooth integration experience:
+
+1. **Start with Authentication** to understand how to authenticate your requests. This is the essential first step before making any API calls.
+2. **Follow the Quickstart Guides** to learn the main workflows for managing inventory, orders, and shipments.
+3. **Explore the API Reference** to find the specific endpoints you need for your application.
+
+<CardGroup cols={2}>
+  <Card
+    title="Get Started"
+    icon="key"
+    href="/docs/api-reference/authentication"
+  >
+    **Start here if you are new.** This section covers the essential first steps for a successful integration, including the authentication process and how to obtain session tokens.
+  </Card>
+
+  <Card
+    title="Quickstart Guides"
+    icon="rocket"
+    href="/docs"
+  >
+    **Dive into the technical details.** Explore all available endpoints, detailing required parameters, request and response examples, and error codes. Use this when you are ready to build.
+  </Card>
+</CardGroup>
+
+## Quickstart Guides
+
+The following guides walk you through the main workflows for integrating with Quivo:
+
+<CardGroup cols={2}>
+  <Card
+    title="Send Inventory"
+    icon="warehouse"
+    href="/docs/send-inventory"
+  >
+    Notify the Quivo warehouse that you are sending a shipment of products. Learn how to create inbound records and manage inventory shipments.
+  </Card>
+
+  <Card
+    title="Create a Fulfillment Order"
+    icon="shopping-cart"
+    href="/docs/create-order"
+  >
+    Programmatically submit fulfillment orders to the Quivo Connector. Trigger the pick and pack process for your products.
+  </Card>
+
+  <Card
+    title="Track an Order"
+    icon="location-dot"
+    href="/docs/track-order"
+  >
+    Retrieve current status and tracking information for orders. Monitor shipment progress and delivery status.
+  </Card>
+
+  <Card
+    title="Manage Returns"
+    icon="rotate-left"
+    href="/docs/manage-returns"
+  >
+    Generate return labels and track returned items. Learn how to process customer returns through the API.
+  </Card>
+
+  <Card
+    title="Manage Webhooks"
+    icon="bell"
+    href="/docs/manage-webhooks"
+  >
+    Configure event subscriptions for real-time notifications. Set up webhooks to receive updates about order status changes and other events.
+  </Card>
+</CardGroup>
+
+## Authentication
+
+All API requests require authentication using:
+
+1. **Static API Key:** Obtained through the Quivo Dashboard. Include it in the `X-Api-Key` header.
+2. **Session Token:** Obtained through the `POST /login` endpoint, valid for one hour. Include it in the `Authorization` header.
+
+See the [Authentication guide](/docs/api-reference/authentication) for detailed instructions on obtaining and using session tokens.
+
+## Getting Help
+
+If you are not finding what you are looking for, or you get stuck, we are here to help. Reach out to our Developer Support Team.
+
+<Card
+  title="Need Assistance?"
+  icon="question-circle"
+  href="mailto:support@quivo.com"
+>
+  Contact our support team for help with integration questions, API issues, or general guidance. Visit our contact page to get in touch.
+</Card>
