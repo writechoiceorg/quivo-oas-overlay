@@ -28,6 +28,8 @@ Exchange your credentials for a session token via the `POST /login` endpoint.
 
 <Tabs>
   <Tab title="Request">
+    Use the following request to obtain a session token:
+
     ```bash
     curl -X POST "${BASE_URL}/login" \
       -H "Content-Type: application/json" \
@@ -59,6 +61,8 @@ Include the token in the `Authorization` header of all API requests. You must al
 
 <Tabs>
   <Tab title="Request">
+    Use the following request to make an authenticated API call:
+
     ```bash
     curl -X GET "${BASE_URL}/orders" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \

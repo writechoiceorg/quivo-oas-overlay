@@ -9,7 +9,7 @@ To fulfill orders, you need inventory available in a Quivo warehouse. This API f
 
 Before you start, make sure you have the following:
 
-- **Session Token:** A valid session token. See the [Authentication guide](/docs/essentials/authentication) to learn how to obtain one.
+- **Session Token:** A valid session token. See the [Authentication guide](/docs/api-reference/authentication) to learn how to obtain one.
 - **Seller ID:** Your merchant ID. Use the [`GET /sellers` endpoint](/docs/api-reference/introduction) in the API Reference to find it.
 - **Warehouse ID:** The ID of the specific warehouse you are shipping to. Use the [`GET /warehouses` endpoint](/docs/api-reference/introduction) in the API Reference to list them.
 - **Product SKUs:** The items you are sending must already exist in the system. Use the [`GET /articles` endpoint](/docs/api-reference/introduction) in the API Reference to find them.
@@ -18,12 +18,11 @@ Before you start, make sure you have the following:
 
 Create an inbound record when you are preparing to send products to a Quivo warehouse. You must tell the warehouse exactly what is coming so they can plan for its arrival using the [`POST /inbounds` endpoint](/docs/api-reference/introduction).
 
-
+The following example shows a complete inbound payload with all required fields and some common optional fields.
 
 <Tabs>
   <Tab title="Request">
-
-  The following example shows a complete inbound payload with all required fields and some common optional fields.
+    Use the following request to create an inbound record:
 
     ```bash
     curl -X POST "${BASE_URL}/inbounds" \
