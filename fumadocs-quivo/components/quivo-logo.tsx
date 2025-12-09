@@ -1,0 +1,56 @@
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { useId } from "react";
+
+const quivoLogoVariants = cva("w-full h-auto", {
+  variants: {
+    size: {
+      sm: "w-16",
+      md: "w-24",
+      lg: "w-32",
+      xl: "w-40",
+      home: "w-[285px]",
+    },
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
+
+interface quivoLogoProps extends VariantProps<typeof quivoLogoVariants> {
+  className?: string;
+}
+
+const quivoLogo = ({ size, className }: quivoLogoProps) => {
+  const id = useId();
+  return (
+    <div className={cn(quivoLogoVariants({ size, className }))}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100%"
+        viewBox="0 0 156 38"
+        fill="none"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+        role="img"
+      >
+        <g clipPath={`url(#${id})`}>
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M19.1133 0H17.4038C1.92787 0 0.00725581 8.38192 0 15.0137V16.2392C0 22.7927 1.92787 31.4445 17.3806 31.4445H19.09C22.8674 31.4445 25.8372 30.9301 28.1685 30.0579V37.7302H36.4917V29.1698H30.1189C35.5941 26.1652 36.4895 20.7313 36.4938 16.2646V15.0391C36.4938 8.36595 34.5667 0 19.1133 0ZM28.1707 15.9367C28.1707 19.6175 28.1707 24.4441 18.2397 24.4441C8.32314 24.4441 8.32314 19.6154 8.32314 15.9359V15.3468C8.32314 11.5788 8.32314 6.95833 18.2542 6.95833C28.1707 6.95833 28.1707 11.5817 28.1707 15.3475V15.9367ZM136.91 0H138.619V0.00217674C154.072 0.00217674 156 8.36813 156 15.0391V16.2646C155.993 22.8166 154.072 31.4438 138.596 31.4438H136.887C121.434 31.4438 119.506 22.7927 119.506 16.2392V15.0137C119.513 8.38192 121.434 0 136.91 0ZM137.746 24.4448C147.677 24.4448 147.677 19.6175 147.677 15.9367V15.3475C147.677 11.5817 147.677 6.95833 137.76 6.95833C127.829 6.95833 127.829 11.5788 127.829 15.3475V15.9359C127.829 19.6146 127.829 24.4448 137.746 24.4448ZM55.327 24.1873C62.6815 24.1945 63.5406 19.2003 63.5406 15.7175H63.5428L63.566 15.7248V0.448409H71.5293V15.9744C71.5206 22.0744 71.5075 31.3676 55.7958 31.3676H54.6638C38.8382 31.3676 38.8288 21.9757 38.8455 15.9164V0.433898H46.8479V15.703C46.8479 19.1858 47.7766 24.1873 55.1319 24.1873H55.327ZM74.8524 0.447684H82.8708V30.9134H74.8524V0.447684ZM112.409 0.48106L102.938 23.5647L93.5369 0.464372L84.1986 0.457116L97.6045 30.9294L108.146 30.9366L121.123 0.481786L112.409 0.48106Z"
+            fill="currentcolor"
+          />
+        </g>
+        <defs>
+          <clipPath id={id}>
+            <rect width="156" height="37.7302" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+export default quivoLogo;

@@ -1,8 +1,12 @@
 {
   "title": "API Reference",
+  "root": true,
   "pages": [
+    "---Introduction---",
     "introduction",
-    "authentication"
+    "authentication",
+    "---Endpoints---",
+    "openapi"
   ]
 }
 

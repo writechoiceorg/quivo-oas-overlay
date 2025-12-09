@@ -1,0 +1,14 @@
+{
+  "title": "Guides",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "index",
+    "---Quickstart---",
+    "send-inventory",
+    "create-order",
+    "track-order",
+    "manage-returns",
+    "manage-webhooks"
+  ]
+}

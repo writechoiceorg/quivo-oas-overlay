@@ -1,9 +1,10 @@
-import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import QuivoLogo from "@/components/quivo-logo";
 
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: 'My App',
+      title: <QuivoLogo size="md" />,
     },
   };
 }
