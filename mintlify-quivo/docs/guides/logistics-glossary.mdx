@@ -1,0 +1,161 @@
+---
+title: Logistics Glossary
+ogDescription: Essential logistics terms and definitions for working with the Quivo API
+---
+
+This glossary defines key logistics terms used throughout the Quivo API documentation. Use this reference to understand terminology and ensure vocabulary alignment when working with the Quivo Connector.
+
+## SKU
+
+SKU stands for Stock Keeping Unit. In the Quivo system, a SKU is the unique identifier for an article (product) in the system.
+
+You use SKUs to:
+- Identify products when sending inventory to warehouses
+- Reference products when creating fulfillment orders
+- Track inventory levels and quantities
+
+Each product in your catalog must have a unique SKU. The SKU appears in API requests and responses when working with articles, inventory, orders, and inbound shipments.
+
+<Note>
+The Quivo API supports both seller SKUs and warehouse SKUs. Some sellers use warehouse SKUs (`warehouseSku`) while others use seller SKUs (`sellerSku`). See the [Send Inventory guide](/docs/guides/main-flow/send-inventory) for details on how SKUs are used in inbound shipments.
+</Note>
+
+## Inbound
+
+An Inbound is a record that notifies the Quivo warehouse team that you are sending a shipment of products. You create an inbound record before shipping products to a warehouse, so the warehouse can plan for the arrival and process the inventory.
+
+When you create an inbound record, you specify:
+- Which products (SKUs) you are sending
+- The quantity of each product
+- The warehouse destination
+- Expected arrival information
+
+The inbound process has several statuses:
+- `PENDING`: The inbound request is pending processing
+- `CREATED`: You have notified Quivo, but the package has not arrived
+- `PROCESSING`: The warehouse is currently counting and booking the stock
+- `COMPLETED`: All items are booked into inventory and ready to be sold
+- `CANCELLED`: The inbound has been cancelled
+
+Once an inbound is completed, the products are available in inventory, and you can create fulfillment orders for those items.
+
+For detailed instructions on creating and tracking inbounds, see the [Send Inventory guide](/docs/guides/main-flow/send-inventory).
+
+## Pick & Pack
+
+Pick & Pack is the warehouse process where warehouse staff:
+- Pick items from inventory based on order requirements
+- Pack the items into shipping containers with appropriate packaging
+
+When you create a fulfillment order through the API, you trigger the Pick & Pack process automatically. The warehouse team receives the instruction and begins picking the ordered items from inventory, then packs them for shipment to the customer.
+
+The Pick & Pack process is part of the fulfillment workflow. After you create an order, the warehouse processes it through Pick & Pack, then ships the package to the customer's delivery address.
+
+For instructions on creating orders that trigger Pick & Pack, see the [Create a Fulfillment Order guide](/docs/guides/main-flow/create-order).
+
+## Last Mile
+
+Last Mile refers to the final stage of delivery from a distribution center or warehouse to the end customer's delivery address. This is the final leg of the shipping process where packages are transported to their final destination.
+
+The last-mile delivery stage is critical for customer satisfaction, as it represents the final touchpoint before the customer receives their order. Carriers handle the last-mile delivery using various transportation methods to reach the customer's address.
+
+## Fulfillment
+
+Fulfillment refers to the complete process of receiving, processing, and shipping customer orders. In the Quivo Fulfillment Service model, Quivo manages the entire fulfillment process, including storage, order processing, packaging, and shipping.
+
+## Warehouse
+
+A warehouse is a storage facility where products are stored before being shipped to customers. Quivo operates fulfillment centers in multiple locations (Germany, Austria, the United Kingdom, France, and the United States) and partner hubs.
+
+## Carrier
+
+A carrier is a shipping company that transports packages from the warehouse to the customer. Quivo supports major carriers including Royal Mail, DHL, DPD, and FedEx.
+
+## Shipment
+
+A shipment is a package that has been prepared for delivery. Shipments include tracking information and are assigned to carriers for transportation to the delivery address.
+
+## Order
+
+An Order, also called a Fulfillment Order, is a request to fulfill a customer purchase. When you create an order through the API, you trigger the Pick & Pack process in the warehouse.
+
+An order contains:
+- Order identifiers (`orderIdentifier` and `orderReference`) to track the order and prevent duplicates
+- Delivery address for the customer
+- List of products (positions) with SKUs and quantities
+
+Orders progress through several statuses:
+- `PENDING`: The order has been received but processing has not yet started
+- `PROCESSING`: The warehouse is currently picking and packing the items
+- `COMPLETED`: The order has been packed and handed over to the carrier
+- `CANCELLED`: The order was cancelled before fulfillment
+
+For instructions on creating orders, see the [Create a Fulfillment Order guide](/docs/guides/main-flow/create-order).
+
+## Article
+
+An Article is a product in the Quivo system. Each article has a unique SKU that identifies it. Articles must be created in the system before you can send them as inventory or include them in orders.
+
+You create articles using the `POST /articles` endpoint. Articles contain product information such as name, SKU, weight, dimensions, and other attributes needed for fulfillment.
+
+## Seller
+
+A Seller is a merchant account in the Quivo system. Each seller has a unique seller ID (an integer) that identifies the merchant account. You use your seller ID to scope operations to your account's data and resources.
+
+The seller ID appears in API requests when creating orders, sending inventory, and managing other operations. You can retrieve your seller ID using the `GET /sellers` endpoint.
+
+## Inventory
+
+Inventory refers to the stock of products available in Quivo warehouses. Products become part of your inventory after you send them to a warehouse through an inbound shipment and the inbound is completed.
+
+Inventory levels are tracked by SKU and warehouse. You can check inventory levels using the API to see how many units of each product are available for fulfillment.
+
+## Tracking
+
+Tracking refers to the ability to monitor the location and status of a shipment as it moves from the warehouse to the customer. Each shipment receives a tracking number from the carrier, which you can use to check delivery status.
+
+The Quivo API provides tracking numbers and tracking links in order and shipment responses. You can share these with customers so they can monitor their package delivery.
+
+## Return
+
+A Return is a shipment sent back from a customer to the Quivo warehouse. Returns are processed when customers need to send products back, for example, due to defects, wrong items, or customer preference.
+
+You can generate return labels programmatically through the API. When a return arrives at the warehouse, staff inspect it and update the return status. You can track returns and their inspection status through the API.
+
+For instructions on managing returns, see the [Manage Returns guide](/docs/guides/main-flow/manage-returns).
+
+## Webhook
+
+A Webhook is a mechanism that allows Quivo to send real-time notifications to your server when specific events occur. Instead of polling the API for status changes, webhooks push data to your endpoint via HTTP POST requests.
+
+You can subscribe to webhooks for entities such as:
+- `ORDERS`: Order creation and status changes
+- `SHIPMENTS`: Shipment creation and tracking updates
+- `INBOUNDS`: Inbound shipment status changes
+- `RETURNS`: Return creation and receipt at warehouse
+- `INVOICES`: Invoice creation and updates
+
+For instructions on setting up webhooks, see the [Manage Webhooks guide](/docs/guides/main-flow/manage-webhooks).
+
+## Next Steps
+
+Now that you understand these key terms, continue with these guides:
+
+<CardGroup cols={2}>
+  <Card
+    title="Send Inventory"
+    icon="warehouse"
+    href="/docs/guides/main-flow/send-inventory"
+  >
+    Learn how to create inbound records to send products to Quivo warehouses.
+  </Card>
+
+  <Card
+    title="Create a Fulfillment Order"
+    icon="shopping-cart"
+    href="/docs/guides/main-flow/create-order"
+  >
+    Learn how to create orders that trigger the Pick & Pack process.
+  </Card>
+</CardGroup>
+
