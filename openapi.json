@@ -442,14 +442,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -457,14 +459,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -472,7 +476,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -540,14 +545,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -555,14 +562,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -570,7 +579,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -1116,14 +1126,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -1131,14 +1143,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -1146,7 +1160,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -1180,14 +1195,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -1195,12 +1212,13 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
-            "description": "ID of the last item from the previous search.",
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'.",
             "schema": {
               "type": "string"
             }
@@ -1211,7 +1229,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -1695,14 +1714,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -1710,14 +1731,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -1725,7 +1748,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -2462,14 +2486,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -2477,14 +2503,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -2492,7 +2520,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -2696,14 +2725,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -2711,14 +2742,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -2726,7 +2759,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -2778,7 +2812,7 @@
           {
             "name": "query",
             "in": "query",
-            "description": "Search query to to filter item history",
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields.",
             "schema": {
               "type": "string"
             }
@@ -2786,7 +2820,7 @@
           {
             "name": "sort",
             "in": "query",
-            "description": "Sort order for results(asc/dsc)",
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc').",
             "schema": {
               "type": "string"
             }
@@ -2794,7 +2828,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "Page number when pagination is used",
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided.",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -2803,7 +2837,7 @@
           {
             "name": "searchAfter",
             "in": "query",
-            "description": "ID of the last item from the previous search. Overrides the page.",
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'.",
             "schema": {
               "type": "string"
             }
@@ -2811,7 +2845,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Number of entries per page",
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination.",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -2934,7 +2968,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "pageSize",
@@ -2942,7 +2977,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           },
           {
             "name": "movementFrom",
@@ -3039,7 +3075,7 @@
           {
             "name": "query",
             "in": "query",
-            "description": "Search query to filter items",
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields.",
             "schema": {
               "type": "string"
             }
@@ -3047,7 +3083,7 @@
           {
             "name": "sort",
             "in": "query",
-            "description": "Sort order for results(asc/dsc)",
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc').",
             "schema": {
               "type": "string"
             }
@@ -3055,7 +3091,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "Page number when pagination is used",
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided.",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -3064,7 +3100,7 @@
           {
             "name": "searchAfter",
             "in": "query",
-            "description": "ID of the last item from the previous search. Overrides the page.",
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'.",
             "schema": {
               "type": "string"
             }
@@ -3072,7 +3108,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Number of entries per page",
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination.",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -3136,7 +3172,7 @@
           {
             "name": "sort",
             "in": "query",
-            "description": "Sort order for results(asc/dsc)",
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc').",
             "schema": {
               "type": "string"
             }
@@ -3197,14 +3233,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -3212,14 +3250,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -3227,7 +3267,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -3566,14 +3607,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -3581,14 +3624,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -3596,12 +3641,13 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Returns an array of summarized order details, including key identifiers, status, and shipping information, filtered and sorted according to the request parameters.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3633,7 +3679,7 @@
         },
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Returns the result of the order creation attempt, including the newly assigned 'orderId' if successful, or status and error details if validation fails.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4511,14 +4557,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -4526,14 +4574,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -4541,7 +4591,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -4712,14 +4763,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -4727,14 +4780,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -4742,7 +4797,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -4851,14 +4907,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -4866,14 +4924,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -4881,7 +4941,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -5033,7 +5094,7 @@
           {
             "name": "query",
             "in": "query",
-            "description": "Search query to filter the shipments<br/>EX: <code>created:>=2021-05-01 AND created:<2021-05-07</code>",
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields.",
             "schema": {
               "type": "string"
             }
@@ -5041,7 +5102,7 @@
           {
             "name": "sort",
             "in": "query",
-            "description": "Optional sort order for results</br>Enum: <code>asc</code><code>dsc</code>)",
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc').",
             "schema": {
               "type": "string"
             }
@@ -5049,7 +5110,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "Page number when pagination is used",
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided.",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -5058,7 +5119,7 @@
           {
             "name": "searchAfter",
             "in": "query",
-            "description": "ID of the last item from the previous search.",
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'.",
             "schema": {
               "type": "string"
             }
@@ -5066,7 +5127,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Optional number of entries per page</br> When provided pagination will be enabled",
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination.",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -5288,14 +5349,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -5303,14 +5366,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -5318,7 +5383,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -5442,14 +5508,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -5457,14 +5525,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -5472,7 +5542,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -5560,14 +5631,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -5575,14 +5648,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -5590,7 +5665,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -5624,14 +5700,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -5639,12 +5717,13 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
-            "description": "ID of the last item from the previous search. This is used for pagination.",
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'.",
             "schema": {
               "type": "string"
             }
@@ -5655,7 +5734,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -5785,14 +5865,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -5800,14 +5882,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -5815,7 +5899,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -6079,14 +6164,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -6094,14 +6181,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -6109,7 +6198,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -6323,14 +6413,16 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
           },
           {
             "name": "sort",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
           },
           {
             "name": "page",
@@ -6338,14 +6430,16 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
           },
           {
             "name": "searchAfter",
             "in": "query",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
           },
           {
             "name": "pageSize",
@@ -6353,7 +6447,8 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
           }
         ],
         "responses": {
@@ -10376,12 +10471,15 @@
         "type": "object",
         "properties": {
           "errorCode": {
-            "type": "string"
+            "type": "string",
+            "description": "A machine-readable code identifying the nature of the error (e.g., 'OUT_OF_STOCK')."
           },
           "errorMessage": {
-            "type": "string"
+            "type": "string",
+            "description": "A human-readable message explaining the error in detail."
           }
-        }
+        },
+        "description": "Describes a high-level error that affects an entity (like an order), providing a specific error code and a human-readable error message."
       },
       "Error": {
         "type": "object",
@@ -10849,58 +10947,73 @@
         "properties": {
           "fulfillmentOrderPositionId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The unique internal identifier for the fulfillment order position."
           },
           "orderedSku": {
-            "type": "string"
+            "type": "string",
+            "description": "The SKU from the original order before any mapping or bundling."
           },
           "sku": {
-            "type": "string"
+            "type": "string",
+            "description": "The final SKU selected for fulfillment, after considering bundles/maps."
           },
           "warehouseSku": {
-            "type": "string"
+            "type": "string",
+            "description": "The SKU as known in the warehouse system."
           },
           "quantity": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "The quantity of the item allocated for fulfillment."
           },
           "lot": {
-            "type": "string"
+            "type": "string",
+            "description": "The lot number of the item allocated."
           },
           "location": {
-            "type": "string"
+            "type": "string",
+            "description": "The warehouse location where the item is stored."
           },
           "customsValue": {
-            "type": "number"
+            "type": "number",
+            "description": "The value of the item used for customs declaration."
           },
           "expirationDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "The expiration date of the specific product batch used."
           }
-        }
+        },
+        "description": "Details an individual product position within a fulfillment order, including its allocated quantity, lot, location, and expiration date."
       },
       "FulfillmentOrderSummary": {
         "type": "object",
         "properties": {
           "fulfillmentOrderIdentifier": {
-            "type": "string"
+            "type": "string",
+            "description": "The unique identifier for the fulfillment order in the warehouse system."
           },
           "fulfillmentStatus": {
-            "type": "string"
+            "type": "string",
+            "description": "The current status of the fulfillment order (e.g., 'READY_FOR_PICKING', 'SHIPPED')."
           },
           "positions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FulfillmentOrderPositionSummary"
-            }
+            },
+            "description": "Details of the items and quantities processed in this fulfillment order."
           },
           "shipments": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ShipmentSummary"
-            }
+            },
+            "description": "A list of shipments created as a result of this fulfillment order."
           }
-        }
+        },
+        "description": "Provides an overview of a planned fulfillment operation, detailing its unique identifier, current status in the warehouse, the inventory positions assigned to it, and any resulting shipments."
       },
       "Graph": {
         "type": "object",
@@ -12579,12 +12692,15 @@
         "type": "object",
         "properties": {
           "identifier": {
-            "type": "string"
+            "type": "string",
+            "description": "The specific identifier string (e.g., a GLN or store ID)."
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": "The type of the identifier (e.g., 'GLN', 'SHOP_SPECIFIC')."
           }
-        }
+        },
+        "description": "Represents an additional, specialized identifier for an address, such as a GLN or a shop-specific ID, along with its type."
       },
       "OrderAttachmentGet": {
         "required": [
@@ -14034,19 +14150,24 @@
         "type": "object",
         "properties": {
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "Indicates the overall status of the order creation attempt. Typically \"OK\" on success, or an error status on failure."
           },
           "field": {
-            "type": "string"
+            "type": "string",
+            "description": "On failure, this field indicates the specific request field that caused the error (e.g., \"deliveryAddress.countryIso2\"). This field is null on success."
           },
           "message": {
-            "type": "string"
+            "type": "string",
+            "description": "A detailed, human-readable message describing the outcome of the operation. This may contain success confirmation or a specific error explanation."
           },
           "orderId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The unique internal ID assigned to the new order upon successful creation. This field is null on failure."
           }
-        }
+        },
+        "description": "Represents the outcome of an order creation request, indicating whether the operation was successful (status) and, if successful, providing the new orderId. It includes fields for error messages if the operation failed."
       },
       "OrderPut": {
         "type": "object",
@@ -14139,148 +14260,186 @@
         "properties": {
           "orderId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The unique internal identifier for the order."
           },
           "sellerId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The unique identifier for the seller account associated with the order."
           },
           "created": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp when the order record was initially created."
           },
           "lastModified": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp when the order record was last modified."
           },
           "orderIdentifier": {
-            "type": "string"
+            "type": "string",
+            "description": "A unique identifier from the source system (e.g., shop system) to prevent duplicate order creation."
           },
           "orderReference": {
-            "type": "string"
+            "type": "string",
+            "description": "An easy-to-read reference number for the order, typically set by the customer or shop."
           },
           "orderStatus": {
-            "type": "string"
+            "type": "string",
+            "description": "The current fulfillment status of the order (e.g., 'PENDING', 'PROCESSING', 'COMPLETED')."
           },
           "tags": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "Optional list of descriptive tags applied to the order."
           },
           "orderDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "The date and time when the order was placed by the customer."
           },
           "cancelRequestedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp if a cancellation request was logged for the order."
           },
           "shipToCountry": {
-            "type": "string"
+            "type": "string",
+            "description": "The ISO 2 country code (e.g., 'DE', 'US') for the delivery address."
           },
           "shipToZip": {
-            "type": "string"
+            "type": "string",
+            "description": "The ZIP code for the delivery address."
           },
           "shipToCompany": {
-            "type": "string"
+            "type": "string",
+            "description": "The company name for the delivery address."
           },
           "shipToName1": {
-            "type": "string"
+            "type": "string",
+            "description": "The first name/line 1 name for the delivery address."
           },
           "shipToName2": {
-            "type": "string"
+            "type": "string",
+            "description": "The second name/line 2 name for the delivery address."
           },
           "shipToAddressIdentifier": {
-            "type": "string"
+            "type": "string",
+            "description": "An optional identifier for the delivery address (e.g., a store ID)."
           },
           "shipToAdditionalIdentifiers": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/OrderAddressAdditionalIdentifier"
-            }
+            },
+            "description": "Additional unique identifiers for the shipping address (e.g., GLN)."
           },
           "earliestPredatedShipment": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "description": "The earliest allowed date for the order to be shipped."
           },
           "latestPredatedShipment": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "description": "The latest allowed date for the order to be shipped."
           },
           "shipmentTracking": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TrackingSummary"
-            }
+            },
+            "description": "A list of tracking numbers and links associated with shipments for this order."
           },
           "completedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp when the order was marked as fulfilled/completed."
           },
           "exportedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp when the order was exported to the warehouse management system."
           },
           "shipToEmail": {
-            "type": "string"
+            "type": "string",
+            "description": "The email address for the delivery recipient."
           },
           "billToEmail": {
-            "type": "string"
+            "type": "string",
+            "description": "The email address for the invoice recipient."
           },
           "piiDataRemoved": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if Personally Identifiable Information (PII) has been removed from the order record."
           },
           "totalShipmentWeight": {
-            "type": "number"
+            "type": "number",
+            "description": "The total weight of all shipments associated with the order (in kg)."
           },
           "positions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PositionSummary"
-            }
+            },
+            "description": "A summary list of the products originally ordered by the customer."
           },
           "fulfillmentOrders": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FulfillmentOrderSummary"
-            }
+            },
+            "description": "Details of how the order was split and planned for physical fulfillment in the warehouse(s)."
           },
           "entityErrors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EntityErrorSummary"
-            }
+            },
+            "description": "A list of critical errors preventing the fulfillment process."
           },
           "sort": {
-            "$ref": "#/components/schemas/JsonNode"
+            "$ref": "#/components/schemas/JsonNode",
+            "description": "Internal object used for controlling search result ordering."
           },
           "shopId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The unique identifier of the source shop system."
           },
           "shopSystem": {
-            "type": "string"
+            "type": "string",
+            "description": "The technical name of the shop system (e.g., 'Shopware', 'Shopify')."
           },
           "shopSystemName": {
-            "type": "string"
+            "type": "string",
+            "description": "The display name of the shop system."
           },
           "customerPurchaseOrderNumber": {
-            "type": "string"
+            "type": "string",
+            "description": "A reference code assigned to the purchase order by the customer."
           },
           "channelId": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the sales channel associated with the order."
           },
           "channelName": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the sales channel associated with the order."
           },
           "customAttributes": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
-            }
+            },
+            "description": "Arbitrary key-value pairs for storing custom data related to the order."
           }
-        }
+        },
+        "description": "Provides a high-level summary of an order, including primary identifiers (orderId, orderIdentifier), current status, timestamps, key shipping details (like destination country and ZIP), and a list of included positions and fulfillment details."
       },
       "PackagingUnitDetail": {
         "type": "object",
@@ -14584,24 +14743,30 @@
         "properties": {
           "positionId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The unique internal identifier for the order position."
           },
           "positionIdentifier": {
-            "type": "string"
+            "type": "string",
+            "description": "A unique identifier for the position from the source system."
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The descriptive name of the ordered product."
           },
           "sku": {
-            "type": "string"
+            "type": "string",
+            "description": "The Stock Keeping Unit (SKU) of the ordered product."
           },
           "customAttributes": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
-            }
+            },
+            "description": "Arbitrary key-value pairs for storing custom data related to the position."
           }
-        }
+        },
+        "description": "A summarized view of an individual ordered line item, containing identifiers, the product SKU, its name, and any associated custom attributes."
       },
       "PreviewFulfillmentOrder": {
         "type": "object",
@@ -15856,59 +16021,74 @@
         "properties": {
           "shipmentPositionId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The unique internal identifier for the shipment position."
           },
           "sku": {
-            "type": "string"
+            "type": "string",
+            "description": "The SKU used for the shipment position."
           },
           "warehouseSku": {
-            "type": "string"
+            "type": "string",
+            "description": "The SKU as known in the warehouse system."
           },
           "sellerSku": {
-            "type": "string"
+            "type": "string",
+            "description": "The original SKU from the seller."
           },
           "quantity": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "The quantity shipped in this position."
           },
           "lot": {
-            "type": "string"
+            "type": "string",
+            "description": "The lot number of the item shipped."
           },
           "location": {
-            "type": "string"
+            "type": "string",
+            "description": "The storage location where the item was picked from."
           },
           "expirationDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "The expiration date of the product shipped."
           },
           "serialNumbers": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "A list of serial numbers for tracked items."
           },
           "positionIdentifier": {
-            "type": "string"
+            "type": "string",
+            "description": "The unique identifier for the shipment position."
           }
-        }
+        },
+        "description": "Detailed information about a specific item included within a shipment, including its allocated quantity, lot, location, and serial numbers."
       },
       "ShipmentSummary": {
         "type": "object",
         "properties": {
           "shipmentId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The unique internal identifier for the shipment."
           },
           "shipmentIdentifier": {
-            "type": "string"
+            "type": "string",
+            "description": "The unique reference for the shipment, typically assigned by the system."
           },
           "positions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ShipmentPositionDetail"
-            }
+            },
+            "description": "The list of items and quantities contained within this specific shipment."
           }
-        }
+        },
+        "description": "A summary of a particular shipment created for the order, including its unique identifiers and the list of specific items/quantities enclosed."
       },
       "ShippingOrderGet": {
         "type": "object",
@@ -16636,12 +16816,15 @@
         "type": "object",
         "properties": {
           "number": {
-            "type": "string"
+            "type": "string",
+            "description": "The tracking number for the shipment."
           },
           "link": {
-            "type": "string"
+            "type": "string",
+            "description": "The public tracking link URL provided by the carrier."
           }
-        }
+        },
+        "description": "Provides a summary of a shipment's tracking details, including the tracking number and the corresponding public tracking link."
       },
       "TransportGet": {
         "required": [
