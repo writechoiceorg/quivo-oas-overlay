@@ -467,6 +467,14 @@ actions:
   update:
     description: ADD ENDPOINT DESCRIPTION HERE
 
+- target: $.paths./orders.get.responses.200
+  update:
+    description: Successful Operation: Returns an array of summarized order details, including key identifiers, status, and shipping information, filtered and sorted according to the request parameters.
+
+- target: $.paths./orders.post.responses.200
+  update:
+    description: Successful Operation: Returns the result of the order creation attempt, including the newly assigned 'orderId' if successful, or status and error details if validation fails.
+
 - target: $.paths./addresses/{sellerId}.get.responses.200
   update:
     description: ADD RESPONSE DESCRIPTION HERE - 200
@@ -491,3 +499,326 @@ actions:
 - target: $.paths.*[?(@.parameters[?(@.name == 'articleId')])]
   update:
     description: "The unique identifier for an article (product/SKU) in the system."
+
+# --- NEW SECTIONS FOR NESTED COMPONENT SCHEMAS ---
+
+- target: $.components.schemas.PositionSummary
+  update:
+    description: A summarized view of an individual ordered line item, containing identifiers, the product SKU, its name, and any associated custom attributes.
+
+- target: $.components.schemas.FulfillmentOrderSummary
+  update:
+    description: Provides an overview of a planned fulfillment operation, detailing its unique identifier, current status in the warehouse, the inventory positions assigned to it, and any resulting shipments.
+
+- target: $.components.schemas.EntityErrorSummary
+  update:
+    description: Describes a high-level error that affects an entity (like an order), providing a specific error code and a human-readable error message.
+
+- target: $.components.schemas.OrderAddressAdditionalIdentifier
+  update:
+    description: Represents an additional, specialized identifier for an address, such as a GLN or a shop-specific ID, along with its type.
+
+- target: $.components.schemas.TrackingSummary
+  update:
+    description: Provides a summary of a shipment's tracking details, including the tracking number and the corresponding public tracking link.
+
+# --- SCHEMA DESCRIPTIONS ---
+
+- target: $.components.schemas.OrderSummary
+  update:
+    description: Provides a high-level summary of an order, including primary identifiers (orderId, orderIdentifier), current status, timestamps, key shipping details (like destination country and ZIP), and a list of included positions and fulfillment details.
+- target: $.components.schemas.OrderPostResult
+  update:
+    description: Represents the outcome of an order creation request, indicating whether the operation was successful (status) and, if successful, providing the new orderId. It includes fields for error messages if the operation failed.
+- target: $.components.schemas.PositionSummary
+  update:
+    description: A summarized view of an individual ordered line item, containing identifiers, the product SKU, its name, and any associated custom attributes.
+- target: $.components.schemas.FulfillmentOrderSummary
+  update:
+    description: Provides an overview of a planned fulfillment operation, detailing its unique identifier, current status in the warehouse, the inventory positions assigned to it, and any resulting shipments.
+- target: $.components.schemas.FulfillmentOrderPositionSummary
+  update:
+    description: Details an individual product position within a fulfillment order, including its allocated quantity, lot, location, and expiration date.
+- target: $.components.schemas.ShipmentSummary
+  update:
+    description: A summary of a particular shipment created for the order, including its unique identifiers and the list of specific items/quantities enclosed.
+- target: $.components.schemas.ShipmentPositionDetail
+  update:
+    description: Detailed information about a specific item included within a shipment, including its allocated quantity, lot, location, and serial numbers.
+- target: $.components.schemas.EntityErrorSummary
+  update:
+    description: Describes a high-level error that affects an entity (like an order), providing a specific error code and a human-readable error message.
+- target: $.components.schemas.OrderAddressAdditionalIdentifier
+  update:
+    description: Represents an additional, specialized identifier for an address, such as a GLN or a shop-specific ID, along with its type.
+- target: $.components.schemas.TrackingSummary
+  update:
+    description: Provides a summary of a shipment's tracking details, including the tracking number and the corresponding public tracking link.
+
+
+# --- PROPERTY DESCRIPTIONS FOR OrderSummary ---
+
+- target: $.components.schemas.OrderSummary.properties.orderId
+  update:
+    description: The unique internal identifier for the order.
+- target: $.components.schemas.OrderSummary.properties.sellerId
+  update:
+    description: The unique identifier for the seller account associated with the order.
+- target: $.components.schemas.OrderSummary.properties.created
+  update:
+    description: Timestamp when the order record was initially created.
+- target: $.components.schemas.OrderSummary.properties.lastModified
+  update:
+    description: Timestamp when the order record was last modified.
+- target: $.components.schemas.OrderSummary.properties.orderIdentifier
+  update:
+    description: A unique identifier from the source system (e.g., shop system) to prevent duplicate order creation.
+- target: $.components.schemas.OrderSummary.properties.orderReference
+  update:
+    description: An easy-to-read reference number for the order, typically set by the customer or shop.
+- target: $.components.schemas.OrderSummary.properties.orderStatus
+  update:
+    description: The current fulfillment status of the order (e.g., 'PENDING', 'PROCESSING', 'COMPLETED').
+- target: $.components.schemas.OrderSummary.properties.tags
+  update:
+    description: Optional list of descriptive tags applied to the order.
+- target: $.components.schemas.OrderSummary.properties.orderDate
+  update:
+    description: The date and time when the order was placed by the customer.
+- target: $.components.schemas.OrderSummary.properties.cancelRequestedAt
+  update:
+    description: Timestamp if a cancellation request was logged for the order.
+- target: $.components.schemas.OrderSummary.properties.shipToCountry
+  update:
+    description: The ISO 2 country code (e.g., 'DE', 'US') for the delivery address.
+- target: $.components.schemas.OrderSummary.properties.shipToZip
+  update:
+    description: The ZIP code for the delivery address.
+- target: $.components.schemas.OrderSummary.properties.shipToCompany
+  update:
+    description: The company name for the delivery address.
+- target: $.components.schemas.OrderSummary.properties.shipToName1
+  update:
+    description: The first name/line 1 name for the delivery address.
+- target: $.components.schemas.OrderSummary.properties.shipToName2
+  update:
+    description: The second name/line 2 name for the delivery address.
+- target: $.components.schemas.OrderSummary.properties.shipToAddressIdentifier
+  update:
+    description: An optional identifier for the delivery address (e.g., a store ID).
+- target: $.components.schemas.OrderSummary.properties.shipToAdditionalIdentifiers
+  update:
+    description: Additional unique identifiers for the shipping address (e.g., GLN).
+- target: $.components.schemas.OrderSummary.properties.earliestPredatedShipment
+  update:
+    description: The earliest allowed date for the order to be shipped.
+- target: $.components.schemas.OrderSummary.properties.latestPredatedShipment
+  update:
+    description: The latest allowed date for the order to be shipped.
+- target: $.components.schemas.OrderSummary.properties.shipmentTracking
+  update:
+    description: A list of tracking numbers and links associated with shipments for this order.
+- target: $.components.schemas.OrderSummary.properties.completedAt
+  update:
+    description: Timestamp when the order was marked as fulfilled/completed.
+- target: $.components.schemas.OrderSummary.properties.exportedAt
+  update:
+    description: Timestamp when the order was exported to the warehouse management system.
+- target: $.components.schemas.OrderSummary.properties.shipToEmail
+  update:
+    description: The email address for the delivery recipient.
+- target: $.components.schemas.OrderSummary.properties.billToEmail
+  update:
+    description: The email address for the invoice recipient.
+- target: $.components.schemas.OrderSummary.properties.piiDataRemoved
+  update:
+    description: Indicates if Personally Identifiable Information (PII) has been removed from the order record.
+- target: $.components.schemas.OrderSummary.properties.totalShipmentWeight
+  update:
+    description: The total weight of all shipments associated with the order (in kg).
+- target: $.components.schemas.OrderSummary.properties.positions
+  update:
+    description: A summary list of the products originally ordered by the customer.
+- target: $.components.schemas.OrderSummary.properties.fulfillmentOrders
+  update:
+    description: Details of how the order was split and planned for physical fulfillment in the warehouse(s).
+- target: $.components.schemas.OrderSummary.properties.entityErrors
+  update:
+    description: A list of critical errors preventing the fulfillment process.
+- target: $.components.schemas.OrderSummary.properties.sort
+  update:
+    description: Internal object used for controlling search result ordering.
+- target: $.components.schemas.OrderSummary.properties.shopId
+  update:
+    description: The unique identifier of the source shop system.
+- target: $.components.schemas.OrderSummary.properties.shopSystem
+  update:
+    description: The technical name of the shop system (e.g., 'Shopware', 'Shopify').
+- target: $.components.schemas.OrderSummary.properties.shopSystemName
+  update:
+    description: The display name of the shop system.
+- target: $.components.schemas.OrderSummary.properties.customerPurchaseOrderNumber
+  update:
+    description: A reference code assigned to the purchase order by the customer.
+- target: $.components.schemas.OrderSummary.properties.channelId
+  update:
+    description: The ID of the sales channel associated with the order.
+- target: $.components.schemas.OrderSummary.properties.channelName
+  update:
+    description: The name of the sales channel associated with the order.
+- target: $.components.schemas.OrderSummary.properties.customAttributes
+  update:
+    description: Arbitrary key-value pairs for storing custom data related to the order.
+
+
+# --- PROPERTY DESCRIPTIONS FOR NESTED SCHEMAS ---
+
+# OrderAddressAdditionalIdentifier
+- target: $.components.schemas.OrderAddressAdditionalIdentifier.properties.identifier
+  update:
+    description: The specific identifier string (e.g., a GLN or store ID).
+- target: $.components.schemas.OrderAddressAdditionalIdentifier.properties.type
+  update:
+    description: The type of the identifier (e.g., 'GLN', 'SHOP_SPECIFIC').
+
+# TrackingSummary
+- target: $.components.schemas.TrackingSummary.properties.number
+  update:
+    description: The tracking number for the shipment.
+- target: $.components.schemas.TrackingSummary.properties.link
+  update:
+    description: The public tracking link URL provided by the carrier.
+
+# PositionSummary
+- target: $.components.schemas.PositionSummary.properties.positionId
+  update:
+    description: The unique internal identifier for the order position.
+- target: $.components.schemas.PositionSummary.properties.positionIdentifier
+  update:
+    description: A unique identifier for the position from the source system.
+- target: $.components.schemas.PositionSummary.properties.name
+  update:
+    description: The descriptive name of the ordered product.
+- target: $.components.schemas.PositionSummary.properties.sku
+  update:
+    description: The Stock Keeping Unit (SKU) of the ordered product.
+- target: $.components.schemas.PositionSummary.properties.customAttributes
+  update:
+    description: Arbitrary key-value pairs for storing custom data related to the position.
+
+# FulfillmentOrderSummary
+- target: $.components.schemas.FulfillmentOrderSummary.properties.fulfillmentOrderIdentifier
+  update:
+    description: The unique identifier for the fulfillment order in the warehouse system.
+- target: $.components.schemas.FulfillmentOrderSummary.properties.fulfillmentStatus
+  update:
+    description: The current status of the fulfillment order (e.g., 'READY_FOR_PICKING', 'SHIPPED').
+- target: $.components.schemas.FulfillmentOrderSummary.properties.positions
+  update:
+    description: Details of the items and quantities processed in this fulfillment order.
+- target: $.components.schemas.FulfillmentOrderSummary.properties.shipments
+  update:
+    description: A list of shipments created as a result of this fulfillment order.
+
+# FulfillmentOrderPositionSummary
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.fulfillmentOrderPositionId
+  update:
+    description: The unique internal identifier for the fulfillment order position.
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.orderedSku
+  update:
+    description: The SKU from the original order before any mapping or bundling.
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.sku
+  update:
+    description: The final SKU selected for fulfillment, after considering bundles/maps.
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.warehouseSku
+  update:
+    description: The SKU as known in the warehouse system.
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.quantity
+  update:
+    description: The quantity of the item allocated for fulfillment.
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.lot
+  update:
+    description: The lot number of the item allocated.
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.location
+  update:
+    description: The warehouse location where the item is stored.
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.customsValue
+  update:
+    description: The value of the item used for customs declaration.
+- target: $.components.schemas.FulfillmentOrderPositionSummary.properties.expirationDate
+  update:
+    description: The expiration date of the specific product batch used.
+
+# ShipmentSummary
+- target: $.components.schemas.ShipmentSummary.properties.shipmentId
+  update:
+    description: The unique internal identifier for the shipment.
+- target: $.components.schemas.ShipmentSummary.properties.shipmentIdentifier
+  update:
+    description: The unique reference for the shipment, typically assigned by the system.
+- target: $.components.schemas.ShipmentSummary.properties.positions
+  update:
+    description: The list of items and quantities contained within this specific shipment.
+
+# ShipmentPositionDetail
+- target: $.components.schemas.ShipmentPositionDetail.properties.shipmentPositionId
+  update:
+    description: The unique internal identifier for the shipment position.
+- target: $.components.schemas.ShipmentPositionDetail.properties.sku
+  update:
+    description: The SKU used for the shipment position.
+- target: $.components.schemas.ShipmentPositionDetail.properties.warehouseSku
+  update:
+    description: The SKU as known in the warehouse system.
+- target: $.components.schemas.ShipmentPositionDetail.properties.sellerSku
+  update:
+    description: The original SKU from the seller.
+- target: $.components.schemas.ShipmentPositionDetail.properties.quantity
+  update:
+    description: The quantity shipped in this position.
+- target: $.components.schemas.ShipmentPositionDetail.properties.lot
+  update:
+    description: The lot number of the item shipped.
+- target: $.components.schemas.ShipmentPositionDetail.properties.location
+  update:
+    description: The storage location where the item was picked from.
+- target: $.components.schemas.ShipmentPositionDetail.properties.expirationDate
+  update:
+    description: The expiration date of the product shipped.
+- target: $.components.schemas.ShipmentPositionDetail.properties.serialNumbers
+  update:
+    description: A list of serial numbers for tracked items.
+- target: $.components.schemas.ShipmentPositionDetail.properties.positionIdentifier
+  update:
+    description: The unique identifier for the shipment position.
+
+# EntityErrorSummary
+- target: $.components.schemas.EntityErrorSummary.properties.errorCode
+  update:
+    description: A machine-readable code identifying the nature of the error (e.g., 'OUT_OF_STOCK').
+- target: $.components.schemas.EntityErrorSummary.properties.errorMessage
+  update:
+    description: A human-readable message explaining the error in detail.
+
+
+# Querys
+
+- target: $.paths.*.parameters[?(@.name == 'query')]
+  update:
+    description: Search query string used to filter results. This field supports specific syntax for filtering across multiple fields.
+
+- target: $.paths.*.parameters[?(@.name == 'sort')]
+  update:
+    description: Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc').
+
+- target: $.paths.*.parameters[?(@.name == 'page')]
+  update:
+    description: The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided.
+
+- target: $.paths.*.parameters[?(@.name == 'searchAfter')]
+  update:
+    description: Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'.
+
+- target: $.paths.*.parameters[?(@.name == 'pageSize')]
+  update:
+    description: The maximum number of items to return per page. Used for both offset and cursor-based pagination.
