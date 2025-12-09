@@ -127,15 +127,23 @@ function CalloutComponent({ children }: { children: React.ReactNode }) {
 
 // Tabs component for fumadocs
 function Tabs({ children, defaultValue }: { children: React.ReactNode; defaultValue?: string }) {
-  const tabs = React.Children.toArray(children) as React.ReactElement[];
-  const firstValue = tabs.find((tab) => tab.props.title || tab.props.value)?.props.title || tabs.find((tab) => tab.props.title || tab.props.value)?.props.value || defaultValue || 'tab-0';
+  const tabs = React.Children.toArray(children) as React.ReactElement<{ title?: string; value?: string; children?: React.ReactNode }>[];
+  const firstTab = tabs.find((tab) => {
+    const props = tab.props as { title?: string; value?: string };
+    return props.title || props.value;
+  });
+  const firstValue = (firstTab?.props as { title?: string; value?: string })?.title || 
+                     (firstTab?.props as { title?: string; value?: string })?.value || 
+                     defaultValue || 
+                     'tab-0';
   
   return (
     <TabsPrimitive.Root defaultValue={firstValue} className="my-4">
       <TabsPrimitive.List className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
         {tabs.map((tab, index) => {
-          const title = tab.props.title || tab.props.value || `Tab ${index + 1}`;
-          const value = tab.props.value || tab.props.title || `tab-${index}`;
+          const props = tab.props as { title?: string; value?: string; children?: React.ReactNode };
+          const title = props.title || props.value || `Tab ${index + 1}`;
+          const value = props.value || props.title || `tab-${index}`;
           return (
             <TabsPrimitive.Trigger
               key={value}
@@ -150,10 +158,11 @@ function Tabs({ children, defaultValue }: { children: React.ReactNode; defaultVa
         })}
       </TabsPrimitive.List>
       {tabs.map((tab, index) => {
-        const value = tab.props.value || tab.props.title || `tab-${index}`;
+        const props = tab.props as { title?: string; value?: string; children?: React.ReactNode };
+        const value = props.value || props.title || `tab-${index}`;
         return (
           <TabsPrimitive.Content key={value} value={value} className="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-            {tab.props.children}
+            {props.children}
           </TabsPrimitive.Content>
         );
       })}
