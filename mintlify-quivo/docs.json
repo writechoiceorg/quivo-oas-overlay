@@ -20,30 +20,35 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Quivo Documentation Hub",
+            "group": "Getting Started",
             "pages": [
+              "docs/getting-started/overview",
+              "docs/getting-started/setup-account",
+              "docs/getting-started/first-api-call"
             ]
           },
           {
-            "group": "Introduction",
+            "group": "Core Workflow",
             "pages": [
-              "docs/guides/overview"
-            ]
-          },
-          {
-            "group": "Quickstart",
-            "pages": [
+              "docs/guides/main-flow/create-products",
+              "docs/guides/main-flow/manage-products",
               "docs/guides/main-flow/send-inventory",
               "docs/guides/main-flow/create-order",
               "docs/guides/main-flow/track-order",
               "docs/guides/main-flow/manage-returns",
               "docs/guides/main-flow/manage-webhooks"
             ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "docs/reference/logistics-glossary"
+            ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "groups": [
           {
             "group": "Introduction",

@@ -1,0 +1,347 @@
+---
+title: Manage Products (Articles)
+ogDescription: Learn how to update, retrieve, and manage products (articles) in your Quivo catalog
+---
+
+After creating articles, you can manage them by updating details, uploading images, searching your catalog, and validating product data.
+
+This guide teaches you how to retrieve article details, update articles, manage product images, and search your catalog.
+
+## Prerequisites
+
+Before you start, make sure you have the following:
+
+- **Session Token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **Seller ID:** The unique integer ID for your merchant account. Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) in the API Reference to find it.
+- **Existing Articles:** You should have at least one article created. See the [Create Products guide](/docs/guides/main-flow/create-products) if you haven't created articles yet.
+
+## Retrieve article details
+
+Retrieve article details using the article ID or article identifier. Use the [`GET /articles/{sellerId}/{articleId}` endpoint](/api-reference/#tag/articles) to get details by article ID:
+
+<Tabs>
+  <Tab title="Request">
+    ```bash
+    curl -X GET "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>"
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with your environment URL. Use the `articleId` returned when you created the article.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful request returns a `200 OK` status code with the full article details:
+
+    ```json
+    {
+      "articleId": <YOUR_ARTICLE_ID>,
+      "sellerId": <YOUR_SELLER_ID>,
+      "sku": "<YOUR_SKU>",
+      "name": {
+        "value": "<PRODUCT_NAME>",
+        "language": "EN"
+      },
+      "grossWeight": {
+        "value": <WEIGHT_VALUE>,
+        "unit": "KG"
+      },
+      "images": [
+        {
+          "id": "<IMAGE_ID>",
+          "url": {
+            "link": "<IMAGE_URL>"
+          },
+          "source": "<IMAGE_SOURCE>"
+        }
+      ],
+      "created": "<YYYY-MM-DDTHH:mm:ssZ>",
+      "lastModified": "<YYYY-MM-DDTHH:mm:ssZ>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+You can also retrieve an article by its identifier using the [`GET /articles/{sellerId}/identifier/{articleIdentifier}` endpoint](/api-reference/#tag/articles).
+
+## Search articles
+
+Search for articles using the [`GET /articles` endpoint](/api-reference/#tag/articles). This endpoint supports query, sorting, and pagination parameters:
+
+<Tabs>
+  <Tab title="Request">
+    ```bash
+    curl -X GET "${BASE_URL}/articles?query=sku:<YOUR_SKU>&sort=created:desc&pageSize=50" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>"
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with your environment URL. Use the `query` parameter to filter results, `sort` to order them, and `pageSize` to limit the number of results.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful request returns a `200 OK` status code with a paginated list of articles:
+
+    ```json
+    {
+      "content": [
+        {
+          "articleId": <ARTICLE_ID>,
+          "sku": "<SKU>",
+          "name": {
+            "value": "<PRODUCT_NAME>",
+            "language": "EN"
+          }
+        }
+      ],
+      "totalElements": 1,
+      "totalPages": 1,
+      "page": 0,
+      "pageSize": 50
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Update an article
+
+Update an existing article using the [`PUT /articles/{sellerId}/{articleId}` endpoint](/api-reference/#tag/articles). Provide the fields you want to update in the request body:
+
+<Tabs>
+  <Tab title="Request">
+    ```bash
+    curl -X PUT "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "sku": "<YOUR_SKU>",
+        "name": {
+          "value": "<UPDATED_PRODUCT_NAME>",
+          "language": "EN"
+        },
+        "grossWeight": {
+          "value": <UPDATED_WEIGHT_VALUE>,
+          "unit": "KG"
+        }
+      }'
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with your environment URL. Include all fields you want to keep, not just the ones you're updating. The request body should contain the complete article data.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful request returns a `200 OK` status code with the updated article details:
+
+    ```json
+    {
+      "articleId": <YOUR_ARTICLE_ID>,
+      "sellerId": <YOUR_SELLER_ID>,
+      "sku": "<YOUR_SKU>",
+      "name": {
+        "value": "<UPDATED_PRODUCT_NAME>",
+        "language": "EN"
+      },
+      "grossWeight": {
+        "value": <UPDATED_WEIGHT_VALUE>,
+        "unit": "KG"
+      },
+      "lastModified": "<YYYY-MM-DDTHH:mm:ssZ>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Tip>
+  **Validation:** Before updating an article, you can validate your request using the [`POST /articles/{sellerId}/validate` endpoint](/api-reference/#tag/articles). This helps catch errors before making changes.
+</Tip>
+
+## Upload product images
+
+You can upload product images to articles. The image upload process requires three steps: first, obtain an upload URL, then upload the image file to that URL, and finally store the image information.
+
+### Step 1: Get upload URL
+
+Request an upload URL using the [`POST /articles/{sellerId}/{articleId}/images/upload` endpoint](/api-reference/#tag/articles):
+
+<Tabs>
+  <Tab title="Request">
+    ```bash
+    curl -X POST "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>/images/upload?mimeType=image/jpeg" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>"
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with your environment URL. Specify the `mimeType` query parameter (for example, `image/jpeg`, `image/png`).
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful request returns a `200 OK` status code with upload details:
+
+    ```json
+    {
+      "id": "<IMAGE_UPLOAD_ID>",
+      "uploadUrl": "<UPLOAD_URL>"
+    }
+    ```
+
+    Save the `uploadUrl` and `id` values. You need these for the next step.
+  </Tab>
+</Tabs>
+
+### Step 2: Upload the image
+
+Upload your image file to the `uploadUrl` using a PUT request:
+
+<Tabs>
+  <Tab title="Request">
+    ```bash
+    curl -X PUT "<UPLOAD_URL>" \
+      -H "Content-Type: image/jpeg" \
+      --data-binary "@<PATH_TO_IMAGE_FILE>"
+    ```
+
+    <Note>
+      Replace `<UPLOAD_URL>` with the URL from Step 1. Replace `<PATH_TO_IMAGE_FILE>` with the path to your image file. Set the `Content-Type` header to match the mime type you specified in Step 1.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful upload returns a `200 OK` or `204 No Content` status code with no response body.
+  </Tab>
+</Tabs>
+
+### Step 3: Store image information
+
+After uploading the image, store the image information using the [`POST /articles/{sellerId}/{articleId}/images` endpoint](/api-reference/#tag/articles):
+
+<Tabs>
+  <Tab title="Request">
+    ```bash
+    curl -X POST "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>/images" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "id": "<IMAGE_UPLOAD_ID>"
+      }'
+    ```
+
+    <Note>
+      Use the `id` value from Step 1. This is the only required field for storing the image information.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful request returns a `200 OK` status code with image information:
+
+    ```json
+    {
+      "id": "<IMAGE_ID>",
+      "url": {
+        "link": "<IMAGE_URL>"
+      },
+      "source": "<IMAGE_SOURCE>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Delete an article image
+
+Delete an article image using the [`DELETE /articles/{sellerId}/{articleId}/images/{uuid}` endpoint](/api-reference/#tag/articles):
+
+<Tabs>
+  <Tab title="Request">
+    ```bash
+    curl -X DELETE "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>/images/<IMAGE_ID>" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>"
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with your environment URL. Use the image `id` from the article details.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful deletion returns a `200 OK` or `204 No Content` status code with no response body.
+  </Tab>
+</Tabs>
+
+## Validate article data
+
+Validate article data before creating or updating an article. Use the [`POST /articles/{sellerId}/validate` endpoint](/api-reference/#tag/articles) to check your article data:
+
+<Tabs>
+  <Tab title="Request">
+    ```bash
+    curl -X POST "${BASE_URL}/articles/<YOUR_SELLER_ID>/validate" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "sku": "<YOUR_SKU>",
+        "name": {
+          "value": "<PRODUCT_NAME>",
+          "language": "EN"
+        },
+        "grossWeight": {
+          "value": <WEIGHT_VALUE>,
+          "unit": "KG"
+        }
+      }'
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with your environment URL. Include the article data you want to validate in the request body.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful validation returns a `200 OK` status code with the validated article data as an `ArticleGetDetail` object:
+
+    ```json
+    {
+      "articleId": <ARTICLE_ID>,
+      "sellerId": <YOUR_SELLER_ID>,
+      "sku": "<YOUR_SKU>",
+      "name": {
+        "value": "<PRODUCT_NAME>",
+        "language": "EN"
+      },
+      "grossWeight": {
+        "value": <WEIGHT_VALUE>,
+        "unit": "KG"
+      },
+      "created": "<YYYY-MM-DDTHH:mm:ssZ>",
+      "lastModified": "<YYYY-MM-DDTHH:mm:ssZ>"
+    }
+    ```
+
+    The response contains the processed article data if validation passes. If validation fails, the API returns an error response. See the [Error Responses guide](coming-soon) for information about error response formats.
+  </Tab>
+</Tabs>
+
+## Next steps
+
+Now that you can manage articles, continue with these guides:
+
+<CardGroup cols={2}>
+  <Card
+    title="Create Products"
+    icon="plus"
+    href="/docs/guides/main-flow/create-products"
+  >
+    Learn how to create new articles in your catalog.
+  </Card>
+
+  <Card
+    title="Send Inventory"
+    icon="warehouse"
+    href="/docs/guides/main-flow/send-inventory"
+  >
+    Send your products to Quivo warehouses to make them available for fulfillment.
+  </Card>
+</CardGroup>
+
