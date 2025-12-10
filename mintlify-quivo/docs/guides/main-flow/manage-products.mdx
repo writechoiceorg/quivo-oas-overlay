@@ -161,7 +161,11 @@ Update an existing article using the [`PUT /articles/{sellerId}/{articleId}` end
 
 ## Upload product images
 
-You can upload product images to articles. The image upload process requires three steps: first, obtain an upload URL, then upload the image file to that URL, and finally store the image information.
+You can upload product images to articles using the following endpoints:
+
+1. [`POST /articles/{sellerId}/{articleId}/images/upload`](/api-reference/#tag/articles) - Get an upload URL
+2. Upload the image file to the provided URL
+3. [`POST /articles/{sellerId}/{articleId}/images`](/api-reference/#tag/articles) - Store the image information
 
 ### Step 1: Get upload URL
 

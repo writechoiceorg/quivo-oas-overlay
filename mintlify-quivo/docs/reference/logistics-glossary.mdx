@@ -94,9 +94,27 @@ For instructions on creating orders, see the [Create a Fulfillment Order guide](
 
 ## Article
 
-An Article is a product in the Quivo system. Each article has a unique SKU that identifies it. Articles must be created in the system before you can send them as inventory or include them in orders.
+An Article is a product definition in your catalog. Each article has a unique SKU that identifies it. Articles contain product information such as name, SKU, weight, dimensions, and other attributes needed for fulfillment.
 
-You create articles using the `POST /articles` endpoint. Articles contain product information such as name, SKU, weight, dimensions, and other attributes needed for fulfillment.
+Articles must be created in the system before you can send them as inventory or include them in orders. You create articles using the `POST /articles` endpoint.
+
+<Note>
+An article is a product definition, while an item represents physical inventory. See the [Item](#item) definition for the distinction.
+</Note>
+
+## Item
+
+An Item is a physical unit of inventory stored in a warehouse. Items are created from articles after you send inventory to a warehouse and the inbound shipment is completed.
+
+The relationship between articles and items:
+- An article is a product definition (catalog entry)
+- An item is physical stock at a specific warehouse location
+- One article can have many items across different warehouses
+- Each item represents available inventory that can be fulfilled
+
+You check item inventory levels using the Items API (`GET /items`). Items contain information about quantity, reserved amounts, and warehouse location.
+
+For instructions on monitoring inventory, see the [Monitor Inventory guide](/docs/guides/inventory/monitor-stock).
 
 ## Seller
 

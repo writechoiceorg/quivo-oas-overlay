@@ -5,10 +5,6 @@ ogDescription: Configure and manage event subscriptions via the API
 
 Webhooks allow your system to receive real-time notifications from Quivo. Instead of polling for status changes, Quivo pushes data to your server via an HTTP POST request whenever a specific event occurs.
 
-<Tip>
-  **Return 200 OK immediately:** When your server receives a webhook, acknowledge it immediately with a 200 status code. Perform complex processing (like database updates or sending emails) asynchronously to prevent timeout errors.
-</Tip>
-
 ## Prerequisites
 
 Before you start, make sure you have the following:

@@ -33,6 +33,7 @@
               "docs/guides/main-flow/create-products",
               "docs/guides/main-flow/manage-products",
               "docs/guides/main-flow/send-inventory",
+              "docs/guides/inventory/monitor-stock",
               "docs/guides/main-flow/create-order",
               "docs/guides/main-flow/track-order",
               "docs/guides/main-flow/manage-returns",

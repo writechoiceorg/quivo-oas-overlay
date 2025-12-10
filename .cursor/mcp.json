@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "vale": {
+      "command": "vale-cli",
+      "args": [],
+      "env": {
+        "VALE_CONFIG_PATH": "C:\\Users\\gui30\\quivo-docs\\quivo-oas-overlay\\.vale.ini"
+      }
+    }
+  }
+}
+

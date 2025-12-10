@@ -12,15 +12,15 @@ Before you start, make sure you have the following:
 - **API Key:** Your static API key provided by Quivo
 - **Username:** Your Quivo account username
 - **Password:** Your Quivo account password
-- **Base URL:** Your environment URL. See the [references documentation](/docs/references) for environment URLs.
+- **Base URL:** Your environment URL.
 
 <Note>
-**Getting your credentials:** If you don't have an API key yet, see the [Setting up your account](/docs/getting-started/setup-account) guide. Your username and password are the same credentials you use to log in to The Connector Web App.
+**Getting your credentials:** If you don't have an API key yet, the [Setting up your account](/docs/getting-started/setup-account) guide provides step-by-step instructions. Your username and password are the same credentials you use to log in to The Connector Web App.
 </Note>
 
 ## Step 1: Authenticate
 
-Authenticate with the API to obtain a session token. Use the `POST /login` endpoint to exchange your credentials for a temporary session token. For more details about authentication and token management, see the [Authentication guide](/api-reference/authentication).
+Authenticate with the API to obtain a session token. Use the `POST /login` endpoint to exchange your credentials for a temporary session token. The [Authentication guide](/api-reference/authentication) in the API reference provides more details about authentication and token management.
 
 <Tabs>
   <Tab title="Request">
@@ -72,15 +72,15 @@ Use the `GET /ping` endpoint to verify your authentication is working correctly.
     </Note>
   </Tab>
   <Tab title="Response">
-    A successful request returns a `200 OK` status code with a plain text response:
+    A successful request returns a `200 OK` status code with a JSON response:
 
-    ```
-    healthy
+    ```json
+    {
+      "status": "healthy"
+    }
     ```
 
-    <Note>
-      The ping endpoint returns plain text, not JSON. This confirms the API is accessible and your authentication is working correctly.
-    </Note>
+    The `status` field indicates the API health status. This confirms the API is available and your authentication is working correctly.
   </Tab>
 </Tabs>
 

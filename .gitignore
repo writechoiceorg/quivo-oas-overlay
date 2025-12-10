@@ -28,3 +28,10 @@ Thumbs.db
 
 # Documentation (local references)
 mintlify-quivo/docs/references.mdx
+mintlify-quivo/documentation-gap-analysis.md
+
+# Vale styles (generated files)
+styles/
+
+# Vale-MCP (cloned repository)
+Vale-MCP/

@@ -31,8 +31,6 @@ You can request an API key through The Connector Web App:
 3. Find the option to request an API key
 4. Submit your request
 
-Contact Quivo support for the web app URL for your environment.
-
 ### Option 2: Request through the API
 
 You can also request an API key through the API. You need your seller ID to make this request.
@@ -41,7 +39,7 @@ You can also request an API key through the API. You need your seller ID to make
 
 Your seller ID is a unique integer identifier for your merchant account.
 
-If you don't know your seller ID, use the `GET /sellers` endpoint after you have authenticated. See the [Making your first API call](/docs/getting-started/first-api-call) tutorial to learn how to authenticate and obtain a session token.
+If you don't know your seller ID, use the `GET /sellers` endpoint after you have authenticated. The [Making your first API call](/docs/getting-started/first-api-call) tutorial shows you how to authenticate and obtain a session token.
 
 <Tabs>
   <Tab title="Request">
@@ -92,7 +90,7 @@ Use the `POST /apiKeyRequests/{sellerId}` endpoint to request an API key for you
     ```
 
     <Note>
-      Replace `{sellerId}` with your seller ID and `${BASE_URL}` with your environment URL. See the [references documentation](/docs/references) for environment URLs.
+      Replace `{sellerId}` with your seller ID and `${BASE_URL}` with your environment address.
       
       Contact Quivo support if you encounter authentication errors.
     </Note>
@@ -149,16 +147,14 @@ API key requests have status values including `PENDING`, `APPROVED`, and `REJECT
 
 ## Retrieve your API key
 
-Once your API key request is approved, you can retrieve your API key from The Connector Web App. Your API key is provided by Quivo upon account setup or after your API key request is approved.
+After Quivo approves your API key request, you can retrieve your API key from The Connector Web App. Quivo provides your API key during account setup or after approving your API key request.
 
 ### Access The Connector Web App
 
 The Connector Web App is the web interface for managing your Quivo account. You use the same username and password to log in to The Connector Web App as you use for API authentication.
 
-Contact Quivo support for the web app URL for your environment.
-
 <Note>
-Your API key, username, and password are provided by Quivo when your account is set up. The API key is separate from your login credentials and must be obtained from Quivo or requested through the API key request process. If you need to request an API key or have questions about accessing The Connector Web App, contact Quivo support.
+Quivo provides your API key, username, and password when setting up your account. The API key is separate from your login credentials. You must obtain the API key from Quivo or request it through the API key request process. If you need to request an API key or have questions about accessing The Connector Web App, contact Quivo support.
 </Note>
 
 ## Set up authentication
@@ -166,20 +162,20 @@ Your API key, username, and password are provided by Quivo when your account is 
 After you have your API key, set up authentication to use The Connector API. You need:
 
 - **API Key:** Your static API key provided by Quivo
-- **Username:** Your Quivo account username (same as your Connector Web App login)
-- **Password:** Your Quivo account password (same as your Connector Web App login)
+- **Username:** Your Quivo account username, which is the same as your Connector Web App login
+- **Password:** Your Quivo account password, which is the same as your Connector Web App login
 
 Your username and password are the same credentials you use to log in to The Connector Web App.
 
-For detailed authentication instructions, see the [Authentication guide](/api-reference/authentication). To make your first API call, see the [Making your first API call](/docs/getting-started/first-api-call) tutorial.
+The [Authentication guide](/api-reference/authentication) in the API reference provides detailed authentication instructions. The [Making your first API call](/docs/getting-started/first-api-call) tutorial shows you how to make your first API call.
 
 ## Verify your setup
 
-Test your account setup by making a simple API call. See the [Making your first API call](/docs/getting-started/first-api-call) tutorial to learn how to authenticate and verify your connection using the `GET /ping` endpoint.
+Test your account setup by making a basic API call. The [Making your first API call](/docs/getting-started/first-api-call) tutorial shows you how to authenticate and verify your connection using the `GET /ping` endpoint.
 
 ## Next steps
 
-Now that your account is set up, continue with these guides:
+Now that you have set up your account, continue with these guides:
 
 <CardGroup cols={2}>
   <Card

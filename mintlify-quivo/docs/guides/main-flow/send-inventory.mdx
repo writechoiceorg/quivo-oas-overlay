@@ -74,13 +74,13 @@ The following example shows a complete inbound payload with all required fields 
     ```
 
     <Tip>
-      **Important:** Save the `inboundId` returned in the response. You (or your logistics partner) may need to print this ID on the shipping label so the warehouse can identify the boxes when they arrive.
+      **Important:** Save the `inboundId` returned in the response. You may need to print this ID on the shipping label so the warehouse can identify the boxes when they arrive.
     </Tip>
   </Tab>
 </Tabs>
 
 <Tip>
-  **Required fields:** `sellerId`, `warehouseId`, and `inboundPositions` are required. All other fields are optional. You can find the full schema for the inbound request in the [API Reference](/api-reference/#tag/inbounds).
+  **Required fields:** `sellerId`, `warehouseId`, `deliverySlipNumber`, `estimatedArrivalTime`, `shipFrom`, `trackingNumber`, `deliveryInfo`, and `inboundPositions` are required. All other fields are optional. You can find the full schema for the inbound request in the [API Reference](/api-reference/#tag/inbounds).
 </Tip>
 
 ## Track inbound status

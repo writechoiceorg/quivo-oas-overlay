@@ -5,7 +5,7 @@ ogDescription: Learn how to create products (articles) in your Quivo catalog
 
 An article is a product in the Quivo system. Each article must have a unique SKU (Stock Keeping Unit) that identifies it. You must create articles before you can send them as inventory to warehouses or include them in fulfillment orders.
 
-This guide teaches you how to create your first article and understand SKU best practices.
+This guide teaches you how to create your first article.
 
 ## Prerequisites
 
@@ -90,20 +90,6 @@ The following example shows how to create an article with essential fields:
   **Optional fields:** Only `sku` is required. The example above shows essential fields for fulfillment operations. For a complete list of all available optional fields (including `barcode`, `customsValue`, `alternativeNames`, and more), see the [API Reference](/api-reference/#tag/articles).
 </Tip>
 
-## Product SKU best practices
-
-The SKU (Stock Keeping Unit) is the unique identifier for your product. Follow these best practices when creating SKUs:
-
-- **Uniqueness:** Each product must have a unique SKU across your entire catalog.
-- **Length:** SKUs must be between 1 and 50 characters.
-- **Consistency:** Use a consistent format (for example, "PROD-001", "BOOK-ABC123", or "SHIRT-RED-M").
-- **Avoid special characters:** Use alphanumeric characters and hyphens. Avoid spaces or special characters that might cause issues in URLs or database systems.
-- **Meaningful:** Choose SKUs that help you identify products quickly (for example, include product category or variant information).
-
-<Tip>
-  Once you create an article with a SKU, you reference that SKU when sending inventory and creating orders. See the [Send Inventory guide](/docs/guides/main-flow/send-inventory) for how SKUs are used in inbound shipments.
-</Tip>
-
 ## Next steps
 
 Now that you can create articles, continue with these guides:
@@ -117,11 +103,11 @@ Now that you can create articles, continue with these guides:
     Learn how to update articles, upload images, search your catalog, and validate product data.
   </Card>
 
-  <Card
-    title="Send Inventory"
-    icon="warehouse"
-    href="/docs/guides/main-flow/send-inventory"
-  >
-    Send your products to Quivo warehouses. Articles must exist in the system before you can send them as inventory.
-  </Card>
+      <Card
+        title="Send Inventory"
+        icon="warehouse"
+        href="/docs/guides/main-flow/send-inventory"
+      >
+        Send your products to Quivo warehouses.
+      </Card>
 </CardGroup>
