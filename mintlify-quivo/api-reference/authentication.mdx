@@ -7,11 +7,11 @@ All requests to the Quivo API require authentication using a session token. This
 
 The authentication process consists of the following steps:
 
-1. **Obtaining a session token:** Exchange your API credentials (API key, username, and password) for a temporary session token via the `POST /login` endpoint.
+1. **Obtaining a session token:** Exchange your API credentials—API key, username, and password—for a temporary session token via the `POST /login` endpoint.
 2. **Using the token:** Include the session token in the `Authorization` header of all subsequent API requests.
 
 <Note>
-Session tokens expire after one hour and must be refreshed when they expire. See the [Token expiration](#token-expiration) section for details on handling token refresh automatically.
+Session tokens expire after one hour. When they expire, refresh them. See the Token expiration section below for handling token refresh automatically.
 </Note>
 
 ## Prerequisites
@@ -39,7 +39,7 @@ Exchange your credentials for a session token via the `POST /login` endpoint.
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment URL before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -66,7 +66,7 @@ Include the token in the `Authorization` header of all API requests. You must al
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment URL before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -83,7 +83,7 @@ Include the token in the `Authorization` header of all API requests. You must al
 
 ## Token expiration
 
-Session tokens expire after **1 hour**. When a token expires, you will receive a `401 Unauthorized` error response.
+Session tokens expire after 1 hour. When a token expires, you receive a `401 Unauthorized` error response.
 
 ### Handling token expiration
 

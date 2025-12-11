@@ -1,9 +1,9 @@
 ---
-title: Create Products (Articles)
-ogDescription: Learn how to create products (articles) in your Quivo catalog
+title: Create Products
+ogDescription: Learn how to create products in your Quivo catalog
 ---
 
-An article is a product in the Quivo system. Each article must have a unique SKU (Stock Keeping Unit) that identifies it. You must create articles before you can send them as inventory to warehouses or include them in fulfillment orders.
+An article is a product in the Quivo system. Each article must have a unique stock keeping unit (SKU) that identifies it. You must create articles before you can send them as inventory to warehouses or include them in fulfillment orders.
 
 This guide teaches you how to create your first article.
 
@@ -11,12 +11,12 @@ This guide teaches you how to create your first article.
 
 Before you start, make sure you have the following:
 
-- **Session Token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
-- **Seller ID:** The unique integer ID for your merchant account. Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) in the API Reference to find it.
+- **Session Token:** A valid session token. See the Authentication guide at /api-reference/authentication to learn how to obtain one.
+- **Seller ID:** The unique integer ID for your merchant account. Use the `GET /sellers` endpoint in the API Reference at /api-reference/#tag/sellers to find it.
 
 ## Create your first article
 
-To create an article, use the [`POST /articles/{sellerId}` endpoint](/api-reference/#tag/articles). The only required field is `sku`, but providing additional information helps with fulfillment operations.
+To create an article, use the `POST /articles/{sellerId}` endpoint in the API Reference at /api-reference/#tag/articles. You only need `sku`, but providing additional information helps with fulfillment operations.
 
 The following example shows how to create an article with essential fields:
 
@@ -58,7 +58,7 @@ The following example shows how to create an article with essential fields:
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment URL before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -82,12 +82,12 @@ The following example shows how to create an article with essential fields:
     }
     ```
 
-    Save the `articleId` from the response. You need this ID to update the article or upload images later.
+    Save the `articleId` from the response. You need this ID to update the article or upload images later. Timestamps follow the ISO (International Organization for Standardization) 8601 pattern YYYY-MM-DDTHH:mm:ssZ, where YYYY is the four-digit year, MM is the month, DD is the day, HH:mm:ss is the time, and Z means Coordinated Universal Time (UTC).
   </Tab>
 </Tabs>
 
 <Tip>
-  **Optional fields:** Only `sku` is required. The example above shows essential fields for fulfillment operations. For a complete list of all available optional fields (including `barcode`, `customsValue`, `alternativeNames`, and more), see the [API Reference](/api-reference/#tag/articles).
+  **Optional fields:** You only need `sku`. The preceding example shows essential fields for fulfillment operations. For a complete list of optional fields—including `barcode`, `customsValue`, `alternativeNames`, and more—see the API Reference at /api-reference/#tag/articles.
 </Tip>
 
 ## Next steps

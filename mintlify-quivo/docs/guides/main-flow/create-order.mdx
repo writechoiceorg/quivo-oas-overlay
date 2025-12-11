@@ -1,6 +1,6 @@
 ---
 title: Create a Fulfillment Order
-ogDescription: Programmatically submit a new fulfillment order to the Quivo Connector using the REST API
+ogDescription: Programmatically submit a new fulfillment order to the Quivo Connector using the REST (Representational State Transfer) API
 ---
 
 This guide shows you how to trigger a "Pick & Pack" process in the warehouse for your product.
@@ -11,7 +11,7 @@ Before you start, make sure you have the following:
 
 - **Session Token:** A valid session token. See the [Authentication guide](/essentials/authentication) to learn how to obtain one.
 - **Seller ID:** The unique integer ID for your merchant account. Use the [`GET /sellers` endpoint](/api/orders/get-sellers) in the API Reference to find it.
-- **Product SKU:** You must have created at least one product in the system via the [`POST /articles` endpoint](/api/orders/create-article) before you can order it.
+- **Product SKU:** You must have created at least one product in the system via the [`POST /articles` endpoint](/api/orders/create-article) before you can order it. SKU stands for stock keeping unit.
 
 ## Create the order request
 
@@ -62,7 +62,7 @@ The following example shows an order payload with all required fields:
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment URL before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -81,7 +81,7 @@ The following example shows an order payload with all required fields:
 </Tabs>
 
 <Tip>
-  **Required fields:** `sellerId`, `orderIdentifier`, `orderReference`, `deliveryAddress`, and `positions` are required. You can find the full schema including optional fields in the [API Reference](/api-reference/#tag/orders).
+  **Required fields:** Include `sellerId`, `orderIdentifier`, `orderReference`, `deliveryAddress`, and `positions`. You can find the full schema including optional fields in the [API Reference](/api-reference/#tag/orders).
 </Tip>
 
 ## Next steps

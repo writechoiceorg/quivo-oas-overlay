@@ -45,7 +45,7 @@ The following example shows how to send a complete return request payload in one
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment URL before running requests and replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with your environment web address before running requests and replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -76,7 +76,7 @@ When the package arrives back at the Quivo warehouse, the staff inspects it. You
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment URL before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -107,12 +107,12 @@ When the package arrives back at the Quivo warehouse, the staff inspects it. You
     }
     ```
   
-    The response (`ReturnShipmentSummary`) contains critical information for processing refunds:
+    The response (`ReturnShipmentSummary`) contains critical information for processing refunds. Timestamps use the ISO 8601 pattern YYYY-MM-DDTHH:mm:ssZ in Coordinated Universal Time.
 
-    - `returnShipmentReference`: Matches the reference you provided (for example, `"<YOUR_REFERENCE>"`).
+    - `returnShipmentReference`: Matches the reference you provided, for example `"<YOUR_REFERENCE>"`.
     - `positions`: Lists the items inside the box.
     - `customerExamined`: A boolean indicating if the warehouse has finished inspecting the item.
-    - `reasonCode` / `classCode`: (If available) Details on why it was returned and its condition.
+    - `reasonCode` / `classCode`: If available, details on why it was returned and its condition.
   </Tab>
 </Tabs>
 
@@ -137,4 +137,3 @@ Now that you can manage returns, continue with these guides:
     Create new orders for replacement items or refund processing.
   </Card>
 </CardGroup>
-
