@@ -10,7 +10,7 @@ Understanding the distinction between articles and items is important:
 - **Article:** A product definition in your catalog (created using the Articles API)
 - **Item:** A physical unit of inventory stored in a warehouse, created from articles after you send inventory to a warehouse and the inbound is completed. 
 
-An article can have many items across different warehouses, with each item representing physical stock at a specific warehouse location. For detailed definitions of these terms, see the [Logistics Glossary](/docs/reference/logistics-glossary). 
+An article can have many items across different warehouses, with each item representing physical stock at a specific warehouse location. For detailed definitions of these terms, see the [Logistics Glossary](/reference/logistics-glossary). 
 
 This guide teaches you how to check current stock levels, view item history, and refresh inventory data when needed.
 
@@ -21,8 +21,8 @@ Before you start, make sure you have the following:
 - **Session Token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
 - **Seller ID:** The unique integer ID for your merchant account. Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) in the API Reference to find it.
 - **Warehouse ID:** The ID of the warehouse where your inventory is stored. Use the [`GET /warehouses` endpoint](/api-reference/#tag/warehouses) in the API Reference to list available warehouses.
-- **Completed Inbound:** You should have sent inventory to a warehouse and the inbound status should be `COMPLETED`. See the [Send Inventory guide](/docs/guides/main-flow/send-inventory) if you haven't sent inventory yet.
-- **Articles Created:** Products must exist in the system as articles. See the [Create Products guide](/docs/guides/main-flow/create-products) if you haven't created articles yet.
+- **Completed Inbound:** You should have sent inventory to a warehouse and the inbound status should be `COMPLETED`. See the [Send Inventory guide](/guides/main-flow/send-inventory) if you haven't sent inventory yet.
+- **Articles Created:** Products must exist in the system as articles. See the [Create Products guide](/guides/main-flow/create-products) if you haven't created articles yet.
 
 ## Check stock levels by warehouse
 
