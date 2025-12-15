@@ -1,9 +1,10 @@
 ---
 title: Authentication
+pageType: Reference
 og:description: Learn how to authenticate your requests to the Quivo API
 ---
 
-All requests to the Quivo API require authentication using a session token. This ensures that only authorized users can access your account data and perform operations on your behalf.
+This reference provides precise specifications for authenticating API requests. All requests to the Quivo API require authentication using a session token. This ensures that only authorized users can access your account data and perform operations on your behalf. For step-by-step instructions, see the [Making your first API call](/docs/guides/getting-started/first-api-call) tutorial.
 
 The authentication process consists of the following steps:
 
@@ -39,7 +40,7 @@ Exchange your credentials for a session token via the `POST /login` endpoint.
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -66,7 +67,7 @@ Include the token in the `Authorization` header of all API requests. You must al
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -96,7 +97,7 @@ When you receive a 401 error, your integration should automatically:
   Implement automatic token refresh in your integration to handle expiration seamlessly. Monitor API responses for `401 Unauthorized` errors and trigger re-authentication as needed.
 </Tip>
 
-## Next steps
+## Where to go next
 
 Now that you understand authentication, continue with these guides:
 

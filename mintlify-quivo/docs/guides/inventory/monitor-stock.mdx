@@ -1,9 +1,10 @@
 ---
 title: Monitor Inventory
+pageType: How-To
 ogDescription: Learn how to check stock levels, view inventory by warehouse, and track item movements using the Items API
 ---
 
-After you send inventory to a Quivo warehouse and the inbound is completed, your products are available as items in the warehouse. Use the Items API to monitor stock levels, view inventory by warehouse location, and track item movements.
+This guide shows you how to check stock levels, view inventory by warehouse, and track item movements using the Items API. After you send inventory to a Quivo warehouse and the inbound is completed, your products are available as items in the warehouse.
 
 Understanding the distinction between articles and items is important:
 
@@ -16,13 +17,13 @@ This guide teaches you how to check current stock levels, view item history, and
 
 ## Prerequisites
 
-Before you start, make sure you have the following:
+Before you start, make sure you have:
 
-- **Session Token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
-- **Seller ID:** The unique integer ID for your merchant account. Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) in the API Reference to find it.
-- **Warehouse ID:** The ID of the warehouse where your inventory is stored. Use the [`GET /warehouses` endpoint](/api-reference/#tag/warehouses) in the API Reference to list available warehouses.
-- **Completed Inbound:** You should have sent inventory to a warehouse and the inbound status should be `COMPLETED`. See the [Send Inventory guide](/guides/main-flow/send-inventory) if you haven't sent inventory yet.
-- **Articles Created:** Products must exist in the system as articles. See the [Create Products guide](/guides/main-flow/create-products) if you haven't created articles yet.
+- **Session token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **Seller ID:** Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) to find it.
+- **Warehouse ID:** Use the [`GET /warehouses` endpoint](/api-reference/#tag/warehouses) to list available warehouses.
+- **Completed inbound:** You should have sent inventory and the inbound status should be `COMPLETED`. See the [Send Inventory guide](/docs/guides/main-flow/send-inventory) if you haven't sent inventory yet.
+- **Articles created:** Products must exist as articles. See the [Create Products guide](/docs/guides/main-flow/create-products) if you haven't created articles yet.
 
 ## Check stock levels by warehouse
 
@@ -30,6 +31,8 @@ To check stock levels for all items in a specific warehouse, use the [`GET /item
 
 <Tabs>
   <Tab title="Request">
+    Use this request to list all items and their stock levels in a specific warehouse.
+
     ```bash
     curl -X GET "${BASE_URL}/items/<YOUR_WAREHOUSE_ID>/<YOUR_SELLER_ID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -37,7 +40,7 @@ To check stock levels for all items in a specific warehouse, use the [`GET /item
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual warehouse ID and seller ID.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual warehouse ID and seller ID.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -105,6 +108,8 @@ To get detailed information about a specific item, use the [`GET /items/{itemId}
 
 <Tabs>
   <Tab title="Request">
+    Use this request to retrieve detailed information for a single item.
+
     ```bash
     curl -X GET "${BASE_URL}/items/<YOUR_ITEM_ID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -112,7 +117,7 @@ To get detailed information about a specific item, use the [`GET /items/{itemId}
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. Use the `itemId` from the item list response.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the `itemId` from the item list response.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -151,6 +156,8 @@ To view the movement history for a specific item, use the [`GET /items/{itemId}/
 
 <Tabs>
   <Tab title="Request">
+    Use this request to retrieve movement history for a specific item.
+
     ```bash
     curl -X GET "${BASE_URL}/items/<YOUR_ITEM_ID>/movements" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -158,7 +165,7 @@ To view the movement history for a specific item, use the [`GET /items/{itemId}/
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. Use the `itemId` from the item details.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the `itemId` from the item details.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -198,6 +205,8 @@ To view item history for all items in a warehouse, use the [`GET /items/itemHist
 
 <Tabs>
   <Tab title="Request">
+    Use this request to retrieve movement history for a specific item within a date range.
+
     ```bash
     curl -X GET "${BASE_URL}/items/itemHistories/<YOUR_WAREHOUSE_ID>/<YOUR_SELLER_ID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -205,7 +214,7 @@ To view item history for all items in a warehouse, use the [`GET /items/itemHist
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. You can use query parameters like `query` and `sort` to filter and sort the results.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. You can use query parameters like `query` and `sort` to filter and sort the results.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -250,6 +259,8 @@ To refresh a specific item, use the [`POST /items/{itemId}/refresh` endpoint](/a
 
 <Tabs>
   <Tab title="Request">
+    Use this request to refresh inventory data for a specific item.
+
     ```bash
     curl -X POST "${BASE_URL}/items/<YOUR_ITEM_ID>/refresh" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -257,7 +268,7 @@ To refresh a specific item, use the [`POST /items/{itemId}/refresh` endpoint](/a
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. This operation syncs the item's inventory data with the warehouse system.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. This operation syncs the item's inventory data with the warehouse system.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -281,6 +292,8 @@ To refresh inventory for all items belonging to a seller, use the [`POST /items/
 
 <Tabs>
   <Tab title="Request">
+    Use this request to refresh inventory data for all items for a seller.
+
     ```bash
     curl -X POST "${BASE_URL}/items/seller/<YOUR_SELLER_ID>/refresh" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -288,7 +301,7 @@ To refresh inventory for all items belonging to a seller, use the [`POST /items/
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. This operation syncs all items for your seller account with the warehouse system.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. This operation syncs all items for your seller account with the warehouse system.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -296,7 +309,7 @@ To refresh inventory for all items belonging to a seller, use the [`POST /items/
   </Tab>
 </Tabs>
 
-## Next steps
+## Where to go next
 
 Now that you can monitor inventory, continue with these guides:
 

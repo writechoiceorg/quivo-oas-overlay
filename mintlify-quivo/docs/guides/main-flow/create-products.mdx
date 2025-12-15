@@ -1,18 +1,17 @@
 ---
 title: Create Products
+pageType: Tutorial
 ogDescription: Learn how to create products in your Quivo catalog
 ---
 
-An article is a product in the Quivo system. Each article must have a unique stock keeping unit (SKU) that identifies it. You must create articles before you can send them as inventory to warehouses or include them in fulfillment orders.
-
-This guide teaches you how to create your first article.
+This tutorial guides you step by step through creating your first article. An article is a product in the Quivo system. Each article must have a unique stock keeping unit (SKU) that identifies it. You must create articles before you can send them as inventory to warehouses or include them in fulfillment orders.
 
 ## Prerequisites
 
-Before you start, make sure you have the following:
+Before you start, make sure you have:
 
-- **Session Token:** A valid session token. See the Authentication guide at /api-reference/authentication to learn how to obtain one.
-- **Seller ID:** The unique integer ID for your merchant account. Use the `GET /sellers` endpoint in the API Reference at /api-reference/#tag/sellers to find it.
+- **Session token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **Seller ID:** Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) to find it.
 
 ## Create your first article
 
@@ -22,6 +21,8 @@ The following example shows how to create an article with essential fields:
 
 <Tabs>
   <Tab title="Request">
+    Use this request example to create a new article with essential product data.
+
     ```bash
     curl -X POST "${BASE_URL}/articles/<YOUR_SELLER_ID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -58,7 +59,7 @@ The following example shows how to create an article with essential fields:
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -90,7 +91,7 @@ The following example shows how to create an article with essential fields:
   **Optional fields:** You only need `sku`. The preceding example shows essential fields for fulfillment operations. For a complete list of optional fields—including `barcode`, `customsValue`, `alternativeNames`, and more—see the API Reference at /api-reference/#tag/articles.
 </Tip>
 
-## Next steps
+## Where to go next
 
 Now that you can create articles, continue with these guides:
 
@@ -103,11 +104,12 @@ Now that you can create articles, continue with these guides:
     Learn how to update articles, upload images, search your catalog, and validate product data.
   </Card>
 
-      <Card
-        title="Send Inventory"
-        icon="warehouse"
-        href="/docs/guides/main-flow/send-inventory"
-      >
-        Send your products to Quivo warehouses.
-      </Card>
+  <Card
+    title="Send Inventory"
+    icon="warehouse"
+    href="/docs/guides/main-flow/send-inventory"
+  >
+    Send your products to Quivo warehouses.
+  </Card>
 </CardGroup>
+

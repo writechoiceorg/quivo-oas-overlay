@@ -1,18 +1,23 @@
 ---
 title: Manage Webhooks
+pageType: How-To
 ogDescription: Configure and manage event subscriptions via the API
 ---
 
-Webhooks allow your system to receive real-time notifications from Quivo. Instead of polling for status changes, Quivo pushes data to your server via an HTTP POST request whenever a specific event occurs.
+This guide shows you how to create, list, and delete webhook subscriptions to receive real-time notifications from Quivo. Instead of polling for status changes, Quivo pushes data to your server via an HTTP POST request whenever a specific event occurs.
+
+<Warning>
+**Important:** Your webhook endpoint must return a `200 OK` response to confirm receipt of the notification. If your endpoint does not return `200 OK`, Quivo may retry the webhook or mark it as failed.
+</Warning>
 
 ## Prerequisites
 
-Before you start, make sure you have the following:
+Before you start, make sure you have:
 
-- **Session Token:** A valid session token. See the [Authentication guide](/essentials/authentication) to learn how to obtain one.
-- **API Key:** Your static API key provided by Quivo.
+- **Session token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **API key:** Your static API key provided by Quivo.
 - **Seller ID:** The unique integer ID for your merchant account.
-- **A Public URL:** A secure endpoint (HTTPS) on your server capable of receiving JSON POST requests.
+- **Public URL:** A secure HTTPS endpoint on your server capable of receiving JSON POST requests.
 
 ## Create a subscription
 
@@ -34,6 +39,8 @@ The following example shows how to subscribe to `SHIPMENTS` updates:
 
 <Tabs>
   <Tab title="Request">
+    Use this request to create a webhook subscription for a specific entity.
+
     ```bash
     curl -X POST "${BASE_URL}/subscriptions" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -50,7 +57,7 @@ The following example shows how to subscribe to `SHIPMENTS` updates:
     ```
     
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests and replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests and replace the placeholders with your actual data.
     </Note>
 
   </Tab>
@@ -79,6 +86,8 @@ The following example shows how to list all active subscriptions:
 
 <Tabs>
   <Tab title="Request">
+    Use this request to list all active webhook subscriptions for your account.
+
     ```bash
     curl -X GET "${BASE_URL}/subscriptions" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -86,7 +95,7 @@ The following example shows how to list all active subscriptions:
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests and replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests and replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -125,6 +134,8 @@ The following example shows how to delete a subscription using its `uuid`:
 
 <Tabs>
   <Tab title="Request">
+    Use this request to delete a webhook subscription by its UUID.
+
     ```bash
     curl -X DELETE "${BASE_URL}/subscriptions/<YOUR_SUBSCRIPTION_UUID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -132,7 +143,7 @@ The following example shows how to delete a subscription using its `uuid`:
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests and replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests and replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -145,7 +156,7 @@ The following example shows how to delete a subscription using its `uuid`:
 </Tabs>
 
 
-## Next steps
+## Where to go next
 
 Now that you have configured webhooks, explore these related guides:
 

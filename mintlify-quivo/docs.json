@@ -20,24 +20,30 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Introduction",
             "pages": [
-              "docs/getting-started/overview",
-              "docs/getting-started/setup-account",
-              "docs/getting-started/first-api-call"
+              "docs/guides/getting-started/overview",
+              "docs/guides/getting-started/integrating-with-quivo",
+              "docs/guides/getting-started/request-api-key",
+              "docs/guides/getting-started/first-api-call"
             ]
           },
           {
-            "group": "Core Workflow",
+            "group": "Quickstart",
             "pages": [
-              "docs/guides/main-flow/create-products",
-              "docs/guides/main-flow/manage-products",
               "docs/guides/main-flow/send-inventory",
-              "docs/guides/inventory/monitor-stock",
               "docs/guides/main-flow/create-order",
               "docs/guides/main-flow/track-order",
               "docs/guides/main-flow/manage-returns",
               "docs/guides/main-flow/manage-webhooks"
+            ]
+          },
+          {
+            "group": "Quivo Flows",
+            "pages": [
+              "docs/guides/main-flow/create-products",
+              "docs/guides/main-flow/manage-products",
+              "docs/guides/inventory/monitor-stock"
             ]
           },
           {

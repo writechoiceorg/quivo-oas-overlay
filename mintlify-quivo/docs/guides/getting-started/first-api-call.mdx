@@ -1,9 +1,10 @@
 ---
 title: Making your first API call
+pageType: Tutorial
 ogDescription: Get started with the Quivo API by making your first authenticated request
 ---
 
-This tutorial shows you how to make your first API call to the Quivo Connector API. You'll learn how to authenticate and verify your connection.
+This tutorial guides you step by step through making your first API call to the Quivo Connector API. You'll learn how to authenticate and verify your connection.
 
 ## Prerequisites
 
@@ -12,10 +13,10 @@ Before you start, make sure you have the following:
 - **API Key:** Your static API key provided by Quivo
 - **Username:** Your Quivo account username
 - **Password:** Your Quivo account password
-- **Base URL:** Your environment URL.
+- **Base URL:** The `${BASE_URL}` configured for your account.
 
 <Note>
-**Getting your credentials:** If you don't have an API key yet, the [Setting up your account](/guides/getting-started/setup-account) guide provides step-by-step instructions. Your username and password are the same credentials you use to log in to The Connector Web App.
+**Getting your credentials:** If you don't have an API key yet, the [Request an API Key](/docs/guides/getting-started/request-api-key) guide provides step-by-step instructions. Your username and password are the same credentials you use to log in to The Connector Web App.
 </Note>
 
 ## Step 1: Authenticate
@@ -24,6 +25,8 @@ Authenticate with the API to obtain a session token. Use the `POST /login` endpo
 
 <Tabs>
   <Tab title="Request">
+    Use this request to authenticate and obtain a session token.
+
     ```bash
     curl -X POST "${BASE_URL}/login" \
       -H "Content-Type: application/json" \
@@ -35,7 +38,7 @@ Authenticate with the API to obtain a session token. Use the `POST /login` endpo
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment URL. Replace the placeholders with your actual API key, username, and password.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Replace the placeholders with your actual API key, username, and password.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -61,6 +64,8 @@ Use the `GET /ping` endpoint to verify your authentication is working correctly.
 
 <Tabs>
   <Tab title="Request">
+    Use this request to verify that your authentication and connection to the API are working.
+
     ```bash
     curl -X GET "${BASE_URL}/ping" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -68,7 +73,7 @@ Use the `GET /ping` endpoint to verify your authentication is working correctly.
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment URL. Replace the placeholders with your actual API key and the session token you obtained in Step 1.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Replace the placeholders with your actual API key and the session token you obtained in Step 1.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -100,7 +105,7 @@ You've successfully made your first API call. Here are some next steps to contin
   <Card
     title="Setting up your account"
     icon="user"
-    href="/docs/getting-started/setup-account"
+    href="/docs/getting-started/integrating-with-quivo"
   >
     Complete guide to setting up your merchant account and requesting an API key.
   </Card>

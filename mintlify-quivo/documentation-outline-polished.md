@@ -16,11 +16,116 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
 
 ---
 
-## I. Getting Started (Foundation)
+## Documentation Status
+
+**Last Updated:** December 2025
+
+### ✅ Complete (Production Ready)
+
+**Introduction Section:**
+- ✅ Overview (Concept)
+- ✅ Integrating with Quivo (Concept)
+- ✅ Logistics Glossary (Reference)
+- ✅ Making Your First API Call (Tutorial)
+- ✅ Request an API Key (How-To)
+
+**Quickstart Section:**
+- ✅ Send Inventory (Inbound) (Tutorial)
+- ✅ Create a Fulfillment Order (Tutorial)
+- ✅ Track an Order (How-To)
+- ✅ Manage Returns (How-To)
+- ✅ Manage Webhooks (How-To)
+
+**Quivo Flows Section:**
+- ✅ Create Products (Articles) (Tutorial)
+- ✅ Manage Products (Articles) (How-To)
+- ✅ Monitor Inventory (Items API) (How-To)
+
+**API Reference Section:**
+- ✅ API Overview (Reference)
+- ✅ Authentication (Reference)
+- ✅ API Endpoints (Auto-generated from OpenAPI)
+
+**Quality Standards Applied:**
+- ✅ Consistent callout usage (`<Note>`, `<Tip>`, `<Warning>`)
+- ✅ All code examples use `<Tabs>` with Request/Response
+- ✅ Introductory sentences in all tab elements
+- ✅ Standardized "Where to go next" sections with CardGroup
+- ✅ All API links use `/api-reference/#tag/...` format
+- ✅ Prerequisites standardized across all guides
+- ✅ Base URL phrasing standardized
+
+### 🔄 In Progress / Needs Review
+
+**None currently** - All existing documentation has been standardized and reviewed.
+
+### ⚠️ Missing - High Priority
+
+**Quivo Flows Section:**
+- ⚠️ Manage Orders (How-To) - **CREATE NEXT**
+  - Update order details, cancel orders, update delivery addresses
+  - Understanding order statuses and modification rules
+
+- ⚠️ Fulfillment Plans (Concept + How-To) - **CREATE NEXT**
+  - What are fulfillment plans?
+  - Creating and managing fulfillment plans
+  - Using plans in orders
+
+**API Reference Section:**
+- ⚠️ Environments (Reference)
+  - Production vs. Sandbox base URLs
+  - Environment-specific configuration
+
+- ⚠️ HTTP Response Codes (Reference)
+  - Complete list of status codes
+  - Error response formats
+  - Troubleshooting guide
+
+- ⚠️ Pagination & Idempotency (Reference)
+  - How pagination works
+  - Idempotency keys and best practices
+
+### ⚠️ Missing - Medium Priority
+
+**Quivo Flows Section:**
+- ⚠️ Manage Shipments (How-To)
+  - Shipment tracking and management
+  - Carrier integration details
+
+**Connector Web UI Section:**
+- ⚠️ The Connector Overview (Concept)
+- ⚠️ Managing Inventory via UI (How-To)
+- ⚠️ Creating Orders via UI (How-To)
+- ⚠️ Requesting an Inbound (UI) (How-To)
+
+### ⚠️ Missing - Low Priority / Optional
+
+**Quivo Flows Section:**
+- ⚠️ Manage Product Bundles (How-To) - Priority 4
+- ⚠️ International Shipping & Customs (How-To) - Priority 4
+
+**Support Section:**
+- ⚠️ SDKs & Libraries (Reference) - If applicable
+- ⚠️ Community Resources (Reference) - If applicable
+
+### 📊 Completion Statistics
+
+- **Total Pages Planned:** ~35
+- **Pages Complete:** 15 (43%)
+- **Pages Missing (High Priority):** 5 (14%)
+- **Pages Missing (Medium Priority):** 5 (14%)
+- **Pages Missing (Low Priority):** 4 (11%)
+- **Auto-generated:** 1 (API Endpoints)
+
+**Next Milestone:** Complete all High Priority missing pages (5 pages)
+
+---
+
+## I. Introduction
 
 **Purpose:** Establish context and vocabulary before diving into implementation.
 
-### 1.1 Overview & Ecosystem (Concept)
+### 1.1 Overview (Concept)
 - **Type:** Concept
 - **Status:** ✅ Exists (`docs/getting-started/overview.mdx`)
 - **Content:**
@@ -32,7 +137,16 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - **Note:** Avoid marketing language, focus on technical information
   - **Note:** Use CardGroup component for workflow links
 
-### 1.2 Logistics Glossary (Reference)
+### 1.2 Integrating with Quivo (Concept)
+- **Type:** Concept
+- **Status:** ✅ Exists (`docs/getting-started/integrating-with-quivo.mdx`)
+- **Content:**
+  - Accessing The Connector (web UI)
+  - Obtaining API credentials
+  - Identifying your Seller ID
+  - Selecting the correct environment (Production vs. Sandbox)
+
+### 1.3 Logistics Glossary (Reference)
 - **Type:** Reference
 - **Status:** ✅ Exists (`docs/reference/logistics-glossary.mdx`)
 - **Content:**
@@ -40,16 +154,6 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Order statuses and lifecycle
   - Warehouse terminology
   - Shipping terminology
-
-### 1.3 Setting Up Your Account (How-To)
-- **Type:** How-To Guide
-- **Status:** ✅ Exists (`docs/getting-started/setup-account.mdx`)
-- **Content:**
-  - Account creation process
-  - Accessing The Connector (web UI)
-  - Obtaining API credentials
-  - Seller ID identification
-  - Environment selection (Production vs. Sandbox)
 
 ### 1.4 Making Your First API Call (Tutorial)
 - **Type:** Tutorial
@@ -63,9 +167,9 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
 
 ---
 
-## II. Core Workflow: Fulfillment Service (API Guides)
+## II. Quickstart
 
-**Purpose:** Complete end-to-end workflow for developers integrating via API.
+**Purpose:** Provide a clear, step-by-step documentation of the typical customer journey (from sending inventory to managing returns). These are the primary entry-point guides for new integrations.
 
 **Standard Guide Template (from team review):**
 1. **Introduction:** Brief explanation of what the guide covers and why
@@ -91,40 +195,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
 - ✅ **Do use:** Tabs for request/response code examples
 - ✅ **Do use:** Callouts for important warnings/tips (e.g., webhook response requirements)
 
-### 2.1 Product Catalog Management
-
-#### 2.1.1 Create Products (Articles) (Tutorial)
-- **Type:** Tutorial
-- **Status:** ✅ Exists (`docs/guides/main-flow/create-products.mdx`)
-- **Content:**
-  - Creating your first article
-  - Required vs. optional fields
-  - SKU best practices
-  - Product dimensions and weight
-  - Next steps
-
-#### 2.1.2 Manage Products (Articles) (How-To)
-- **Type:** How-To Guide
-- **Status:** ✅ Exists (`docs/guides/main-flow/manage-products.mdx`)
-- **Content:**
-  - Updating product information
-  - Uploading product images
-  - Product validation
-  - Searching and retrieving articles
-  - Bulk operations
-
-#### 2.1.3 Manage Product Bundles (How-To) ⚠️ FUTURE
-- **Type:** How-To Guide
-- **Status:** ⚠️ Priority 4 (Optional)
-- **Content:**
-  - What are bundles?
-  - Creating bundles
-  - Bundle SKU mapping
-  - Using bundles in orders
-
-### 2.2 Inventory Management
-
-#### 2.2.1 Send Inventory (Inbound) (Tutorial)
+### 2.1 Send Inventory (Inbound) (Tutorial)
 - **Type:** Tutorial
 - **Status:** ✅ Exists (`docs/guides/main-flow/send-inventory.mdx`)
 - **Content:**
@@ -135,7 +206,102 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - **Note:** Use tabs for request/response examples
   - **Note:** Link to `/inbounds` endpoint in API Reference for field details
 
-#### 2.2.2 Monitor Inventory (Items API) (How-To)
+### 2.2 Create a Fulfillment Order (Tutorial)
+- **Type:** Tutorial
+- **Status:** ✅ Exists (`docs/guides/main-flow/create-order.mdx`)
+- **Content:**
+  - Order payload structure (brief overview)
+  - Key information: `sellerId`, `orderIdentifier`, `deliveryAddress`, `positions`
+  - Basic use of fulfillment plans (link to dedicated Fulfillment Plans guide)
+  - **Note:** Do NOT list "required fields" (link to API Reference instead)
+  - **Note:** Use tabs for request/response examples
+  - **Note:** Link to `/orders` POST endpoint in API Reference for detailed field descriptions
+  - Next steps section with cards
+
+### 2.3 Track an Order (How-To)
+- **Type:** How-To Guide
+- **Status:** ✅ Exists (`docs/guides/main-flow/track-order.mdx`)
+- **Content:**
+  - Retrieving order status
+  - Tracking shipment progress
+  - Understanding status codes
+  - Delivery confirmation
+
+### 2.4 Manage Returns (How-To)
+- **Type:** How-To Guide
+- **Status:** ✅ Exists (`docs/guides/main-flow/manage-returns.mdx`)
+- **Content:**
+  - Generating return labels
+  - Processing returned items
+  - Return status tracking
+  - Return portal configuration
+
+### 2.5 Manage Webhooks (How-To)
+- **Type:** How-To Guide
+- **Status:** ✅ Exists (`docs/guides/main-flow/manage-webhooks.mdx`)
+- **Content Structure:**
+  - **Important Callout at top:** Webhook endpoints must return `200 OK` response
+  - **Create a Subscription** (H2): POST request with example
+  - **List Subscriptions** (H2): GET request with example
+  - **Delete Subscription** (H2): DELETE request with example
+  - **Best Practices** (H2): Use callout for automation tips (token refresh, etc.)
+  - **Note:** Remove "troubleshooting" section (separate error codes page)
+  - **Note:** Use tabs for request/response examples
+  - **Note:** Link to `/webhooks` endpoints in API Reference
+  - Next steps section with cards
+
+---
+
+## III. Quivo Flows
+
+**Purpose:** Provide more detailed, resource-specific guides that cover the broader Quivo API workflows beyond the initial Quickstart.
+
+### 3.1 Manage Orders (How-To) ⚠️ MISSING - HIGH PRIORITY
+- **Type:** How-To Guide
+- **Status:** ⚠️ **CREATE NEXT**
+- **Suggested Path:** `docs/guides/orders/manage-orders.mdx`
+- **Content Structure:**
+  - **Update Order Details** (H2): `PATCH /orders/{orderId}` with example
+  - **Cancel Orders** (H2): Cancellation process with example
+  - **Update Delivery Addresses** (H2): Address modification with example
+  - **Understanding Order Statuses** (H2): Status transitions (concept)
+  - **When Orders Can/Cannot Be Modified** (H2): Important callout/warning
+  - **Note:** Remove "handling order errors" and "troubleshooting" (separate error codes page)
+  - **Note:** Link to `/orders` PATCH endpoint in API Reference
+  - **Note:** Use tabs for request/response examples
+  - Next steps section with cards
+
+### 3.2 Create Products (Articles) (Tutorial)
+- **Type:** Tutorial
+- **Status:** ✅ Exists (`docs/guides/main-flow/create-products.mdx`)
+- **Content:**
+  - Creating your first article
+  - Required vs. optional fields
+  - SKU best practices
+  - Product dimensions and weight
+  - Next steps
+
+### 3.3 Manage Products (Articles) (How-To)
+- **Type:** How-To Guide
+- **Status:** ✅ Exists (`docs/guides/main-flow/manage-products.mdx`)
+- **Content:**
+  - Updating product information
+  - Uploading product images
+  - Product validation
+  - Searching and retrieving articles
+  - Bulk operations
+
+### 3.4 Manage Product Bundles (How-To) ⚠️ FUTURE
+- **Type:** How-To Guide
+- **Status:** ⚠️ Priority 4 (Optional)
+- **Suggested Path:** `docs/guides/main-flow/manage-product-bundles.mdx` (TBD)
+- **Content:**
+  - What are bundles?
+  - Creating bundles
+  - Bundle SKU mapping
+  - Using bundles in orders
+
+### 3.5 Monitor Inventory (Items API) (How-To)
 - **Type:** How-To Guide
 - **Status:** ✅ Exists (`docs/guides/inventory/monitor-stock.mdx`)
 - **Content:**
@@ -147,47 +313,19 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - **Note:** Remove troubleshooting section (separate error codes page)
   - **Note:** Link to `/items` endpoint in API Reference
 
-### 2.3 Order Fulfillment
-
-#### 2.3.1 Create Fulfillment Order (Tutorial)
-- **Type:** Tutorial
-- **Status:** ✅ Exists (`docs/guides/main-flow/create-order.mdx`)
-- **Content:**
-  - Order payload structure (brief overview)
-  - Key information: sellerId, orderIdentifier, deliveryAddress, positions
-  - Using fulfillment plans (basic mention, detailed guide in Advanced section)
-  - **Note:** Do NOT list "required fields" (link to API Reference instead)
-  - **Note:** Use tabs for request/response examples
-  - **Note:** Link to `/orders` POST endpoint in API Reference for detailed field descriptions
-  - Next steps section with cards
-
-#### 2.3.2 Manage Orders (How-To) ⚠️ MISSING - HIGH PRIORITY
+### 3.6 Manage Shipments (How-To) ⚠️ MISSING - MEDIUM PRIORITY
 - **Type:** How-To Guide
-- **Status:** ⚠️ **CREATE NEXT**
-- **Suggested Path:** `docs/guides/orders/manage-orders.mdx`
-- **Content Structure:**
-  - **Update Order Details** (H2): PATCH /orders/{orderId} with example
-  - **Cancel Orders** (H2): Cancellation process with example
-  - **Update Delivery Addresses** (H2): Address modification with example
-  - **Understanding Order Statuses** (H2): Status transitions (concept)
-  - **When Orders Can/Cannot Be Modified** (H2): Important callout/warning
-  - **Note:** Remove "handling order errors" and "troubleshooting" (separate error codes page)
-  - **Note:** Link to `/orders` PATCH endpoint in API Reference
-  - **Note:** Use tabs for request/response examples
-  - Next steps section with cards
-
-#### 2.3.3 Track Order (How-To)
-- **Type:** How-To Guide
-- **Status:** ✅ Exists (`docs/guides/main-flow/track-order.mdx`)
+- **Status:** ⚠️ **CREATE AFTER PRIORITY 2**
+- **Suggested Path:** `docs/guides/shipments/manage-shipments.mdx`
 - **Content:**
-  - Retrieving order status
-  - Tracking shipment progress
-  - Understanding status codes
-  - Delivery confirmation
+  - Booking shipments manually
+  - Retrieving shipping labels and documents
+  - Shipment status tracking (beyond order tracking)
+  - Pickup scheduling
+  - Batch shipment operations
+  - Shipment estimation
 
-### 2.4 Advanced Order Features
-
-#### 2.4.1 Understanding Fulfillment Plans (Concept + How-To) ⚠️ MISSING - HIGH PRIORITY
+### 3.7 Understanding Fulfillment Plans (Concept + How-To) ⚠️ MISSING - HIGH PRIORITY
 - **Type:** Concept (explanation) + How-To (implementation)
 - **Status:** ⚠️ **CREATE NEXT**
 - **Suggested Path:** `docs/guides/advanced/fulfillment-plans.mdx`
@@ -204,48 +342,9 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
     - Common use cases and examples
     - Troubleshooting
 
-### 2.5 Shipment Management
-
-#### 2.5.1 Manage Shipments (How-To) ⚠️ MISSING - MEDIUM PRIORITY
-- **Type:** How-To Guide
-- **Status:** ⚠️ **CREATE AFTER PRIORITY 2**
-- **Suggested Path:** `docs/guides/shipments/manage-shipments.mdx`
-- **Content:**
-  - Booking shipments manually
-  - Retrieving shipping labels and documents
-  - Shipment status tracking (beyond order tracking)
-  - Pickup scheduling
-  - Batch shipment operations
-  - Shipment estimation
-
-### 2.6 Post-Fulfillment
-
-#### 2.6.1 Manage Returns (How-To)
-- **Type:** How-To Guide
-- **Status:** ✅ Exists (`docs/guides/main-flow/manage-returns.mdx`)
-- **Content:**
-  - Generating return labels
-  - Processing returned items
-  - Return status tracking
-  - Return portal configuration
-
-#### 2.6.2 Manage Webhooks (How-To)
-- **Type:** How-To Guide
-- **Status:** ✅ Exists (`docs/guides/main-flow/manage-webhooks.mdx`)
-- **Content Structure:**
-  - **Important Callout at top:** Webhook endpoints must return 200 OK response
-  - **Create a Subscription** (H2): POST request with example
-  - **List Subscriptions** (H2): GET request with example
-  - **Delete Subscription** (H2): DELETE request with example
-  - **Best Practices** (H2): Use callout for automation tips (token refresh, etc.)
-  - **Note:** Remove "troubleshooting" section (separate error codes page)
-  - **Note:** Use tabs for request/response examples
-  - **Note:** Link to `/webhooks` endpoints in API Reference
-  - Next steps section with cards
-
 ---
 
-## III. The Connector: User Guide (Web UI)
+## IV. Quivo Connector Web UI
 
 **Purpose:** Documentation for merchants using The Connector web interface (non-technical users).
 
@@ -254,9 +353,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
 - A section within this documentation
 - Links to external Connector documentation
 
-### 3.1 Getting Started with The Connector
-
-#### 3.1.1 Dashboard Overview (Concept)
+### 4.1 Dashboard Overview (Concept)
 - **Type:** Concept
 - **Content:**
   - Navigation overview
@@ -264,9 +361,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Quick actions
   - Settings access
 
-### 3.2 Inventory Management (UI)
-
-#### 3.2.1 Creating Products and Bundles (How-To)
+### 4.2 Creating Products and Bundles (UI) (How-To)
 - **Type:** How-To Guide
 - **Content:**
   - Adding products via UI
@@ -275,7 +370,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Creating bundles
   - Bulk import options
 
-#### 3.2.2 Requesting an Inbound (How-To)
+### 4.3 Requesting an Inbound (UI) (How-To)
 - **Type:** How-To Guide
 - **Content:**
   - Creating inbound requests via UI
@@ -283,9 +378,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Tracking inbound status
   - Warehouse selection
 
-### 3.3 Order Management (UI)
-
-#### 3.3.1 Understanding Order Statuses (Concept)
+### 4.4 Understanding Order Statuses (UI) (Concept)
 - **Type:** Concept
 - **Content:**
   - Status definitions: Processing, Shipped, On Hold, etc.
@@ -293,7 +386,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Visual indicators
   - Status filters
 
-#### 3.3.2 Address Validation & Troubleshooting (How-To)
+### 4.5 Address Validation & Troubleshooting (UI) (How-To)
 - **Type:** How-To Guide
 - **Content:**
   - Address validation process
@@ -301,9 +394,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Manual address correction
   - International address formats
 
-### 3.4 Reverse Logistics (UI)
-
-#### 3.4.1 Configuring the Return Portal (How-To)
+### 4.6 Configuring the Return Portal (UI) (How-To)
 - **Type:** How-To Guide
 - **Content:**
   - Return portal setup
@@ -311,7 +402,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Return reasons and categories
   - Customer-facing return links
 
-#### 3.4.2 Processing a Received Return (How-To)
+### 4.7 Processing a Received Return (UI) (How-To)
 - **Type:** How-To Guide
 - **Content:**
   - Viewing returned items
@@ -319,9 +410,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Restocking vs. disposal
   - Return status updates
 
-### 3.5 Integrations (No-Code)
-
-#### 3.5.1 Connecting Shop Systems (How-To)
+### 4.8 Connecting Shop Systems (No-Code) (How-To)
 - **Type:** How-To Guide
 - **Content:**
   - Supported platforms (Shopify, WooCommerce, Magento, etc.)
@@ -329,7 +418,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - Authentication and permissions
   - Testing connections
 
-#### 3.5.2 Status Mapping (Concept + How-To)
+### 4.9 Status Mapping (No-Code) (Concept + How-To)
 - **Type:** Concept + How-To
 - **Content:**
   - Understanding status mapping
@@ -339,27 +428,48 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
 
 ---
 
-## IV. API Reference (Technical Reference)
+## V. API Reference (Technical Reference)
 
 **Purpose:** Complete, precise API specification for developers.
 
-### 4.1 Introduction (Reference)
+### 5.1 Overview (Reference)
 - **Type:** Reference
 - **Status:** ✅ Exists (`api-reference/introduction.mdx`)
 - **Content:**
   - API overview
-  - Base URLs (Production, Sandbox)
-  - Quick links to Quick Start guides
-  - Links to authentication guide
-  - **Additional sections to add:**
-    - Response codes (common HTTP status codes)
-    - Pagination (how pagination is handled in the API)
-    - Idempotency (if applicable, how idempotency is handled)
-    - Rate limits
-    - Versioning
-    - Response formats
+  - Quick links to Quickstart guides
+  - Links to Authentication guide
 
-### 4.2 Authentication (Reference)
+### 5.2 Environments (Reference)
+- **Type:** Reference
+- **Status:** ⚠️ **CREATE**
+- **Suggested Path:** `api-reference/environments.mdx`
+- **Content:**
+  - Base URLs (Production, Sandbox)
+  - When to use each environment
+  - Environment-specific considerations and limitations (if any)
+
+### 5.3 HTTP Response Codes (Reference)
+- **Type:** Reference
+- **Status:** ⚠️ **CREATE**
+- **Suggested Path:** `api-reference/http-response-codes.mdx`
+- **Content:**
+  - Complete list of HTTP status codes used by the Quivo API
+  - Common error codes and their meanings
+  - Error response format
+  - High-level troubleshooting guidance
+
+### 5.4 Pagination & Idempotency (Reference)
+- **Type:** Reference
+- **Status:** ⚠️ **CREATE**
+- **Suggested Path:** `api-reference/pagination-and-idempotency.mdx`
+- **Content:**
+  - How pagination is handled in the API
+  - Request parameters for pagination (e.g., `page`, `limit`, cursors)
+  - Idempotency strategy (if applicable)
+  - Examples of idempotent operations and recommended usage
+
+### 5.5 Authentication (Reference)
 - **Type:** Reference
 - **Status:** ✅ Exists (`api-reference/authentication.mdx`)
 - **Content:**
@@ -373,7 +483,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - **Note:** Link to `/login` endpoint in API Reference
   - Next steps section with cards (2 cards max)
 
-### 4.3 Endpoints (Reference)
+### 5.6 Endpoints
 - **Type:** Reference
 - **Status:** ✅ Auto-generated from OpenAPI (`openapi.json`)
 - **Content:**
@@ -386,28 +496,17 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
   - **Note:** When new endpoints are added, overlay layer is updated manually
 
 **Note:** Endpoints are organized by tags (can be reorganized by importance or grouped by resource):
-- `articles` - Product catalog
-- `inbounds` - Inventory shipments
-- `items` - Stock levels
-- `orders` - Order management
-- `shipments` - Shipment operations
-- `returns` - Return processing
-- `fulfillmentPlans` - Conditional logic
-- `webhooks` - Event subscriptions
-- `addresses` - Address management
-- `shops` - Shop integrations
-- And more...
-
-### 4.4 Error Codes (Reference) ⚠️ MISSING
-- **Type:** Reference
-- **Status:** ⚠️ **CREATE** (separate from guides)
-- **Suggested Path:** `api-reference/error-codes.mdx`
-- **Content:**
-  - Complete list of HTTP status codes
-  - Common error codes and meanings
-  - Error response format
-  - Troubleshooting guidance
-  - **Note:** This replaces troubleshooting sections in individual guides
+- `articles` – Product catalog
+- `inbounds` – Inventory shipments
+- `items` – Stock levels
+- `orders` – Order management
+- `shipments` – Shipment operations
+- `returns` – Return processing
+- `fulfillmentPlans` – Conditional logic
+- `webhooks` – Event subscriptions
+- `addresses` – Address management
+- `shops` – Shop integrations
+- And more…
 
 ---
 
@@ -502,7 +601,7 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
             "group": "Getting Started",
             "pages": [
               "docs/getting-started/overview",
-              "docs/getting-started/setup-account",
+              "docs/getting-started/integrating-with-quivo",
               "docs/getting-started/first-api-call"
             ]
           },
@@ -563,24 +662,65 @@ This outline restructures the Quivo documentation to follow the Diátaxis framew
 
 ## Implementation Roadmap
 
-### Phase 1: Critical Gaps (Immediate)
-1. ✅ **Create Products** - COMPLETED
-2. ✅ **Manage Products** - COMPLETED
-3. ⚠️ **Manage Orders** - CREATE NEXT (High Priority)
-4. ⚠️ **Fulfillment Plans** - CREATE NEXT (High Priority)
-5. ⚠️ **Error Codes Page** - CREATE (Separate from guides, consolidates troubleshooting)
+Below is the implementation plan for delivering the Quivo documentation by the target deadline of **January 20th, 2026**.
 
-### Phase 2: Workflow Completion (Short-term)
-5. ⚠️ **Manage Shipments** - CREATE AFTER Phase 1 (Medium Priority)
+The primary goals are:
 
-### Phase 3: Enhancement (Medium-term)
-6. Product Bundles (Optional)
-7. Address Management (Optional)
-8. International Shipping (Optional)
+1. **Completeness and Accuracy:** Ensure all existing API calls are properly documented and that the foundational reference materials (HTTP Response Codes, Authentication, Environments, Pagination & Idempotency) are finalized.
+2. **User-Centricity:** Provide a clear, step-by-step documentation of the typical customer journey (from creating articles to managing returns) and establish the necessary automation and maintenance processes for long-term sustainability and ease of adjustment.
 
-### Phase 4: Connector UI Documentation (Long-term)
-9. Determine integration approach (separate site vs. integrated)
-10. Create Connector UI guides based on user research
+We structure the work into four distinct phases, prioritizing the immediate completion of critical technical foundations and the primary developer workflow before addressing secondary content and final quality assurance.
+
+### Roadmap Overview
+
+| Phase           | Focus                               | Due Date  |
+| --------------- | ------------------------------------ | --------- |
+| Mintlify Setup  | Technical setup & automation         | Dec 16th  |
+| Phase 1         | Core user journey                    | Dec 31st  |
+| Phase 2         | API consistency                      | Jan 10th  |
+| Phase 3         | Secondary content & Connector UI     | Jan 17th  |
+| Phase 4         | Final review, maintenance & publish   | Jan 20th  |
+
+### Mintlify Setup (Technical Setup & Automation) — Due Dec 16th
+
+- Configure Mintlify project, environments, and deployment pipeline.
+- Connect OpenAPI spec (`openapi.json`) and verify auto-generation of Endpoints.
+- Set up overlay / description layer and automation for daily spec sync.
+
+### Phase 1 – Core User Journey — Due Dec 31st
+
+- Finalize and align Quickstart guides:
+  - Send Inventory
+  - Create a Fulfillment Order
+  - Track an Order
+  - Manage Returns
+  - Manage Webhooks
+- Ensure Introduction pages (Overview, Integrating with Quivo, Logistics Glossary) are complete and consistent.
+
+### Phase 2 – API Consistency — Due Jan 10th
+
+- Create and/or finalize core reference pages:
+  - Environments
+  - HTTP Response Codes
+  - Pagination & Idempotency
+  - Authentication
+- Review and standardize descriptions and examples across all OpenAPI-tagged endpoints.
+
+### Phase 3 – Secondary Content & Connector UI — Due Jan 17th
+
+- Implement Quivo Flows guides:
+  - Manage Orders
+  - Manage Shipments
+  - Monitor Inventory
+  - Create / Manage Products and Product Bundles (where applicable)
+- Build out Quivo Connector Web UI documentation (dashboard, inventory, order management, reverse logistics, integrations).
+
+### Phase 4 – Final Review, Maintenance & Publish — Due Jan 20th
+
+- Perform end-to-end review of navigation, content structure, and cross-linking.
+- Validate examples via Mintlify Playground and, where possible, staging environments.
+- Document ongoing maintenance processes (OpenAPI updates, overlay changes, review cadence).
+- Publish and hand over documentation with clear ownership and review guidelines.
 
 ---
 

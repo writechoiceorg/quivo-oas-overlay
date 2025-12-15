@@ -1,18 +1,19 @@
 ---
 title: Send Inventory (Inbound)
+pageType: Tutorial
 ogDescription: Notify the Quivo warehouse that you are sending a shipment of products (stock)
 ---
 
-To fulfill orders, you need inventory available in a Quivo warehouse. This API flow creates an "Inbound" record to notify the warehouse team that you are sending products, so they can plan for the arrival and process the inventory.
+This tutorial guides you step by step through creating an "Inbound" record to notify the Quivo warehouse team that you are sending products. To fulfill orders, you need inventory available in a Quivo warehouse. This API flow creates an inbound record so the warehouse can plan for the arrival and process the inventory.
 
 ## Prerequisites
 
-Before you start, make sure you have the following:
+Before you start, make sure you have:
 
-- **Session Token:** A valid session token. See the [Authentication guide](/essentials/authentication) to learn how to obtain one.
-- **Seller ID:** Your merchant ID. Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) in the API Reference to find it.
-- **Warehouse ID:** The ID of the specific warehouse you are shipping to. Use the [`GET /warehouses` endpoint](/api-reference/#tag/warehouses) in the API Reference to list them.
-- **Product SKUs:** The items you are sending must already exist in the system. Use the [`GET /articles` endpoint](/api-reference/#tag/articles) in the API Reference to find them.
+- **Session token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **Seller ID:** Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) to find it.
+- **Warehouse ID:** Use the [`GET /warehouses` endpoint](/api-reference/#tag/warehouses) to list available warehouses.
+- **Product SKUs:** The items you are sending must already exist. Use the [`GET /articles` endpoint](/api-reference/#tag/articles) to find them.
 
 ## Create the inbound request
 
@@ -22,6 +23,8 @@ The following example shows a complete inbound payload with all required fields 
 
 <Tabs>
   <Tab title="Request">
+    Use this request to create a new inbound record and notify the warehouse about incoming stock.
+
     ```bash
     curl -X POST "${BASE_URL}/inbounds" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -58,9 +61,9 @@ The following example shows a complete inbound payload with all required fields 
       }'
     ```
 
-    <Callout>
-      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
-    </Callout>
+    <Note>
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual data.
+    </Note>
   </Tab>
   <Tab title="Response">
     A successful request returns a `200 OK` status code.
@@ -73,14 +76,14 @@ The following example shows a complete inbound payload with all required fields 
     }
     ```
 
-    <Tip>
+    <Note>
       **Important:** Save the `inboundId` returned in the response. You may need to print this ID on the shipping label so the warehouse can identify the boxes when they arrive.
-    </Tip>
+    </Note>
   </Tab>
 </Tabs>
 
 <Tip>
-  **Required fields:** `sellerId`, `warehouseId`, `deliverySlipNumber`, `estimatedArrivalTime`, `shipFrom`, `trackingNumber`, `deliveryInfo`, and `inboundPositions` are required. All other fields are optional. You can find the full schema for the inbound request in the [API Reference](/api-reference/#tag/inbounds).
+  For the complete inbound request schema—including all required and optional fields—see the [Inbounds section in the API Reference](/api-reference/#tag/inbounds).
 </Tip>
 
 ## Track inbound status
@@ -88,18 +91,20 @@ The following example shows a complete inbound payload with all required fields 
 After creating an inbound record, use this endpoint to monitor the processing status. Once your shipment arrives, the warehouse team starts scanning the items. Check the status of this process via the API using the [`GET /inbounds/{inboundId}` endpoint](/api-reference/#tag/inbounds).
 
 <Tabs>
-  <Tab value="Request">
+  <Tab title="Request">
+    Use this request to retrieve the current status of an existing inbound by its ID.
+
     ```bash
     curl -X GET "${BASE_URL}/inbounds/<YOUR_INBOUND_ID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
       -H "Authorization: <YOUR_SESSION_TOKEN>"
     ```
 
-    <Callout>
-      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
-    </Callout>
+    <Note>
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual data.
+    </Note>
   </Tab>
-  <Tab value="Response">
+  <Tab title="Response">
     A successful request returns a `200 OK` status code. The response returns an `InboundGet` object with details about the inbound:
 
     ```json
@@ -145,11 +150,11 @@ After creating an inbound record, use this endpoint to monitor the processing st
   </Tab>
 </Tabs>
 
-## Next steps
+## Where to go next
 
 Now that you have sent inventory to the warehouse, continue with these guides:
 
-<Cards cols={2}>
+<CardGroup cols={2}>
   <Card
     title="Create a Fulfillment Order"
     icon="shopping-cart"
@@ -165,4 +170,4 @@ Now that you have sent inventory to the warehouse, continue with these guides:
   >
     Monitor order status and retrieve tracking information for shipments.
   </Card>
-</Cards>
+</CardGroup>

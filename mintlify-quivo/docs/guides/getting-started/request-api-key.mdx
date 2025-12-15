@@ -1,0 +1,115 @@
+---
+title: Request an API Key
+pageType: How-To
+ogDescription: Request and track your Quivo Connector API key via the UI or API
+---
+
+This how-to shows two ways to request and track your Quivo API key: through The Connector web app (UI) or via the API. If you already have your key, proceed to [Making your first API call](/docs/guides/getting-started/first-api-call).
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+- **Connector Web App access:** To use the UI flow.
+- **Credentials:** Your Quivo login for The Connector.
+- **API access (for API flow):** Ability to call authenticated endpoints. See the [Authentication guide](/api-reference/authentication).
+
+## Request your API key
+
+<Tabs>
+  <Tab title="UI (Connector Web App)">
+
+1. Sign in to The Connector Web App.
+2. In the left sidebar, open Settings.
+3. Click Request API Key.
+4. Submit the request and wait for approval.
+5. After approval, the API Key field appears on this page; use the copy icon to copy it.
+
+  </Tab>
+
+  <Tab title="API">
+
+### Get your Seller ID
+
+If you don’t know your Seller ID, retrieve it after authenticating.
+
+```bash
+curl -X GET "${BASE_URL}/sellers" \
+  -H "X-Api-Key: <YOUR_API_KEY>" \
+  -H "Authorization: <YOUR_SESSION_TOKEN>"
+```
+
+Key fields in the response:
+
+- `id`: Your Seller ID (integer)
+- `status`: One of `ACTIVE`, `BLOCKED`, `TERMINATED`, `NEW`, `PENDING`
+
+### Request the API key
+
+```bash
+curl -X POST "${BASE_URL}/apiKeyRequests/{sellerId}" \
+  -H "Content-Type: application/json"
+```
+
+Replace `{sellerId}` with your Seller ID.
+
+### Check request status
+
+```bash
+curl -X GET "${BASE_URL}/apiKeyRequests" \
+  -H "X-Api-Key: <YOUR_API_KEY>" \
+  -H "Authorization: <YOUR_SESSION_TOKEN>"
+```
+
+  </Tab>
+</Tabs>
+
+<Note>
+- Use the correct `${BASE_URL}` configured for your account.
+- Contact Quivo support if you hit authentication issues or if your request is stalled.
+</Note>
+
+## Check status & retrieve your key
+
+<Tabs>
+  <Tab title="UI (Connector Web App)">
+
+After approval, sign back into The Connector and retrieve the API key from the Request API Keys section. Use the copy icon to copy the key.
+
+  </Tab>
+
+  <Tab title="API">
+
+Periodically call `GET /apiKeyRequests` and inspect each request’s `status` field:
+
+```bash
+curl -X GET "${BASE_URL}/apiKeyRequests" \
+  -H "X-Api-Key: <YOUR_API_KEY>" \
+  -H "Authorization: <YOUR_SESSION_TOKEN>"
+```
+
+The response contains an array of requests with `status` values such as `PENDING`, `APPROVED`, `REJECTED`, or `EXPIRED`. When the status for your request changes to `APPROVED`, check whether the response includes the key in the `value` field; if it does, store it securely and start using it in the `X-Api-Key` header. If the key isn’t exposed in the response, contact Quivo support.
+
+  </Tab>
+</Tabs>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card
+    title="Making your first API call"
+    icon="rocket"
+    href="/docs/guides/getting-started/first-api-call"
+  >
+    Get a session token and make your first authenticated request.
+  </Card>
+
+  <Card
+    title="Send Inventory"
+    icon="warehouse"
+    href="/docs/guides/main-flow/send-inventory"
+  >
+    Notify the warehouse that you are sending products so they are ready for fulfillment.
+  </Card>
+</CardGroup>
+

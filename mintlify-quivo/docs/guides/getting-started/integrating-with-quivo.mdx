@@ -1,0 +1,64 @@
+---
+title: Integrating with Quivo
+pageType: Concept
+ogDescription: Learn how to access The Connector, obtain API credentials, identify your Seller ID, and choose the right environment
+---
+
+This concept page explains how to access The Connector, understand your credentials, find your Seller ID, and choose the right environment before building with the Quivo API. For step-by-step authentication, see the [Making your first API call](/docs/guides/getting-started/first-api-call) tutorial.
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+- **Merchant account:** Provisioned by Quivo.
+- **Connector Web App access:** Ability to sign in to The Connector.
+- **API credentials:** Static API key, username, and password issued by Quivo.
+- **Seller ID:** Your merchant identifier (needed for API operations).
+
+<Note>
+If you need a merchant account or Connector access, contact Quivo support.
+</Note>
+
+## Access The Connector
+- Sign in to The Connector Web App with your Quivo credentials.
+- Manage logistics operations and, when provided, retrieve your API key from the web app.
+
+## Credential model (concept)
+- **Static API key:** Provided by Quivo; send in the `X-Api-Key` header.
+- **Username and password:** Your Quivo login; used with the API key to obtain a session token.
+- **Session token:** Obtained via `POST /login`; send in the `Authorization` header for API calls.
+
+For authentication flows and header examples, see the [Authentication guide](/api-reference/authentication).
+
+## Getting an API key (concept)
+- Quivo issues your static API key during onboarding or via The Connector.
+- Detailed, step-by-step API key request flows (UI or API) live in the separate How-To: [Request an API Key](/docs/guides/getting-started/request-api-key).
+
+## Find your Seller ID
+- Your Seller ID uniquely scopes API operations to your merchant account.
+- Retrieve it via the [`GET /sellers` endpoint](/api-reference/#tag/sellers) after you have a session token.
+
+## Choose your environment
+- Use the correct `${BASE_URL}` configured for your account.
+- Keep base URLs, API keys, and session tokens separate per environment. An API key is always required in the `X-Api-Key` header.
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card
+    title="Making your first API call"
+    icon="rocket"
+    href="/docs/guides/getting-started/first-api-call"
+  >
+    Learn how to authenticate and make your first API call to verify your setup.
+  </Card>
+
+  <Card
+    title="Send Inventory"
+    icon="warehouse"
+    href="/docs/guides/main-flow/send-inventory"
+  >
+    Send your products to Quivo warehouses to make them available for fulfillment.
+  </Card>
+</CardGroup>
+

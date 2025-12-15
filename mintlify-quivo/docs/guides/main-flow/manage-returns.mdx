@@ -1,17 +1,18 @@
 ---
 title: Manage Returns
+pageType: How-To
 ogDescription: Generate return labels for your customers and track returned items
 ---
 
-Handling returns efficiently is crucial for customer satisfaction. This API allows you to programmatically generate a shipping label that your customer can use to send an item back to the Quivo warehouse.
+This guide shows you how to programmatically generate return shipping labels and track returned items. Handling returns efficiently is crucial for customer satisfaction. The API allows you to generate a shipping label that your customer can use to send an item back to the Quivo warehouse.
 
 ## Prerequisites
 
-Before you start, make sure you have the following:
+Before you start, make sure you have:
 
-- **Session Token:** A valid session token. See the [Authentication guide](/essentials/authentication) to learn how to obtain one.
-- **Seller ID:** The unique integer ID for your merchant account. Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) in the API Reference to find it.
-- **Shipping Service Group ID:** The ID representing the carrier/service you want to use for the return. Use the [`GET /shippingServiceGroups` endpoint](/api-reference/#tag/shippingServiceGroups) in the API Reference to find it.
+- **Session token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **Seller ID:** Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) to find it.
+- **Shipping Service Group ID:** Use the [`GET /shippingServiceGroups` endpoint](/api-reference/#tag/shippingServiceGroups) to select the carrier/service for the return.
 
 ## Book a return label
 
@@ -23,6 +24,8 @@ The following example shows how to send a complete return request payload in one
 
 <Tabs>
   <Tab title="Request">
+    Use this request to book a return shipping label for your customer.
+
     ```bash
     curl -X POST "${BASE_URL}/returnApp/book" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -45,7 +48,7 @@ The following example shows how to send a complete return request payload in one
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests and replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests and replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -69,6 +72,8 @@ When the package arrives back at the Quivo warehouse, the staff inspects it. You
 
 <Tabs>
   <Tab title="Request">
+    Use this request to list all received returns and review their status.
+
     ```bash
     curl -X GET "${BASE_URL}/returns?sort=created:desc" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -76,7 +81,7 @@ When the package arrives back at the Quivo warehouse, the staff inspects it. You
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -116,7 +121,7 @@ When the package arrives back at the Quivo warehouse, the staff inspects it. You
   </Tab>
 </Tabs>
 
-## Next steps
+## Where to go next
 
 Now that you can manage returns, continue with these guides:
 

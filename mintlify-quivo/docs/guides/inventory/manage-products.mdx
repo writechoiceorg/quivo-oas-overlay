@@ -1,19 +1,18 @@
 ---
 title: Manage Products
+pageType: How-To
 ogDescription: Learn how to update, retrieve, and manage products in your Quivo catalog
 ---
 
-After creating articles, you can manage them by updating details, uploading images, searching your catalog, and validating product data.
-
-This guide teaches you how to retrieve article details, update articles, manage product images, and search your catalog. Each article has a unique stock keeping unit, or SKU, that identifies it. SKU stands for stock keeping unit.
+This guide shows you how to retrieve article details, update articles, manage product images, and search your catalog. After creating articles, you can manage them by updating details, uploading images, searching your catalog, and validating product data. Each article has a unique stock keeping unit, or SKU, that identifies it. SKU stands for stock keeping unit.
 
 ## Prerequisites
 
-Before you start, make sure you have the following:
+Before you start, make sure you have:
 
-- **Session Token:** A valid session token. See the Authentication guide at /api-reference/authentication to learn how to obtain one.
-- **Seller ID:** The unique integer ID for your merchant account. Use the `GET /sellers` endpoint in the API Reference at /api-reference/#tag/sellers to find it.
-- **Existing Articles:** You should have at least one article created. See the Create Products guide at /docs/guides/main-flow/create-products if you haven't created articles yet.
+- **Session token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **Seller ID:** Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) to find it.
+- **Existing articles:** Create at least one article first. See the [Create Products guide](/docs/guides/main-flow/create-products) if you haven't created articles yet.
 
 ## Retrieve article details
 
@@ -21,6 +20,8 @@ Retrieve article details using the article ID or article identifier. Use the [`G
 
 <Tabs>
   <Tab title="Request">
+    Use this request to generate an upload URL for a product image.
+
     ```bash
     curl -X GET "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -28,7 +29,7 @@ Retrieve article details using the article ID or article identifier. Use the [`G
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. Use the `articleId` returned when you created the article.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the `articleId` returned when you created the article.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -72,6 +73,8 @@ Search for articles using the [`GET /articles` endpoint](/api-reference/#tag/art
 
 <Tabs>
   <Tab title="Request">
+    Use this request to upload the image file to the provided upload URL.
+
     ```bash
     curl -X GET "${BASE_URL}/articles?query=sku:<YOUR_SKU>&sort=created:desc&pageSize=50" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -79,7 +82,7 @@ Search for articles using the [`GET /articles` endpoint](/api-reference/#tag/art
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. Use the `query` parameter to filter results, `sort` to order them, and `pageSize` to limit the number of results.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the `query` parameter to filter results, `sort` to order them, and `pageSize` to limit the number of results.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -112,6 +115,8 @@ Update an existing article using the [`PUT /articles/{sellerId}/{articleId}` end
 
 <Tabs>
   <Tab title="Request">
+    Use this request to store the uploaded image information on the article.
+
     ```bash
     curl -X PUT "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -131,7 +136,7 @@ Update an existing article using the [`PUT /articles/{sellerId}/{articleId}` end
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. Include all fields you want to keep, not just the ones you're updating. The request body should contain the complete article data.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Include all fields you want to keep, not just the ones you're updating. The request body should contain the complete article data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -181,7 +186,7 @@ Request an upload link using the [`POST /articles/{sellerId}/{articleId}/images/
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. Specify the `mimeType` query parameter, for example `image/jpeg` or `image/png`.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Specify the `mimeType` query parameter, for example `image/jpeg` or `image/png`.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -267,7 +272,7 @@ Delete an article image using the [`DELETE /articles/{sellerId}/{articleId}/imag
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. Use the image `id` from the article details.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the image `id` from the article details.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -300,7 +305,7 @@ Validate article data before creating or updating an article. Use the [`POST /ar
     ```
 
     <Note>
-      Replace `${BASE_URL}` with your environment web address. Include the article data you want to validate in the request body.
+      Replace `${BASE_URL}` with the correct base URL configured for your account. Include the article data you want to validate in the request body.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -328,7 +333,7 @@ Validate article data before creating or updating an article. Use the [`POST /ar
   </Tab>
 </Tabs>
 
-## Next steps
+## Where to go next
 
 Now that you can manage articles, continue with these guides:
 
