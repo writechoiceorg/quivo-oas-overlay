@@ -11,7 +11,7 @@ Understanding the distinction between articles and items is important:
 - **Article:** A product definition in your catalog (created using the Articles API)
 - **Item:** A physical unit of inventory stored in a warehouse, created from articles after you send inventory to a warehouse and the inbound is completed. 
 
-An article can have many items across different warehouses, with each item representing physical stock at a specific warehouse location. For detailed definitions of these terms, see the [Logistics Glossary](/reference/logistics-glossary). 
+An article can have many items across different warehouses, with each item representing physical stock at a specific warehouse location. For detailed definitions of these terms, see the [Logistics Glossary](/docs/reference/logistics-glossary). 
 
 This guide teaches you how to check current stock levels, view item history, and refresh inventory data when needed.
 
@@ -205,7 +205,7 @@ To view item history for all items in a warehouse, use the [`GET /items/itemHist
 
 <Tabs>
   <Tab title="Request">
-    Use this request to retrieve movement history for a specific item within a date range.
+    Use this request to retrieve movement history for all items in a warehouse:
 
     ```bash
     curl -X GET "${BASE_URL}/items/itemHistories/<YOUR_WAREHOUSE_ID>/<YOUR_SELLER_ID>" \

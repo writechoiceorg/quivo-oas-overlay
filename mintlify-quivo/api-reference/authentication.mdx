@@ -1,7 +1,7 @@
 ---
 title: Authentication
 pageType: Reference
-og:description: Learn how to authenticate your requests to the Quivo API
+ogDescription: Learn how to authenticate your requests to the Quivo API
 ---
 
 This reference provides precise specifications for authenticating API requests. All requests to the Quivo API require authentication using a session token. This ensures that only authorized users can access your account data and perform operations on your behalf. For step-by-step instructions, see the [Making your first API call](/docs/guides/getting-started/first-api-call) tutorial.
@@ -29,6 +29,8 @@ Exchange your credentials for a session token via the `POST /login` endpoint.
 
 <Tabs>
   <Tab title="Request">
+    Use this request to exchange your credentials for a session token:
+
     ```bash
     curl -X POST "${BASE_URL}/login" \
       -H "Content-Type: application/json" \
@@ -60,6 +62,8 @@ Include the token in the `Authorization` header of all API requests. You must al
 
 <Tabs>
   <Tab title="Request">
+    Use this request example to make an authenticated API call with your session token:
+
     ```bash
     curl -X GET "${BASE_URL}/orders" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \

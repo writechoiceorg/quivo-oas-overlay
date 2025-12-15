@@ -20,7 +20,7 @@ Retrieve article details using the article ID or article identifier. Use the [`G
 
 <Tabs>
   <Tab title="Request">
-    Use this request to generate an upload URL for a product image.
+    Use this request to retrieve the full details of an article by its ID:
 
     ```bash
     curl -X GET "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>" \
@@ -73,7 +73,7 @@ Search for articles using the [`GET /articles` endpoint](/api-reference/#tag/art
 
 <Tabs>
   <Tab title="Request">
-    Use this request to upload the image file to the provided upload URL.
+    Use this request to search for articles using query parameters:
 
     ```bash
     curl -X GET "${BASE_URL}/articles?query=sku:<YOUR_SKU>&sort=created:desc&pageSize=50" \
@@ -115,7 +115,7 @@ Update an existing article using the [`PUT /articles/{sellerId}/{articleId}` end
 
 <Tabs>
   <Tab title="Request">
-    Use this request to store the uploaded image information on the article.
+    Use this request to update an existing article with new information:
 
     ```bash
     curl -X PUT "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>" \
@@ -179,6 +179,8 @@ Request an upload link using the [`POST /articles/{sellerId}/{articleId}/images/
 
 <Tabs>
   <Tab title="Request">
+    Use this request to get an upload URL for a product image:
+
     ```bash
     curl -X POST "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>/images/upload?mimeType=image/jpeg" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -209,6 +211,8 @@ Upload your image file to the `uploadUrl` using a PUT request:
 
 <Tabs>
   <Tab title="Request">
+    Use this request to upload the image file to the provided upload URL:
+
     ```bash
     curl -X PUT "<UPLOAD_URL>" \
       -H "Content-Type: image/jpeg" \
@@ -230,6 +234,8 @@ After uploading the image, store the image information using the [`POST /article
 
 <Tabs>
   <Tab title="Request">
+    Use this request to store the uploaded image information on the article:
+
     ```bash
     curl -X POST "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>/images" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -265,6 +271,8 @@ Delete an article image using the [`DELETE /articles/{sellerId}/{articleId}/imag
 
 <Tabs>
   <Tab title="Request">
+    Use this request to delete an image from an article:
+
     ```bash
     curl -X DELETE "${BASE_URL}/articles/<YOUR_SELLER_ID>/<YOUR_ARTICLE_ID>/images/<IMAGE_ID>" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
@@ -286,6 +294,8 @@ Validate article data before creating or updating an article. Use the [`POST /ar
 
 <Tabs>
   <Tab title="Request">
+    Use this request to validate article data before creating or updating:
+
     ```bash
     curl -X POST "${BASE_URL}/articles/<YOUR_SELLER_ID>/validate" \
       -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
