@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "70b8764, 2025-12-11T10:06:33Z",
+    "version": "4d3e8e6, 2025-12-18T09:02:15Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -10990,6 +10990,10 @@
       "FulfillmentOrderSummary": {
         "type": "object",
         "properties": {
+          "fulfillmentOrderId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "fulfillmentOrderIdentifier": {
             "type": "string",
             "description": "The unique identifier for the fulfillment order in the warehouse system."
@@ -12177,10 +12181,10 @@
           "short": {
             "type": "boolean"
           },
-          "binary": {
+          "number": {
             "type": "boolean"
           },
-          "number": {
+          "binary": {
             "type": "boolean"
           },
           "integralNumber": {
@@ -13964,11 +13968,6 @@
         }
       },
       "OrderPostAddress": {
-        "required": [
-          "city",
-          "countryIso2",
-          "street"
-        ],
         "type": "object",
         "properties": {
           "name": {
@@ -13989,7 +13988,7 @@
           },
           "street": {
             "type": "string",
-            "description": "Street (or Address Line 1). <br>This field should always be specified."
+            "description": "Street (or Address Line 1). <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "street2": {
             "type": "string",
@@ -13997,11 +13996,11 @@
           },
           "zip": {
             "type": "string",
-            "description": "ZIP Code. <br>The ZIP code is optional for some countries, but required for most."
+            "description": "ZIP Code. <br>The ZIP code is optional for some countries, but required for most. It is optional when latitude and longitude coordinates are provided."
           },
           "city": {
             "type": "string",
-            "description": "City."
+            "description": "City. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "state": {
             "type": "string",
@@ -14009,16 +14008,11 @@
           },
           "countryIso2": {
             "type": "string",
-            "description": "Country Code."
+            "description": "Country Code. <br>This field is optional only when latitude and longitude coordinates are provided."
           }
         }
       },
       "OrderPostDeliveryAddress": {
-        "required": [
-          "city",
-          "countryIso2",
-          "street"
-        ],
         "type": "object",
         "properties": {
           "name": {
@@ -14039,7 +14033,7 @@
           },
           "street": {
             "type": "string",
-            "description": "Street (or Address Line 1). <br>This field should always be specified."
+            "description": "Street (or Address Line 1). <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "street2": {
             "type": "string",
@@ -14047,11 +14041,11 @@
           },
           "zip": {
             "type": "string",
-            "description": "ZIP Code. <br>The ZIP code is optional for some countries, but required for most."
+            "description": "ZIP Code. <br>The ZIP code is optional for some countries, but required for most. It is optional when latitude and longitude coordinates are provided."
           },
           "city": {
             "type": "string",
-            "description": "City."
+            "description": "City. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "state": {
             "type": "string",
@@ -14059,7 +14053,7 @@
           },
           "countryIso2": {
             "type": "string",
-            "description": "Country Code."
+            "description": "Country Code. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "addressIdentifier": {
             "maxLength": 20,
@@ -14196,11 +14190,6 @@
         }
       },
       "OrderPutDeliveryAddress": {
-        "required": [
-          "city",
-          "countryIso2",
-          "street"
-        ],
         "type": "object",
         "properties": {
           "name": {
@@ -14221,7 +14210,7 @@
           },
           "street": {
             "type": "string",
-            "description": "Street (or Address Line 1). <br>This field should always be specified."
+            "description": "Street (or Address Line 1). <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "street2": {
             "type": "string",
@@ -14229,11 +14218,11 @@
           },
           "zip": {
             "type": "string",
-            "description": "ZIP Code. <br>The ZIP code is optional for some countries, but required for most."
+            "description": "ZIP Code. <br>The ZIP code is optional for some countries, but required for most. It is optional when latitude and longitude coordinates are provided."
           },
           "city": {
             "type": "string",
-            "description": "City."
+            "description": "City. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "state": {
             "type": "string",
@@ -14241,7 +14230,7 @@
           },
           "countryIso2": {
             "type": "string",
-            "description": "Country Code."
+            "description": "Country Code. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "latitude": {
             "type": "number",
@@ -15697,10 +15686,6 @@
         }
       },
       "ShipmentAddress": {
-        "required": [
-          "city",
-          "street"
-        ],
         "type": "object",
         "properties": {
           "name": {
@@ -15721,22 +15706,23 @@
           },
           "zip": {
             "type": "string",
-            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
+            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most. It is optional when latitude and longitude coordinates are provided."
           },
           "city": {
             "type": "string",
-            "description": "City of the recipient. <br>The city should always be specified."
+            "description": "City of the recipient. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "state": {
             "type": "string",
             "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
           },
           "countryIso2": {
-            "type": "string"
+            "type": "string",
+            "description": "Country Code. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "street": {
             "type": "string",
-            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+            "description": "Street (or Address Line 1) of the recipient. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "street2": {
             "type": "string",
@@ -15779,10 +15765,6 @@
         }
       },
       "ShipmentDeliveryAddress": {
-        "required": [
-          "city",
-          "street"
-        ],
         "type": "object",
         "properties": {
           "name": {
@@ -15803,22 +15785,23 @@
           },
           "zip": {
             "type": "string",
-            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
+            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most. It is optional when latitude and longitude coordinates are provided."
           },
           "city": {
             "type": "string",
-            "description": "City of the recipient. <br>The city should always be specified."
+            "description": "City of the recipient. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "state": {
             "type": "string",
             "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
           },
           "countryIso2": {
-            "type": "string"
+            "type": "string",
+            "description": "Country Code. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "street": {
             "type": "string",
-            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+            "description": "Street (or Address Line 1) of the recipient. <br>This field is optional only when latitude and longitude coordinates are provided."
           },
           "street2": {
             "type": "string",
