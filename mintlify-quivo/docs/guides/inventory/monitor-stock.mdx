@@ -4,12 +4,12 @@ pageType: How-To
 ogDescription: Learn how to check stock levels, view inventory by warehouse, and track item movements using the Items API
 ---
 
-This guide shows you how to check stock levels, view inventory by warehouse, and track item movements using the Items API. After you send inventory to a Quivo warehouse and the inbound is completed, your products are available as items in the warehouse.
+This guide shows you how to check stock levels, view inventory by warehouse, and track item movements using the Items API. After you send inventory to a Quivo warehouse and the inbound completes, your products are available as items in the warehouse.
 
 Understanding the distinction between articles and items is important:
 
-- **Article:** A product definition in your catalog (created using the Articles API)
-- **Item:** A physical unit of inventory stored in a warehouse, created from articles after you send inventory to a warehouse and the inbound is completed. 
+- **Article:** A product definition in your catalog created using the Articles API
+- **Item:** A physical unit of inventory stored in a warehouse, created from articles after you send inventory to a warehouse and the inbound completes. 
 
 An article can have many items across different warehouses, with each item representing physical stock at a specific warehouse location. For detailed definitions of these terms, see the [Logistics Glossary](/docs/reference/logistics-glossary). 
 
@@ -40,7 +40,7 @@ To check stock levels for all items in a specific warehouse, use the [`GET /item
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual warehouse ID and seller ID.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Replace the placeholders with your actual warehouse ID and seller ID.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -70,9 +70,9 @@ To check stock levels for all items in a specific warehouse, use the [`GET /item
     ```
 
     The response includes key inventory fields:
-    - `quantity`: Current available quantity that can be fulfilled
+    - `quantity`: Current available quantity ready for fulfillment
     - `inventory`: Total inventory quantity in the warehouse
-    - `inbound`: Quantity currently being processed from inbound shipments
+    - `inbound`: Quantity that Quivo is currently processing from inbound shipments
     - `reserved`: Quantity reserved for pending orders
   </Tab>
 </Tabs>
@@ -117,7 +117,7 @@ To get detailed information about a specific item, use the [`GET /items/{itemId}
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the `itemId` from the item list response.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Use the `itemId` from the item list response.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -165,7 +165,7 @@ To view the movement history for a specific item, use the [`GET /items/{itemId}/
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the `itemId` from the item details.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Use the `itemId` from the item details.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -185,7 +185,7 @@ To view the movement history for a specific item, use the [`GET /items/{itemId}/
     }
     ```
 
-    The movement history shows inventory changes over time. Dates use the ISO 8601 format YYYY-MM-DD, and timestamps use YYYY-MM-DDTHH:mm:ssZ in Coordinated Universal Time (UTC).
+    The movement history shows inventory changes over time. Dates use the ISO 8601 format YYYY-MM-DD, and timestamps use YYYY-MM-DDTHH:mm:ssZ in Coordinated Universal Time UTC.
   </Tab>
 </Tabs>
 
@@ -214,7 +214,7 @@ To view item history for all items in a warehouse, use the [`GET /items/itemHist
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. You can use query parameters like `query` and `sort` to filter and sort the results.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. You can use query parameters like `query` and `sort` to filter and sort the results.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -268,7 +268,7 @@ To refresh a specific item, use the [`POST /items/{itemId}/refresh` endpoint](/a
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. This operation syncs the item's inventory data with the warehouse system.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. This operation syncs the item's inventory data with the warehouse system.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -301,7 +301,7 @@ To refresh inventory for all items belonging to a seller, use the [`POST /items/
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. This operation syncs all items for your seller account with the warehouse system.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. This operation syncs all items for your seller account with the warehouse system.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -327,7 +327,7 @@ Now that you can monitor inventory, continue with these guides:
     icon="location-dot"
     href="/docs/guides/main-flow/track-order"
   >
-    Monitor order status and retrieve tracking information when orders are shipped from the warehouse.
+    Monitor order status and retrieve tracking information when Quivo ships orders from the warehouse.
   </Card>
 </CardGroup>
 

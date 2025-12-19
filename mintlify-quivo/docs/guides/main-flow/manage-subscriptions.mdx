@@ -1,0 +1,147 @@
+---
+title: Manage Subscriptions
+pageType: How-To
+ogDescription: Learn how to list and delete webhook subscriptions
+---
+
+This guide shows you how to list and delete webhook subscriptions. Use these operations to review your active subscriptions or remove subscriptions you no longer need.
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+- **Session token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **API key:** Your static API key provided by Quivo.
+- **Subscription UUID:** The UUID of the subscription you want to delete. You can obtain this by listing your subscriptions or from the response when you created the subscription.
+
+## List active subscriptions
+
+List subscriptions when you need to review all webhooks currently configured for your account or find a subscription UUID. Use the [`GET /subscriptions` endpoint](/api-reference/#tag/subscriptions) to retrieve all active subscriptions.
+
+<Tabs>
+  <Tab title="Request">
+    Use this request to list all active webhook subscriptions for your account.
+
+    ```bash
+    curl -X GET "${BASE_URL}/subscriptions" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>"
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful request returns a `200 OK` status code. The response returns an array of all active subscriptions:
+
+    ```json
+    [
+      {
+        "uuid": "<YOUR_SUBSCRIPTION_UUID>",
+        "sellerId": <YOUR_SELLER_ID>,
+        "entity": "SHIPMENTS",
+        "endpoint": {
+          "type": "WEBHOOK",
+          "url": "<YOUR_WEBHOOK_URL>"
+        }
+      },
+      {
+        "uuid": "<YOUR_SUBSCRIPTION_UUID>",
+        "sellerId": <YOUR_SELLER_ID>,
+        "entity": "ORDERS",
+        "endpoint": {
+          "type": "WEBHOOK",
+          "url": "<YOUR_WEBHOOK_URL>"
+        }
+      }
+    ]
+    ```
+
+    Each object in the array represents an active subscription with its UUID, seller ID, entity type, and endpoint configuration.
+  </Tab>
+</Tabs>
+
+## Get a specific subscription
+
+To retrieve details for a specific subscription, use the [`GET /subscriptions/{uuid}` endpoint](/api-reference/#tag/subscriptions) with the subscription UUID.
+
+<Tabs>
+  <Tab title="Request">
+    Use this request to retrieve details for a specific subscription by its UUID.
+
+    ```bash
+    curl -X GET "${BASE_URL}/subscriptions/<YOUR_SUBSCRIPTION_UUID>" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>"
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Replace `<YOUR_SUBSCRIPTION_UUID>` with the UUID of the subscription you want to retrieve.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful request returns a `200 OK` status code with the subscription details:
+
+    ```json
+    {
+      "uuid": "<YOUR_SUBSCRIPTION_UUID>",
+      "sellerId": <YOUR_SELLER_ID>,
+      "entity": "SHIPMENTS",
+      "endpoint": {
+        "type": "WEBHOOK",
+        "url": "<YOUR_WEBHOOK_URL>"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Delete a subscription
+
+Delete a subscription when you no longer want to receive notifications for a specific event. Use the subscription UUID obtained when you created it or listed subscriptions. Delete it via the [`DELETE /subscriptions/{uuid}` endpoint](/api-reference/#tag/subscriptions).
+
+<Tabs>
+  <Tab title="Request">
+    Use this request to delete a webhook subscription by its UUID.
+
+    ```bash
+    curl -X DELETE "${BASE_URL}/subscriptions/<YOUR_SUBSCRIPTION_UUID>" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>"
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Replace `<YOUR_SUBSCRIPTION_UUID>` with the UUID of the subscription you want to delete.
+    </Note>
+  </Tab>
+  <Tab title="Response">
+    A successful deletion returns a `200 OK` or `204 No Content` status code with no response body:
+
+    ```http
+    HTTP/1.1 204 No Content
+    ```
+  </Tab>
+</Tabs>
+
+## Where to go next
+
+Now that you can manage subscriptions, continue with these guides:
+
+<CardGroup cols={2}>
+  <Card
+    title="Create Subscriptions"
+    icon="plus"
+    href="/docs/guides/main-flow/create-subscriptions"
+  >
+    Learn what subscriptions are and how to create them.
+  </Card>
+
+  <Card
+    title="Manage Webhooks"
+    icon="webhook"
+    href="/docs/guides/main-flow/manage-webhooks"
+  >
+    Configure and manage event subscriptions via the API.
+  </Card>
+</CardGroup>

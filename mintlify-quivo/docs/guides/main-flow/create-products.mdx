@@ -4,7 +4,7 @@ pageType: Tutorial
 ogDescription: Learn how to create products in your Quivo catalog
 ---
 
-This tutorial guides you step by step through creating your first article. An article is a product in the Quivo system. Each article must have a unique stock keeping unit (SKU) that identifies it. You must create articles before you can send them as inventory to warehouses or include them in fulfillment orders.
+This tutorial guides you step by step through creating your first article. An article is a product in the Quivo system. Each article must have a unique SKU that identifies it. You must create articles before you can send them as inventory to warehouses or include them in fulfillment orders.
 
 ## Prerequisites
 
@@ -59,7 +59,7 @@ The following example shows how to create an article with essential fields:
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account before running requests. Replace the placeholders with your actual data.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Replace the placeholders with your actual data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -83,7 +83,7 @@ The following example shows how to create an article with essential fields:
     }
     ```
 
-    Save the `articleId` from the response. You need this ID to update the article or upload images later. Timestamps follow the ISO (International Organization for Standardization) 8601 pattern YYYY-MM-DDTHH:mm:ssZ, where YYYY is the four-digit year, MM is the month, DD is the day, HH:mm:ss is the time, and Z means Coordinated Universal Time (UTC).
+    Save the `articleId` from the response. You need this ID to update the article or upload images later. Timestamps follow the ISO 8601 pattern YYYY-MM-DDTHH:mm:ssZ in Coordinated Universal Time UTC.
   </Tab>
 </Tabs>
 

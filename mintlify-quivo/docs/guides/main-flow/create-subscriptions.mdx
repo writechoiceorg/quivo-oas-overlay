@@ -1,0 +1,122 @@
+---
+title: Create Subscriptions
+pageType: How-To
+ogDescription: Learn what subscriptions are and how to create webhook subscriptions to receive real-time notifications from Quivo
+---
+
+This guide explains what subscriptions are and shows you how to create them to receive real-time event notifications from Quivo. Instead of polling for status changes, subscriptions allow Quivo to push data to your server via an HTTP POST request whenever a specific event occurs.
+
+## What are subscriptions?
+
+Subscriptions are webhook configurations that notify your server when specific events happen in the Quivo system. When you create a subscription, you specify:
+
+- **Entity type**: The type of resource you want to monitor (for example, orders or shipments)
+- **Endpoint URL**: The HTTPS endpoint on your server that receives the notification data
+
+When an event occurs for the subscribed entity type, Quivo sends a POST request to your endpoint with event details. Your endpoint must return a `200 OK` response to confirm receipt of the notification.
+
+<Warning>
+**Important:** Your webhook endpoint must return a `200 OK` response to confirm receipt of the notification. If your endpoint does not return `200 OK`, Quivo may retry the webhook or mark it as failed.
+</Warning>
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+- **Session token:** A valid session token. See the [Authentication guide](/api-reference/authentication) to learn how to obtain one.
+- **API key:** Your static API key provided by Quivo.
+- **Seller ID:** Use the [`GET /sellers` endpoint](/api-reference/#tag/sellers) to find it.
+- **Public URL:** A secure HTTPS endpoint on your server capable of receiving JSON POST requests.
+
+## Supported entity types
+
+The following table lists the supported entity types and the events that trigger notifications:
+
+| Entity | Triggers On |
+|--------|-------------|
+| `ORDERS` | Order creation, status changes (for example, to `PROCESSING`). |
+| `SHIPMENTS` | Shipment creation, tracking updates (for example, `IN_TRANSIT`, `DELIVERED`). |
+| `INBOUNDS` | Inbound shipment status changes. |
+| `RETURNS` | When a return is created or received at the warehouse. |
+| `INVOICES` | Invoice creation and updates. |
+
+## Create a subscription
+
+Create a subscription when you want to start receiving real-time notifications about specific events. Use the [`POST /subscriptions` endpoint](/api-reference/#tag/subscriptions) to create a new subscription.
+
+You need to construct a JSON payload containing your `sellerId`, the entity type, and the endpoint configuration.
+
+The following example shows how to subscribe to `SHIPMENTS` updates:
+
+<Tabs>
+  <Tab title="Request">
+    Use this request to create a webhook subscription for a specific entity.
+
+    ```bash
+    curl -X POST "${BASE_URL}/subscriptions" \
+      -H "X-Api-Key: <YOUR_STATIC_API_KEY>" \
+      -H "Authorization: <YOUR_SESSION_TOKEN>" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "sellerId": <YOUR_SELLER_ID>,
+        "entity": "SHIPMENTS",
+        "endpoint": {
+          "type": "WEBHOOK",
+          "url": "<YOUR_WEBHOOK_URL>"
+        }
+      }'
+    ```
+
+    <Note>
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Replace the placeholders with your actual data.
+    </Note>
+
+  </Tab>
+  <Tab title="Response">
+    A successful request returns a `200 OK` status code. The API returns the created subscription object with a unique `uuid` (universally unique identifier). Save this UUID. You need it to delete the subscription later.
+
+    ```json
+    {
+      "uuid": "<YOUR_SUBSCRIPTION_UUID>",
+      "sellerId": <YOUR_SELLER_ID>,
+      "entity": "SHIPMENTS",
+      "endpoint": {
+        "type": "WEBHOOK",
+        "url": "<YOUR_WEBHOOK_URL>"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Request body fields
+
+The request body must include the following fields:
+
+- **`sellerId`** (required): The unique integer ID for your merchant account.
+- **`entity`** (required): The entity type you want to subscribe to. Must be one of: `ORDERS`, `SHIPMENTS`, `INBOUNDS`, `RETURNS`, or `INVOICES`.
+- **`endpoint`** (required): An object containing:
+  - **`type`**: Must be `"WEBHOOK"`.
+  - **`url`**: The HTTPS URL of your webhook endpoint that receives notifications.
+
+## Where to go next
+
+Now that you can create subscriptions, continue with these guides:
+
+<CardGroup cols={2}>
+  <Card
+    title="Manage Subscriptions"
+    icon="settings"
+    href="/docs/guides/main-flow/manage-subscriptions"
+  >
+    Learn how to list and delete your existing subscriptions.
+  </Card>
+
+  <Card
+    title="Manage Webhooks"
+    icon="webhook"
+    href="/docs/guides/main-flow/manage-webhooks"
+  >
+    Configure and manage event subscriptions via the API.
+  </Card>
+</CardGroup>

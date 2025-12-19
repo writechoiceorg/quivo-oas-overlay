@@ -4,7 +4,7 @@ pageType: How-To
 ogDescription: Learn how to update, retrieve, and manage products in your Quivo catalog
 ---
 
-This guide shows you how to retrieve article details, update articles, manage product images, and search your catalog. After creating articles, you can manage them by updating details, uploading images, searching your catalog, and validating product data. Each article has a unique stock keeping unit, or SKU, that identifies it. SKU stands for stock keeping unit.
+This guide shows you how to retrieve article details, update articles, manage product images, and search your catalog. After creating articles, you can manage them by updating details, uploading images, searching your catalog, and validating product data. Each article has a unique SKU that identifies it.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Retrieve article details using the article ID or article identifier. Use the [`G
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the `articleId` returned when you created the article.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Use the `articleId` returned when you created the article.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -61,7 +61,7 @@ Retrieve article details using the article ID or article identifier. Use the [`G
       "lastModified": "<YYYY-MM-DDTHH:mm:ssZ>"
     }
     ```
-    Timestamps use the ISO 8601 format YYYY-MM-DDTHH:mm:ssZ: YYYY is the four-digit year, MM is the month, DD is the day, HH:mm:ss is the time, and Z indicates Coordinated Universal Time. ISO stands for International Organization for Standardization.
+    Timestamps use the ISO 8601 format YYYY-MM-DDTHH:mm:ssZ in Coordinated Universal Time UTC.
   </Tab>
 </Tabs>
 
@@ -82,7 +82,7 @@ Search for articles using the [`GET /articles` endpoint](/api-reference/#tag/art
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the `query` parameter to filter results, `sort` to order them, and `pageSize` to limit the number of results.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Use the `query` parameter to filter results, `sort` to order them, and `pageSize` to limit the number of results.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -136,7 +136,7 @@ Update an existing article using the [`PUT /articles/{sellerId}/{articleId}` end
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. Include all fields you want to keep, not just the ones you're updating. The request body should contain the complete article data.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Include all fields you want to keep, not just the ones you're updating. The request body should contain the complete article data.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -188,7 +188,7 @@ Request an upload link using the [`POST /articles/{sellerId}/{articleId}/images/
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. Specify the `mimeType` query parameter, for example `image/jpeg` or `image/png`.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Specify the `mimeType` query parameter, for example `image/jpeg` or `image/png`.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -220,7 +220,7 @@ Upload your image file to the `uploadUrl` using a PUT request:
     ```
 
     <Note>
-      Replace `<UPLOAD_URL>` with the upload web address from Step 1. Replace `<PATH_TO_IMAGE_FILE>` with the path to your image file. Set the `Content-Type` header to match the mime type you specified in Step 1.
+      Replace `<UPLOAD_URL>` with the upload URL from Step 1. Replace `<PATH_TO_IMAGE_FILE>` with the path to your image file. Set the `Content-Type` header to match the mime type you specified in Step 1.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -280,7 +280,7 @@ Delete an article image using the [`DELETE /articles/{sellerId}/{articleId}/imag
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. Use the image `id` from the article details.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Use the image `id` from the article details.
     </Note>
   </Tab>
   <Tab title="Response">
@@ -315,7 +315,7 @@ Validate article data before creating or updating an article. Use the [`POST /ar
     ```
 
     <Note>
-      Replace `${BASE_URL}` with the correct base URL configured for your account. Include the article data you want to validate in the request body.
+      Replace `${BASE_URL}` with the correct base URL: `https://api.quivo.co` for Production or `https://api-sandbox.quivo.co` for Sandbox. Include the article data you want to validate in the request body.
     </Note>
   </Tab>
   <Tab title="Response">
