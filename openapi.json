@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "cc572e6, 2026-01-13T15:01:55Z",
+    "version": "bb8a69f, 2026-01-14T13:11:26Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -9518,10 +9518,10 @@
           "displayName": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "symbol": {
             "type": "string"
           },
-          "symbol": {
+          "numericCodeAsString": {
             "type": "string"
           }
         }
@@ -12186,6 +12186,9 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "float": {
+            "type": "boolean"
+          },
           "short": {
             "type": "boolean"
           },
@@ -12203,19 +12206,16 @@
               "STRING"
             ]
           },
-          "float": {
+          "binary": {
             "type": "boolean"
           },
           "number": {
             "type": "boolean"
           },
-          "boolean": {
-            "type": "boolean"
-          },
-          "binary": {
-            "type": "boolean"
-          },
           "integralNumber": {
+            "type": "boolean"
+          },
+          "boolean": {
             "type": "boolean"
           },
           "double": {
