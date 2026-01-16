@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "bb8a69f, 2026-01-14T13:11:26Z",
+    "version": "97e9bf2, 2026-01-15T14:22:43Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6679,51 +6679,41 @@
       "AddressDetail": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "The first and lastname. <br>Either name or company is required."
+          "name1": {
+            "type": "string"
+          },
+          "name2": {
+            "type": "string"
           },
           "company": {
-            "type": "string",
-            "description": "Name of the company. <br>Either name or company is required."
+            "type": "string"
           },
-          "phone": {
-            "type": "string",
-            "description": "Phone number. <br>The phone number is usually optional."
+          "address1": {
+            "type": "string"
           },
-          "email": {
-            "type": "string",
-            "description": "E-Mail address."
+          "address2": {
+            "type": "string"
+          },
+          "address3": {
+            "type": "string"
           },
           "zip": {
-            "type": "string",
-            "description": "ZIP Code. <br>This field is optional."
+            "type": "string"
           },
           "city": {
-            "type": "string",
-            "description": "City. <br>This field is optional."
+            "type": "string"
           },
           "state": {
-            "type": "string",
-            "description": "State. <br>This field is optional."
+            "type": "string"
           },
-          "countryIso2": {
-            "type": "string",
-            "description": "Country. <br>This field is optional."
+          "country": {
+            "type": "string"
           },
-          "street": {
-            "type": "string",
-            "description": "Street (or Address Line 1). <br>This field is optional."
+          "phone": {
+            "type": "string"
           },
-          "street2": {
-            "type": "string",
-            "description": "Street (or Address Line 2). <br>This field is optional."
-          },
-          "addressIdentifier": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string",
-            "description": "Optional identifier for address. <br>This field is optional."
+          "email": {
+            "type": "string"
           }
         }
       },
@@ -9518,10 +9508,10 @@
           "displayName": {
             "type": "string"
           },
-          "symbol": {
+          "numericCodeAsString": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "symbol": {
             "type": "string"
           }
         }
@@ -12100,6 +12090,9 @@
           "canShipWithoutCarton": {
             "type": "boolean"
           },
+          "hasItemLedgerEntries": {
+            "type": "boolean"
+          },
           "articleId": {
             "type": "integer",
             "format": "int64"
@@ -12186,10 +12179,10 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "float": {
+          "short": {
             "type": "boolean"
           },
-          "short": {
+          "float": {
             "type": "boolean"
           },
           "nodeType": {
@@ -12206,13 +12199,13 @@
               "STRING"
             ]
           },
-          "binary": {
-            "type": "boolean"
-          },
           "number": {
             "type": "boolean"
           },
           "integralNumber": {
+            "type": "boolean"
+          },
+          "binary": {
             "type": "boolean"
           },
           "boolean": {
