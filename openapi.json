@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "97e9bf2, 2026-01-15T14:22:43Z",
+    "version": "291f203, 2026-01-20T15:32:35Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -8748,9 +8748,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "messageKey": {
-            "type": "string"
           }
         }
       },
@@ -10065,8 +10062,6 @@
         "type": "object",
         "properties": {
           "description": {
-            "maxLength": 255,
-            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10359,10 +10354,6 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
-          },
-          "barcode": {
-            "type": "string",
-            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12179,10 +12170,10 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "short": {
+          "float": {
             "type": "boolean"
           },
-          "float": {
+          "short": {
             "type": "boolean"
           },
           "nodeType": {
@@ -12199,25 +12190,25 @@
               "STRING"
             ]
           },
-          "number": {
-            "type": "boolean"
-          },
-          "integralNumber": {
-            "type": "boolean"
-          },
           "binary": {
             "type": "boolean"
           },
-          "boolean": {
+          "number": {
             "type": "boolean"
           },
           "double": {
             "type": "boolean"
           },
-          "long": {
+          "integralNumber": {
+            "type": "boolean"
+          },
+          "boolean": {
             "type": "boolean"
           },
           "int": {
+            "type": "boolean"
+          },
+          "long": {
             "type": "boolean"
           },
           "valueNode": {
