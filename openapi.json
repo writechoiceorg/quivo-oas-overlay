@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "446ae28, 2026-01-21T13:27:49Z",
+    "version": "80f7edc, 2026-01-23T12:01:00Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6677,50 +6677,43 @@
         }
       },
       "AddressDetail": {
-        "required": [
-          "city",
-          "street"
-        ],
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
-          },
-          "company": {
-            "type": "string",
-            "description": "Name of the company."
-          },
-          "phone": {
-            "type": "string",
-            "description": "Phone number of the recipient. <br>The phone number is usually optional."
-          },
-          "email": {
-            "type": "string",
-            "description": "E-Mail address of the recipient."
-          },
-          "zip": {
-            "type": "string",
-            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
-          },
-          "city": {
-            "type": "string",
-            "description": "City of the recipient. <br>The city should always be specified."
-          },
-          "state": {
-            "type": "string",
-            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
-          },
-          "countryIso2": {
+          "name1": {
             "type": "string"
           },
-          "street": {
-            "type": "string",
-            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+          "name2": {
+            "type": "string"
           },
-          "street2": {
-            "type": "string",
-            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
+          "company": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "address3": {
+            "type": "string"
+          },
+          "zip": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         }
       },
@@ -12177,6 +12170,9 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12194,22 +12190,19 @@
           "float": {
             "type": "boolean"
           },
-          "short": {
+          "binary": {
             "type": "boolean"
           },
           "number": {
             "type": "boolean"
           },
-          "binary": {
-            "type": "boolean"
-          },
           "integralNumber": {
             "type": "boolean"
           },
-          "double": {
+          "boolean": {
             "type": "boolean"
           },
-          "boolean": {
+          "double": {
             "type": "boolean"
           },
           "long": {
