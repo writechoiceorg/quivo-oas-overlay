@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "80f7edc, 2026-01-23T12:01:00Z",
+    "version": "c5a191a, 2026-01-27T13:57:02Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6679,41 +6679,51 @@
       "AddressDetail": {
         "type": "object",
         "properties": {
-          "name1": {
-            "type": "string"
-          },
-          "name2": {
-            "type": "string"
+          "name": {
+            "type": "string",
+            "description": "The first and lastname. <br>Either name or company is required."
           },
           "company": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "address3": {
-            "type": "string"
-          },
-          "zip": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the company. <br>Either name or company is required."
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "Phone number. <br>The phone number is usually optional."
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "E-Mail address."
+          },
+          "zip": {
+            "type": "string",
+            "description": "ZIP Code. <br>This field is optional."
+          },
+          "city": {
+            "type": "string",
+            "description": "City. <br>This field is optional."
+          },
+          "state": {
+            "type": "string",
+            "description": "State. <br>This field is optional."
+          },
+          "countryIso2": {
+            "type": "string",
+            "description": "Country. <br>This field is optional."
+          },
+          "street": {
+            "type": "string",
+            "description": "Street (or Address Line 1). <br>This field is optional."
+          },
+          "street2": {
+            "type": "string",
+            "description": "Street (or Address Line 2). <br>This field is optional."
+          },
+          "addressIdentifier": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Optional identifier for address. <br>This field is optional."
           }
         }
       },
@@ -8748,6 +8758,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "messageKey": {
+            "type": "string"
           }
         }
       },
@@ -9505,10 +9518,10 @@
           "displayName": {
             "type": "string"
           },
-          "symbol": {
+          "numericCodeAsString": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "symbol": {
             "type": "string"
           }
         }
@@ -10062,6 +10075,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10354,6 +10369,10 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12170,9 +12189,6 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "short": {
-            "type": "boolean"
-          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12186,6 +12202,9 @@
               "POJO",
               "STRING"
             ]
+          },
+          "short": {
+            "type": "boolean"
           },
           "float": {
             "type": "boolean"
