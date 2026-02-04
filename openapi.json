@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "08b4c9d, 2026-01-28T12:57:21Z",
+    "version": "b9732da, 2026-02-03T13:11:14Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -5236,9 +5236,15 @@
           "required": false
         },
         "responses": {
-          "default": {
+          "200": {
             "description": "successful operation",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookBatchAsyncResponse"
+                }
+              }
+            }
           }
         },
         "x-codegen-request-body-name": "body"
@@ -6677,43 +6683,50 @@
         }
       },
       "AddressDetail": {
+        "required": [
+          "city",
+          "street"
+        ],
         "type": "object",
         "properties": {
-          "name1": {
-            "type": "string"
-          },
-          "name2": {
-            "type": "string"
+          "name": {
+            "type": "string",
+            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
           },
           "company": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "address3": {
-            "type": "string"
-          },
-          "zip": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the company."
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "Phone number of the recipient. <br>The phone number is usually optional."
           },
           "email": {
+            "type": "string",
+            "description": "E-Mail address of the recipient."
+          },
+          "zip": {
+            "type": "string",
+            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
+          },
+          "city": {
+            "type": "string",
+            "description": "City of the recipient. <br>The city should always be specified."
+          },
+          "state": {
+            "type": "string",
+            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
+          },
+          "countryIso2": {
             "type": "string"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+          },
+          "street2": {
+            "type": "string",
+            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
           }
         }
       },
@@ -8565,6 +8578,18 @@
           }
         }
       },
+      "BookBatchAsyncResponse": {
+        "type": "object",
+        "properties": {
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings for the booked shipments, such as export declaration document required.",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentWarning"
+            }
+          }
+        }
+      },
       "BookRequest": {
         "required": [
           "grossWeightKg",
@@ -8747,6 +8772,16 @@
             "description": "List of URLs where additional documents, such as export documents, can be downloaded.",
             "items": {
               "type": "string"
+            }
+          },
+          "messageKey": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings for the booked shipment, such as export declaration document required.",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentWarning"
             }
           }
         }
@@ -9502,13 +9537,13 @@
             "type": "integer",
             "format": "int32"
           },
+          "displayName": {
+            "type": "string"
+          },
           "symbol": {
             "type": "string"
           },
           "numericCodeAsString": {
-            "type": "string"
-          },
-          "displayName": {
             "type": "string"
           }
         }
@@ -10062,6 +10097,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10354,6 +10391,10 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12081,9 +12122,6 @@
           "canShipWithoutCarton": {
             "type": "boolean"
           },
-          "hasItemLedgerEntries": {
-            "type": "boolean"
-          },
           "articleId": {
             "type": "integer",
             "format": "int64"
@@ -12170,9 +12208,6 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "float": {
-            "type": "boolean"
-          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12186,6 +12221,9 @@
               "POJO",
               "STRING"
             ]
+          },
+          "float": {
+            "type": "boolean"
           },
           "short": {
             "type": "boolean"
@@ -12202,13 +12240,13 @@
           "boolean": {
             "type": "boolean"
           },
+          "int": {
+            "type": "boolean"
+          },
           "double": {
             "type": "boolean"
           },
           "long": {
-            "type": "boolean"
-          },
-          "int": {
             "type": "boolean"
           },
           "valueNode": {
@@ -12226,9 +12264,6 @@
           "pojo": {
             "type": "boolean"
           },
-          "floatingPointNumber": {
-            "type": "boolean"
-          },
           "bigDecimal": {
             "type": "boolean"
           },
@@ -12236,6 +12271,9 @@
             "type": "boolean"
           },
           "textual": {
+            "type": "boolean"
+          },
+          "floatingPointNumber": {
             "type": "boolean"
           },
           "array": {
@@ -16087,6 +16125,17 @@
           }
         },
         "description": "A summary of a particular shipment created for the order, including its unique identifiers and the list of specific items/quantities enclosed."
+      },
+      "ShipmentWarning": {
+        "type": "object",
+        "properties": {
+          "shippingLabelReference": {
+            "type": "string"
+          },
+          "exportDeclarationDocumentRequired": {
+            "type": "boolean"
+          }
+        }
       },
       "ShippingOrderGet": {
         "type": "object",
