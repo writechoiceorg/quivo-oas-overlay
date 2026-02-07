@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "b9732da, 2026-02-03T13:11:14Z",
+    "version": "3842072, 2026-02-06T11:28:25Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6683,50 +6683,53 @@
         }
       },
       "AddressDetail": {
-        "required": [
-          "city",
-          "street"
-        ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
-            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
+            "description": "The first and lastname. <br>Either name or company is required."
           },
           "company": {
             "type": "string",
-            "description": "Name of the company."
+            "description": "Name of the company. <br>Either name or company is required."
           },
           "phone": {
             "type": "string",
-            "description": "Phone number of the recipient. <br>The phone number is usually optional."
+            "description": "Phone number. <br>The phone number is usually optional."
           },
           "email": {
             "type": "string",
-            "description": "E-Mail address of the recipient."
+            "description": "E-Mail address."
           },
           "zip": {
             "type": "string",
-            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
+            "description": "ZIP Code. <br>This field is optional."
           },
           "city": {
             "type": "string",
-            "description": "City of the recipient. <br>The city should always be specified."
+            "description": "City. <br>This field is optional."
           },
           "state": {
             "type": "string",
-            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
+            "description": "State. <br>This field is optional."
           },
           "countryIso2": {
-            "type": "string"
+            "type": "string",
+            "description": "Country. <br>This field is optional."
           },
           "street": {
             "type": "string",
-            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+            "description": "Street (or Address Line 1). <br>This field is optional."
           },
           "street2": {
             "type": "string",
-            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
+            "description": "Street (or Address Line 2). <br>This field is optional."
+          },
+          "addressIdentifier": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Optional identifier for address. <br>This field is optional."
           }
         }
       },
@@ -12208,6 +12211,9 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "float": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12221,9 +12227,6 @@
               "POJO",
               "STRING"
             ]
-          },
-          "float": {
-            "type": "boolean"
           },
           "short": {
             "type": "boolean"
@@ -12240,13 +12243,13 @@
           "boolean": {
             "type": "boolean"
           },
-          "int": {
-            "type": "boolean"
-          },
           "double": {
             "type": "boolean"
           },
           "long": {
+            "type": "boolean"
+          },
+          "int": {
             "type": "boolean"
           },
           "valueNode": {
@@ -12264,6 +12267,9 @@
           "pojo": {
             "type": "boolean"
           },
+          "floatingPointNumber": {
+            "type": "boolean"
+          },
           "bigDecimal": {
             "type": "boolean"
           },
@@ -12271,9 +12277,6 @@
             "type": "boolean"
           },
           "textual": {
-            "type": "boolean"
-          },
-          "floatingPointNumber": {
             "type": "boolean"
           },
           "array": {
