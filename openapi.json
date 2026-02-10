@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "3842072, 2026-02-06T11:28:25Z",
+    "version": "5934c4d, 2026-02-09T13:15:35Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -52,6 +52,9 @@
     },
     {
       "name": "inbounds"
+    },
+    {
+      "name": "invoices"
     },
     {
       "name": "items"
@@ -2705,6 +2708,106 @@
               "application/json": {
                 "schema": {
                   "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoices": {
+      "get": {
+        "tags": [
+          "invoices"
+        ],
+        "summary": "Search invoices",
+        "operationId": "searchInvoices",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
+          },
+          {
+            "name": "searchAfter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceSummary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoices/{invoiceId}": {
+      "get": {
+        "tags": [
+          "invoices"
+        ],
+        "summary": "Get details of invoice by invoiceId",
+        "operationId": "getInvoice",
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceGet"
                 }
               }
             }
@@ -6685,51 +6788,41 @@
       "AddressDetail": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "The first and lastname. <br>Either name or company is required."
+          "name1": {
+            "type": "string"
+          },
+          "name2": {
+            "type": "string"
           },
           "company": {
-            "type": "string",
-            "description": "Name of the company. <br>Either name or company is required."
+            "type": "string"
           },
-          "phone": {
-            "type": "string",
-            "description": "Phone number. <br>The phone number is usually optional."
+          "address1": {
+            "type": "string"
           },
-          "email": {
-            "type": "string",
-            "description": "E-Mail address."
+          "address2": {
+            "type": "string"
+          },
+          "address3": {
+            "type": "string"
           },
           "zip": {
-            "type": "string",
-            "description": "ZIP Code. <br>This field is optional."
+            "type": "string"
           },
           "city": {
-            "type": "string",
-            "description": "City. <br>This field is optional."
+            "type": "string"
           },
           "state": {
-            "type": "string",
-            "description": "State. <br>This field is optional."
+            "type": "string"
           },
-          "countryIso2": {
-            "type": "string",
-            "description": "Country. <br>This field is optional."
+          "country": {
+            "type": "string"
           },
-          "street": {
-            "type": "string",
-            "description": "Street (or Address Line 1). <br>This field is optional."
+          "phone": {
+            "type": "string"
           },
-          "street2": {
-            "type": "string",
-            "description": "Street (or Address Line 2). <br>This field is optional."
-          },
-          "addressIdentifier": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string",
-            "description": "Optional identifier for address. <br>This field is optional."
+          "email": {
+            "type": "string"
           }
         }
       },
@@ -9543,10 +9636,10 @@
           "displayName": {
             "type": "string"
           },
-          "symbol": {
+          "numericCodeAsString": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "symbol": {
             "type": "string"
           }
         }
@@ -11977,6 +12070,195 @@
       "InputStream": {
         "type": "object"
       },
+      "InvoiceGet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sellerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "legalEntityId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "warehouseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "invoiceNumber": {
+            "type": "string"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "postingDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "invoiceDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "exchangeRate": {
+            "type": "number"
+          },
+          "invoiceType": {
+            "type": "string",
+            "enum": [
+              "INV",
+              "CRN"
+            ]
+          },
+          "invoiceReference": {
+            "type": "string"
+          },
+          "referenceType": {
+            "type": "string",
+            "enum": [
+              "INVOICE"
+            ]
+          },
+          "invoiceItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceItemGet"
+            }
+          }
+        }
+      },
+      "InvoiceItemGet": {
+        "type": "object",
+        "properties": {
+          "resourceCode": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "unitPrice": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "totalPrice": {
+            "type": "number"
+          },
+          "discountAmount": {
+            "type": "number"
+          },
+          "vatAmount": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "totalPriceInclVat": {
+            "type": "number"
+          },
+          "uom": {
+            "type": "string"
+          },
+          "lineNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "InvoiceSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sellerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sellerName": {
+            "type": "string"
+          },
+          "legalEntityId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "legalEntityName": {
+            "type": "string"
+          },
+          "warehouseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "warehouseName": {
+            "type": "string"
+          },
+          "invoiceNumber": {
+            "type": "string"
+          },
+          "invoiceDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "postingDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "remainingAmount": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "invoiceType": {
+            "type": "string",
+            "enum": [
+              "INV",
+              "CRN"
+            ]
+          },
+          "status": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "invoiceReference": {
+            "type": "string"
+          },
+          "referenceType": {
+            "type": "string",
+            "enum": [
+              "INVOICE"
+            ]
+          },
+          "sort": {
+            "$ref": "#/components/schemas/JsonNode"
+          }
+        }
+      },
       "ItemHistoryInventoryBase": {
         "type": "object",
         "properties": {
@@ -12211,9 +12493,6 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "float": {
-            "type": "boolean"
-          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12227,6 +12506,9 @@
               "POJO",
               "STRING"
             ]
+          },
+          "float": {
+            "type": "boolean"
           },
           "short": {
             "type": "boolean"
@@ -16008,7 +16290,8 @@
               "EXPORT_DOCUMENT",
               "NON_PRINT_EXPORT_DOCUMENT",
               "MANIFEST_DOCUMENT",
-              "RETURN_LABEL"
+              "RETURN_LABEL",
+              "DELIVERY_NOTE"
             ]
           }
         }
@@ -17229,6 +17512,16 @@
           "legalEntityId": {
             "type": "integer",
             "format": "int64"
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "DYNAMICS_NAV",
+              "AMAZON_FBA",
+              "PIXI",
+              "CLOG",
+              "QORE"
+            ]
           }
         }
       },
