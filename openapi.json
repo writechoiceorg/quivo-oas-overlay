@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "5934c4d, 2026-02-09T13:15:35Z",
+    "version": "8be7739, 2026-02-12T09:46:09Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6786,43 +6786,50 @@
         }
       },
       "AddressDetail": {
+        "required": [
+          "city",
+          "street"
+        ],
         "type": "object",
         "properties": {
-          "name1": {
-            "type": "string"
-          },
-          "name2": {
-            "type": "string"
+          "name": {
+            "type": "string",
+            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
           },
           "company": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "address3": {
-            "type": "string"
-          },
-          "zip": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the company."
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "Phone number of the recipient. <br>The phone number is usually optional."
           },
           "email": {
+            "type": "string",
+            "description": "E-Mail address of the recipient."
+          },
+          "zip": {
+            "type": "string",
+            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
+          },
+          "city": {
+            "type": "string",
+            "description": "City of the recipient. <br>The city should always be specified."
+          },
+          "state": {
+            "type": "string",
+            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
+          },
+          "countryIso2": {
             "type": "string"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+          },
+          "street2": {
+            "type": "string",
+            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
           }
         }
       },
@@ -9636,10 +9643,10 @@
           "displayName": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "symbol": {
             "type": "string"
           },
-          "symbol": {
+          "numericCodeAsString": {
             "type": "string"
           }
         }
@@ -12493,6 +12500,9 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12508,9 +12518,6 @@
             ]
           },
           "float": {
-            "type": "boolean"
-          },
-          "short": {
             "type": "boolean"
           },
           "number": {
@@ -12549,9 +12556,6 @@
           "pojo": {
             "type": "boolean"
           },
-          "floatingPointNumber": {
-            "type": "boolean"
-          },
           "bigDecimal": {
             "type": "boolean"
           },
@@ -12559,6 +12563,9 @@
             "type": "boolean"
           },
           "textual": {
+            "type": "boolean"
+          },
+          "floatingPointNumber": {
             "type": "boolean"
           },
           "array": {
@@ -13544,6 +13551,13 @@
           },
           "channelName": {
             "type": "string"
+          },
+          "channelType": {
+            "type": "string",
+            "enum": [
+              "WHOLESALE",
+              "E_COMMERCE"
+            ]
           }
         }
       },
@@ -14282,6 +14296,12 @@
             "type": "string",
             "description": "Optional value which specifies the channel name of the master client of this order.\n Example: Obi E-Commerce"
           },
+          "channelTypeCode": {
+            "maxLength": 2,
+            "minLength": 0,
+            "type": "string",
+            "description": "Optional value which specifies the channel type code of the master client of this order.\n Example: 03, 06"
+          },
           "attachments": {
             "type": "array",
             "description": "Optional attachments parameter",
@@ -14751,6 +14771,9 @@
           "channelName": {
             "type": "string",
             "description": "The name of the sales channel associated with the order."
+          },
+          "channelType": {
+            "type": "string"
           },
           "customAttributes": {
             "type": "object",
