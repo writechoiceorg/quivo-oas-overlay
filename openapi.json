@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "5e3f1c4, 2026-02-18T11:35:51Z",
+    "version": "1715bc1, 2026-02-19T10:43:30Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -2776,6 +2776,38 @@
                   "items": {
                     "$ref": "#/components/schemas/InvoiceSummary"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoices/downloadInvoice/{invoiceId}": {
+      "get": {
+        "tags": [
+          "invoices"
+        ],
+        "summary": "Get presigned URL for invoice PDF",
+        "operationId": "getInvoicePdfUrl",
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoicePdfUrl"
                 }
               }
             }
@@ -8649,6 +8681,15 @@
             "type": "string",
             "description": "The currency in which COD amount is specified."
           },
+          "invocationSystem": {
+            "type": "string",
+            "description": "Optional value indicating which system invoked the booking request.",
+            "enum": [
+              "QORE",
+              "DYNAMICS_NAViSION",
+              "CONNECTOR_API"
+            ]
+          },
           "lineNumber": {
             "type": "integer",
             "description": "The line number in the original file which the user uploaded as batch. <br>Note that the line number can be different than the index in the list of book requests, for example when there was a header in the original batch file.",
@@ -8832,6 +8873,15 @@
           "cashOnDeliveryCurrency": {
             "type": "string",
             "description": "The currency in which COD amount is specified."
+          },
+          "invocationSystem": {
+            "type": "string",
+            "description": "Optional value indicating which system invoked the booking request.",
+            "enum": [
+              "QORE",
+              "DYNAMICS_NAViSION",
+              "CONNECTOR_API"
+            ]
           }
         }
       },
@@ -12167,6 +12217,14 @@
           }
         }
       },
+      "InvoicePdfUrl": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        }
+      },
       "InvoiceSummary": {
         "type": "object",
         "properties": {
@@ -12487,6 +12545,9 @@
           "float": {
             "type": "boolean"
           },
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12500,9 +12561,6 @@
               "POJO",
               "STRING"
             ]
-          },
-          "short": {
-            "type": "boolean"
           },
           "number": {
             "type": "boolean"
@@ -15843,6 +15901,14 @@
             "enum": [
               "QUIVO",
               "GWC"
+            ]
+          },
+          "customerCareSystem": {
+            "type": "string",
+            "description": "Customer care system used for this Seller.",
+            "enum": [
+              "SALESFORCE",
+              "ZENDESK"
             ]
           },
           "trackingEnabled": {
