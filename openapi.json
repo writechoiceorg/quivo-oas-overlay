@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "1715bc1, 2026-02-19T10:43:30Z",
+    "version": "bafdba9, 2026-02-26T06:49:11Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -8681,15 +8681,6 @@
             "type": "string",
             "description": "The currency in which COD amount is specified."
           },
-          "invocationSystem": {
-            "type": "string",
-            "description": "Optional value indicating which system invoked the booking request.",
-            "enum": [
-              "QORE",
-              "DYNAMICS_NAViSION",
-              "CONNECTOR_API"
-            ]
-          },
           "lineNumber": {
             "type": "integer",
             "description": "The line number in the original file which the user uploaded as batch. <br>Note that the line number can be different than the index in the list of book requests, for example when there was a header in the original batch file.",
@@ -8873,15 +8864,6 @@
           "cashOnDeliveryCurrency": {
             "type": "string",
             "description": "The currency in which COD amount is specified."
-          },
-          "invocationSystem": {
-            "type": "string",
-            "description": "Optional value indicating which system invoked the booking request.",
-            "enum": [
-              "QORE",
-              "DYNAMICS_NAViSION",
-              "CONNECTOR_API"
-            ]
           }
         }
       },
@@ -8925,6 +8907,23 @@
             "description": "List of URLs where additional documents, such as export documents, can be downloaded.",
             "items": {
               "type": "string"
+            }
+          },
+          "deliveryNoteUrls": {
+            "type": "array",
+            "description": "List of URLs where delivery notes can be downloaded.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "messageKey": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings for the booked shipment, such as export declaration document required.",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentWarning"
             }
           }
         }
@@ -9683,10 +9682,10 @@
           "displayName": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "symbol": {
             "type": "string"
           },
-          "symbol": {
+          "numericCodeAsString": {
             "type": "string"
           }
         }
@@ -10240,6 +10239,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10532,6 +10533,10 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12303,6 +12308,17 @@
               "INVOICE"
             ]
           },
+          "invoicePeriodFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "invoicePeriodTo": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalAmountInclVat": {
+            "type": "number"
+          },
           "sort": {
             "$ref": "#/components/schemas/JsonNode"
           }
@@ -12454,6 +12470,9 @@
             "type": "boolean"
           },
           "canShipWithoutCarton": {
+            "type": "boolean"
+          },
+          "hadItemLedgerEntries": {
             "type": "boolean"
           },
           "articleId": {
