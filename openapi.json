@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "6b808b2, 2026-02-27T13:11:53Z",
+    "version": "5f61223, 2026-03-02T12:45:00Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -4954,6 +4954,46 @@
         "description": "ADD ENDPOINT DESCRIPTION HERE"
       }
     },
+    "/returns/identifier/{returnShipmentIdentifier}": {
+      "get": {
+        "tags": [
+          "returns"
+        ],
+        "summary": "Get return by returnShipmentIdentifier",
+        "operationId": "returnGetByIdentifier",
+        "parameters": [
+          {
+            "name": "warehouseId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The unique identifier for the warehouse location where items are stored and orders are fulfilled."
+          },
+          {
+            "name": "returnShipmentIdentifier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnShipmentDetail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/returns/{returnShipmentId}": {
       "get": {
         "tags": [
@@ -8911,6 +8951,23 @@
             "items": {
               "type": "string"
             }
+          },
+          "deliveryNoteUrls": {
+            "type": "array",
+            "description": "List of URLs where delivery notes can be downloaded.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "messageKey": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings for the booked shipment, such as export declaration document required.",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentWarning"
+            }
           }
         }
       },
@@ -10225,6 +10282,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10517,6 +10576,10 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12544,6 +12607,9 @@
           "float": {
             "type": "boolean"
           },
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12558,9 +12624,6 @@
               "STRING"
             ]
           },
-          "short": {
-            "type": "boolean"
-          },
           "number": {
             "type": "boolean"
           },
@@ -12570,10 +12633,10 @@
           "integralNumber": {
             "type": "boolean"
           },
-          "boolean": {
+          "double": {
             "type": "boolean"
           },
-          "double": {
+          "boolean": {
             "type": "boolean"
           },
           "long": {
@@ -15914,6 +15977,9 @@
             "type": "boolean"
           },
           "dimensionsRequired": {
+            "type": "boolean"
+          },
+          "exportTrackingEventToShop": {
             "type": "boolean"
           },
           "customAttributes": {
