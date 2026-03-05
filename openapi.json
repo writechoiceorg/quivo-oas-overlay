@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "24953b8, 2026-03-03T12:43:26Z",
+    "version": "e092b18, 2026-03-04T14:30:41Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -8941,23 +8941,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "deliveryNoteUrls": {
-            "type": "array",
-            "description": "List of URLs where delivery notes can be downloaded.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "messageKey": {
-            "type": "string"
-          },
-          "warnings": {
-            "type": "array",
-            "description": "List of warnings for the booked shipment, such as export declaration document required.",
-            "items": {
-              "$ref": "#/components/schemas/ShipmentWarning"
-            }
           }
         }
       },
@@ -9712,10 +9695,10 @@
             "type": "integer",
             "format": "int32"
           },
-          "symbol": {
+          "displayName": {
             "type": "string"
           },
-          "displayName": {
+          "symbol": {
             "type": "string"
           },
           "numericCodeAsString": {
@@ -10272,8 +10255,6 @@
         "type": "object",
         "properties": {
           "description": {
-            "maxLength": 255,
-            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10566,10 +10547,6 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
-          },
-          "barcode": {
-            "type": "string",
-            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12594,6 +12571,12 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "float": {
+            "type": "boolean"
+          },
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12608,16 +12591,10 @@
               "STRING"
             ]
           },
-          "short": {
-            "type": "boolean"
-          },
-          "float": {
+          "binary": {
             "type": "boolean"
           },
           "number": {
-            "type": "boolean"
-          },
-          "binary": {
             "type": "boolean"
           },
           "integralNumber": {
