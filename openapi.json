@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "644274f, 2026-03-10T10:31:29Z",
+    "version": "f6814c1, 2026-03-16T14:49:54Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6860,41 +6860,51 @@
       "AddressDetail": {
         "type": "object",
         "properties": {
-          "name1": {
-            "type": "string"
-          },
-          "name2": {
-            "type": "string"
+          "name": {
+            "type": "string",
+            "description": "The first and lastname. <br>Either name or company is required."
           },
           "company": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "address3": {
-            "type": "string"
-          },
-          "zip": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the company. <br>Either name or company is required."
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "Phone number. <br>The phone number is usually optional."
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "E-Mail address."
+          },
+          "zip": {
+            "type": "string",
+            "description": "ZIP Code. <br>This field is optional."
+          },
+          "city": {
+            "type": "string",
+            "description": "City. <br>This field is optional."
+          },
+          "state": {
+            "type": "string",
+            "description": "State. <br>This field is optional."
+          },
+          "countryIso2": {
+            "type": "string",
+            "description": "Country. <br>This field is optional."
+          },
+          "street": {
+            "type": "string",
+            "description": "Street (or Address Line 1). <br>This field is optional."
+          },
+          "street2": {
+            "type": "string",
+            "description": "Street (or Address Line 2). <br>This field is optional."
+          },
+          "addressIdentifier": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Optional identifier for address. <br>This field is optional."
           }
         }
       },
@@ -9715,10 +9725,10 @@
           "displayName": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "symbol": {
             "type": "string"
           },
-          "symbol": {
+          "numericCodeAsString": {
             "type": "string"
           }
         }
@@ -12597,6 +12607,9 @@
           "float": {
             "type": "boolean"
           },
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12611,22 +12624,19 @@
               "STRING"
             ]
           },
-          "short": {
+          "number": {
             "type": "boolean"
           },
           "binary": {
             "type": "boolean"
           },
-          "number": {
-            "type": "boolean"
-          },
-          "double": {
+          "integralNumber": {
             "type": "boolean"
           },
           "boolean": {
             "type": "boolean"
           },
-          "integralNumber": {
+          "double": {
             "type": "boolean"
           },
           "long": {
