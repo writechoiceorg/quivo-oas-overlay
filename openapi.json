@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "18fd7ef, 2026-03-17T18:40:02Z",
+    "version": "1214068, 2026-03-18T09:26:15Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6858,50 +6858,43 @@
         }
       },
       "AddressDetail": {
-        "required": [
-          "city",
-          "street"
-        ],
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
-          },
-          "company": {
-            "type": "string",
-            "description": "Name of the company."
-          },
-          "phone": {
-            "type": "string",
-            "description": "Phone number of the recipient. <br>The phone number is usually optional."
-          },
-          "email": {
-            "type": "string",
-            "description": "E-Mail address of the recipient."
-          },
-          "zip": {
-            "type": "string",
-            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
-          },
-          "city": {
-            "type": "string",
-            "description": "City of the recipient. <br>The city should always be specified."
-          },
-          "state": {
-            "type": "string",
-            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
-          },
-          "countryIso2": {
+          "name1": {
             "type": "string"
           },
-          "street": {
-            "type": "string",
-            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+          "name2": {
+            "type": "string"
           },
-          "street2": {
-            "type": "string",
-            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
+          "company": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "address3": {
+            "type": "string"
+          },
+          "zip": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         }
       },
@@ -8948,23 +8941,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "deliveryNoteUrls": {
-            "type": "array",
-            "description": "List of URLs where delivery notes can be downloaded.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "messageKey": {
-            "type": "string"
-          },
-          "warnings": {
-            "type": "array",
-            "description": "List of warnings for the booked shipment, such as export declaration document required.",
-            "items": {
-              "$ref": "#/components/schemas/ShipmentWarning"
-            }
           }
         }
       },
@@ -9719,13 +9695,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "numericCodeAsString": {
+          "displayName": {
             "type": "string"
           },
           "symbol": {
             "type": "string"
           },
-          "displayName": {
+          "numericCodeAsString": {
             "type": "string"
           }
         }
@@ -10279,8 +10255,6 @@
         "type": "object",
         "properties": {
           "description": {
-            "maxLength": 255,
-            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10573,10 +10547,6 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
-          },
-          "barcode": {
-            "type": "string",
-            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12601,10 +12571,10 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "float": {
+          "short": {
             "type": "boolean"
           },
-          "short": {
+          "float": {
             "type": "boolean"
           },
           "nodeType": {
@@ -12627,19 +12597,19 @@
           "binary": {
             "type": "boolean"
           },
-          "integralNumber": {
+          "boolean": {
             "type": "boolean"
           },
-          "boolean": {
+          "integralNumber": {
             "type": "boolean"
           },
           "double": {
             "type": "boolean"
           },
-          "long": {
+          "int": {
             "type": "boolean"
           },
-          "int": {
+          "long": {
             "type": "boolean"
           },
           "valueNode": {
@@ -16876,6 +16846,9 @@
             "type": "boolean"
           },
           "enabledInboundExportFulfillment": {
+            "type": "boolean"
+          },
+          "enabledArticleImport": {
             "type": "boolean"
           },
           "fulfillmentQuantityMode": {
