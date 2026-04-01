@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "9d5029f, 2026-03-30T10:39:00Z",
+    "version": "b3a71a9, 2026-03-31T07:22:44Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -118,6 +118,9 @@
     },
     {
       "name": "warehouses"
+    },
+    {
+      "name": "zendesk"
     }
   ],
   "paths": {
@@ -6649,6 +6652,27 @@
         },
         "description": "ADD ENDPOINT DESCRIPTION HERE"
       }
+    },
+    "/zendesk/sso": {
+      "get": {
+        "tags": [
+          "zendesk"
+        ],
+        "summary": "Generate Zendesk SSO URL for the authenticated user",
+        "operationId": "getSsoUrl",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZendeskSsoUrlResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -9712,13 +9736,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "displayName": {
+          "numericCodeAsString": {
             "type": "string"
           },
           "symbol": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "displayName": {
             "type": "string"
           }
         }
@@ -12594,6 +12618,12 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "float": {
+            "type": "boolean"
+          },
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12607,12 +12637,6 @@
               "POJO",
               "STRING"
             ]
-          },
-          "short": {
-            "type": "boolean"
-          },
-          "float": {
-            "type": "boolean"
           },
           "binary": {
             "type": "boolean"
@@ -12681,6 +12705,21 @@
           },
           "isoCode": {
             "type": "string"
+          }
+        }
+      },
+      "LegalEntityAssignment": {
+        "required": [
+          "legalEntityId"
+        ],
+        "type": "object",
+        "properties": {
+          "legalEntityId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "isFulfillmentWarehouse": {
+            "type": "boolean"
           }
         }
       },
@@ -17640,11 +17679,10 @@
               "GWC"
             ]
           },
-          "legalEntityIds": {
+          "legalEntityAssignments": {
             "type": "array",
             "items": {
-              "type": "integer",
-              "format": "int64"
+              "$ref": "#/components/schemas/LegalEntityAssignment"
             }
           },
           "legalEntityId": {
@@ -17677,6 +17715,14 @@
               "LB",
               "OZ"
             ]
+          }
+        }
+      },
+      "ZendeskSsoUrlResponse": {
+        "type": "object",
+        "properties": {
+          "ssoUrl": {
+            "type": "string"
           }
         }
       }
