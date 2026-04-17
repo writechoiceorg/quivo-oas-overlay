@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "44cfc90, 2026-04-15T11:19:32Z",
+    "version": "26f6380, 2026-04-16T09:37:23Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6882,53 +6882,50 @@
         }
       },
       "AddressDetail": {
+        "required": [
+          "city",
+          "street"
+        ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
-            "description": "The first and lastname. <br>Either name or company is required."
+            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
           },
           "company": {
             "type": "string",
-            "description": "Name of the company. <br>Either name or company is required."
+            "description": "Name of the company."
           },
           "phone": {
             "type": "string",
-            "description": "Phone number. <br>The phone number is usually optional."
+            "description": "Phone number of the recipient. <br>The phone number is usually optional."
           },
           "email": {
             "type": "string",
-            "description": "E-Mail address."
+            "description": "E-Mail address of the recipient."
           },
           "zip": {
             "type": "string",
-            "description": "ZIP Code. <br>This field is optional."
+            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
           },
           "city": {
             "type": "string",
-            "description": "City. <br>This field is optional."
+            "description": "City of the recipient. <br>The city should always be specified."
           },
           "state": {
             "type": "string",
-            "description": "State. <br>This field is optional."
+            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
           },
           "countryIso2": {
-            "type": "string",
-            "description": "Country. <br>This field is optional."
+            "type": "string"
           },
           "street": {
             "type": "string",
-            "description": "Street (or Address Line 1). <br>This field is optional."
+            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
           },
           "street2": {
             "type": "string",
-            "description": "Street (or Address Line 2). <br>This field is optional."
-          },
-          "addressIdentifier": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string",
-            "description": "Optional identifier for address. <br>This field is optional."
+            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
           }
         }
       },
@@ -9729,10 +9726,10 @@
             "type": "integer",
             "format": "int32"
           },
-          "displayName": {
+          "numericCodeAsString": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "displayName": {
             "type": "string"
           },
           "symbol": {
