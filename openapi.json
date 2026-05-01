@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "439caeb, 2026-04-29T12:54:12Z",
+    "version": "972c366, 2026-04-30T13:43:09Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6884,51 +6884,41 @@
       "AddressDetail": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "The first and lastname. <br>Either name or company is required."
+          "name1": {
+            "type": "string"
+          },
+          "name2": {
+            "type": "string"
           },
           "company": {
-            "type": "string",
-            "description": "Name of the company. <br>Either name or company is required."
+            "type": "string"
           },
-          "phone": {
-            "type": "string",
-            "description": "Phone number. <br>The phone number is usually optional."
+          "address1": {
+            "type": "string"
           },
-          "email": {
-            "type": "string",
-            "description": "E-Mail address."
+          "address2": {
+            "type": "string"
+          },
+          "address3": {
+            "type": "string"
           },
           "zip": {
-            "type": "string",
-            "description": "ZIP Code. <br>This field is optional."
+            "type": "string"
           },
           "city": {
-            "type": "string",
-            "description": "City. <br>This field is optional."
+            "type": "string"
           },
           "state": {
-            "type": "string",
-            "description": "State. <br>This field is optional."
+            "type": "string"
           },
-          "countryIso2": {
-            "type": "string",
-            "description": "Country. <br>This field is optional."
+          "country": {
+            "type": "string"
           },
-          "street": {
-            "type": "string",
-            "description": "Street (or Address Line 1). <br>This field is optional."
+          "phone": {
+            "type": "string"
           },
-          "street2": {
-            "type": "string",
-            "description": "Street (or Address Line 2). <br>This field is optional."
-          },
-          "addressIdentifier": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string",
-            "description": "Optional identifier for address. <br>This field is optional."
+          "email": {
+            "type": "string"
           }
         }
       },
@@ -8975,6 +8965,23 @@
             "items": {
               "type": "string"
             }
+          },
+          "deliveryNoteUrls": {
+            "type": "array",
+            "description": "List of URLs where delivery notes can be downloaded.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "messageKey": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings for the booked shipment, such as export declaration document required.",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentWarning"
+            }
           }
         }
       },
@@ -9732,10 +9739,10 @@
           "symbol": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "displayName": {
             "type": "string"
           },
-          "displayName": {
+          "numericCodeAsString": {
             "type": "string"
           }
         }
@@ -10289,6 +10296,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10581,6 +10590,10 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12619,9 +12632,6 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "short": {
-            "type": "boolean"
-          },
           "float": {
             "type": "boolean"
           },
@@ -12639,16 +12649,19 @@
               "STRING"
             ]
           },
+          "short": {
+            "type": "boolean"
+          },
           "number": {
             "type": "boolean"
           },
           "binary": {
             "type": "boolean"
           },
-          "boolean": {
+          "integralNumber": {
             "type": "boolean"
           },
-          "integralNumber": {
+          "boolean": {
             "type": "boolean"
           },
           "double": {
