@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "66b641c, 2026-05-01T08:02:46Z",
+    "version": "15609e1, 2026-05-06T14:42:11Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -8965,23 +8965,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "deliveryNoteUrls": {
-            "type": "array",
-            "description": "List of URLs where delivery notes can be downloaded.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "messageKey": {
-            "type": "string"
-          },
-          "warnings": {
-            "type": "array",
-            "description": "List of warnings for the booked shipment, such as export declaration document required.",
-            "items": {
-              "$ref": "#/components/schemas/ShipmentWarning"
-            }
           }
         }
       },
@@ -9739,10 +9722,10 @@
           "displayName": {
             "type": "string"
           },
-          "symbol": {
+          "numericCodeAsString": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "symbol": {
             "type": "string"
           }
         }
@@ -10296,8 +10279,6 @@
         "type": "object",
         "properties": {
           "description": {
-            "maxLength": 255,
-            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10590,10 +10571,6 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
-          },
-          "barcode": {
-            "type": "string",
-            "description": "Optional value. The barcode of the position."
           }
         }
       },
