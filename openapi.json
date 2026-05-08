@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "15609e1, 2026-05-06T14:42:11Z",
+    "version": "1fc6f10, 2026-05-07T14:11:24Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -12609,6 +12609,12 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "float": {
+            "type": "boolean"
+          },
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12623,12 +12629,6 @@
               "STRING"
             ]
           },
-          "float": {
-            "type": "boolean"
-          },
-          "short": {
-            "type": "boolean"
-          },
           "number": {
             "type": "boolean"
           },
@@ -12638,13 +12638,13 @@
           "integralNumber": {
             "type": "boolean"
           },
+          "long": {
+            "type": "boolean"
+          },
           "boolean": {
             "type": "boolean"
           },
           "double": {
-            "type": "boolean"
-          },
-          "long": {
             "type": "boolean"
           },
           "int": {
@@ -16902,6 +16902,9 @@
             "type": "boolean"
           },
           "enabledArticleImport": {
+            "type": "boolean"
+          },
+          "enabledOnOrderImport": {
             "type": "boolean"
           },
           "fulfillmentQuantityMode": {
