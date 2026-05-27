@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "8390726, 2026-05-21T14:25:23Z",
+    "version": "834930e, 2026-05-26T15:20:48Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -8965,23 +8965,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "deliveryNoteUrls": {
-            "type": "array",
-            "description": "List of URLs where delivery notes can be downloaded.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "messageKey": {
-            "type": "string"
-          },
-          "warnings": {
-            "type": "array",
-            "description": "List of warnings for the booked shipment, such as export declaration document required.",
-            "items": {
-              "$ref": "#/components/schemas/ShipmentWarning"
-            }
           }
         }
       },
@@ -9739,10 +9722,10 @@
           "numericCodeAsString": {
             "type": "string"
           },
-          "symbol": {
+          "displayName": {
             "type": "string"
           },
-          "displayName": {
+          "symbol": {
             "type": "string"
           }
         }
@@ -10296,8 +10279,6 @@
         "type": "object",
         "properties": {
           "description": {
-            "maxLength": 255,
-            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10590,10 +10571,6 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
-          },
-          "barcode": {
-            "type": "string",
-            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12632,9 +12609,6 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "float": {
-            "type": "boolean"
-          },
           "short": {
             "type": "boolean"
           },
@@ -12652,16 +12626,19 @@
               "STRING"
             ]
           },
+          "float": {
+            "type": "boolean"
+          },
           "number": {
             "type": "boolean"
           },
           "binary": {
             "type": "boolean"
           },
-          "boolean": {
+          "integralNumber": {
             "type": "boolean"
           },
-          "integralNumber": {
+          "boolean": {
             "type": "boolean"
           },
           "double": {
@@ -12688,6 +12665,9 @@
           "pojo": {
             "type": "boolean"
           },
+          "floatingPointNumber": {
+            "type": "boolean"
+          },
           "bigDecimal": {
             "type": "boolean"
           },
@@ -12695,9 +12675,6 @@
             "type": "boolean"
           },
           "textual": {
-            "type": "boolean"
-          },
-          "floatingPointNumber": {
             "type": "boolean"
           },
           "array": {
