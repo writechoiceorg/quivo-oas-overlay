@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "9eb2d28, 2026-06-09T13:59:21Z",
+    "version": "6f22c95, 2026-06-10T14:53:26Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -9729,13 +9729,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "symbol": {
-            "type": "string"
-          },
           "numericCodeAsString": {
             "type": "string"
           },
           "displayName": {
+            "type": "string"
+          },
+          "symbol": {
             "type": "string"
           }
         }
@@ -12626,6 +12626,12 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "short": {
+            "type": "boolean"
+          },
+          "float": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12640,12 +12646,6 @@
               "STRING"
             ]
           },
-          "short": {
-            "type": "boolean"
-          },
-          "float": {
-            "type": "boolean"
-          },
           "number": {
             "type": "boolean"
           },
@@ -12655,13 +12655,13 @@
           "integralNumber": {
             "type": "boolean"
           },
+          "long": {
+            "type": "boolean"
+          },
           "boolean": {
             "type": "boolean"
           },
           "double": {
-            "type": "boolean"
-          },
-          "long": {
             "type": "boolean"
           },
           "int": {
@@ -12682,6 +12682,9 @@
           "pojo": {
             "type": "boolean"
           },
+          "floatingPointNumber": {
+            "type": "boolean"
+          },
           "bigDecimal": {
             "type": "boolean"
           },
@@ -12689,9 +12692,6 @@
             "type": "boolean"
           },
           "textual": {
-            "type": "boolean"
-          },
-          "floatingPointNumber": {
             "type": "boolean"
           },
           "array": {
@@ -16598,6 +16598,17 @@
           }
         }
       },
+      "ShippingMethodTagMappingDto": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string"
+          },
+          "shippingMethodName": {
+            "type": "string"
+          }
+        }
+      },
       "ShippingOrderGet": {
         "type": "object",
         "properties": {
@@ -16977,6 +16988,15 @@
           },
           "defaultShippingMethod": {
             "type": "string"
+          },
+          "fixedShippingMethodByTagEnabled": {
+            "type": "boolean"
+          },
+          "shippingMethodTagMappings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingMethodTagMappingDto"
+            }
           },
           "exportInventoryIntervalMinutes": {
             "type": "integer",
