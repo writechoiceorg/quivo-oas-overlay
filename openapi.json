@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "6359d52, 2026-06-15T13:09:29Z",
+    "version": "db30639, 2026-06-19T06:53:53Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -8972,23 +8972,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "deliveryNoteUrls": {
-            "type": "array",
-            "description": "List of URLs where delivery notes can be downloaded.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "messageKey": {
-            "type": "string"
-          },
-          "warnings": {
-            "type": "array",
-            "description": "List of warnings for the booked shipment, such as export declaration document required.",
-            "items": {
-              "$ref": "#/components/schemas/ShipmentWarning"
-            }
           }
         }
       },
@@ -9743,13 +9726,13 @@
             "type": "integer",
             "format": "int32"
           },
+          "displayName": {
+            "type": "string"
+          },
           "symbol": {
             "type": "string"
           },
           "numericCodeAsString": {
-            "type": "string"
-          },
-          "displayName": {
             "type": "string"
           }
         }
@@ -10303,8 +10286,6 @@
         "type": "object",
         "properties": {
           "description": {
-            "maxLength": 255,
-            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10597,10 +10578,6 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
-          },
-          "barcode": {
-            "type": "string",
-            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12646,6 +12623,9 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "short": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12660,16 +12640,13 @@
               "STRING"
             ]
           },
-          "short": {
-            "type": "boolean"
-          },
           "float": {
             "type": "boolean"
           },
-          "binary": {
+          "number": {
             "type": "boolean"
           },
-          "number": {
+          "binary": {
             "type": "boolean"
           },
           "integralNumber": {
@@ -12702,6 +12679,9 @@
           "pojo": {
             "type": "boolean"
           },
+          "floatingPointNumber": {
+            "type": "boolean"
+          },
           "bigDecimal": {
             "type": "boolean"
           },
@@ -12709,9 +12689,6 @@
             "type": "boolean"
           },
           "textual": {
-            "type": "boolean"
-          },
-          "floatingPointNumber": {
             "type": "boolean"
           },
           "array": {
@@ -16011,9 +15988,6 @@
           "exportedAt": {
             "type": "string",
             "format": "date-time"
-          },
-          "connectorApiKey": {
-            "type": "string"
           },
           "managingGroup": {
             "type": "string",
