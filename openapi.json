@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "634c040, 2026-06-22T14:09:52Z",
+    "version": "185cd97, 2026-06-24T07:54:51Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -9620,6 +9620,9 @@
           },
           "carrierSlug": {
             "type": "string"
+          },
+          "trackingLinkTemplate": {
+            "type": "string"
           }
         }
       },
@@ -11259,6 +11262,17 @@
           },
           "shippingServiceGroupName": {
             "type": "string"
+          },
+          "numberOfSkus": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "expectedTotalWeight": {
+            "type": "number"
+          },
+          "fulfilledAtSla": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "description": "Provides an overview of a planned fulfillment operation, detailing its unique identifier, current status in the warehouse, the inventory positions assigned to it, and any resulting shipments."
@@ -12616,10 +12630,10 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "short": {
+          "float": {
             "type": "boolean"
           },
-          "float": {
+          "short": {
             "type": "boolean"
           },
           "nodeType": {
@@ -12639,13 +12653,13 @@
           "number": {
             "type": "boolean"
           },
-          "boolean": {
-            "type": "boolean"
-          },
           "binary": {
             "type": "boolean"
           },
           "integralNumber": {
+            "type": "boolean"
+          },
+          "boolean": {
             "type": "boolean"
           },
           "double": {
@@ -17353,6 +17367,9 @@
           "link": {
             "type": "string",
             "description": "The public tracking link URL provided by the carrier."
+          },
+          "carrierSlug": {
+            "type": "string"
           }
         },
         "description": "Provides a summary of a shipment's tracking details, including the tracking number and the corresponding public tracking link."
