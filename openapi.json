@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "4432a85, 2026-06-29T13:46:55Z",
+    "version": "61f7d7a, 2026-06-30T15:19:41Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -37,9 +37,6 @@
     },
     {
       "name": "currencies"
-    },
-    {
-      "name": "customerInquiries"
     },
     {
       "name": "dashboards"
@@ -1699,291 +1696,6 @@
                   "items": {
                     "$ref": "#/components/schemas/CurrencyExchangeRateGet"
                   }
-                }
-              }
-            }
-          }
-        },
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      }
-    },
-    "/customerInquiries": {
-      "get": {
-        "tags": [
-          "customerInquiries"
-        ],
-        "summary": "Search customer inquiries",
-        "operationId": "searchGetCustomerInquiries",
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
-          },
-          {
-            "name": "searchAfter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CustomerInquirySummary"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      },
-      "post": {
-        "tags": [
-          "customerInquiries"
-        ],
-        "summary": "Create a new customer inquiry.",
-        "operationId": "postCustomerInquiry",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CustomerInquiryPost"
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomerInquiryGet"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body",
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      }
-    },
-    "/customerInquiries/attachments": {
-      "post": {
-        "tags": [
-          "customerInquiries"
-        ],
-        "summary": "Creates a new upload link for the customer inquiry attachment",
-        "operationId": "postAttachmentLink",
-        "parameters": [
-          {
-            "name": "mimeType",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AttachmentPostResult"
-                }
-              }
-            }
-          }
-        },
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      }
-    },
-    "/customerInquiries/{customerInquiryId}": {
-      "get": {
-        "tags": [
-          "customerInquiries"
-        ],
-        "summary": "Get details of customer inquiry by customerInquiryId",
-        "operationId": "getCustomerInquiry",
-        "parameters": [
-          {
-            "name": "customerInquiryId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomerInquiryGet"
-                }
-              }
-            }
-          }
-        },
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      }
-    },
-    "/customerInquiries/{customerInquiryId}/messages": {
-      "post": {
-        "tags": [
-          "customerInquiries"
-        ],
-        "summary": "Creates a new message for the customer inquiry",
-        "operationId": "postCustomerInquiryMessage",
-        "parameters": [
-          {
-            "name": "customerInquiryId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CustomerInquiryMessagePost"
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomerInquiryGet"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body",
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      }
-    },
-    "/customerInquiries/{customerInquiryId}/ratings": {
-      "post": {
-        "tags": [
-          "customerInquiries"
-        ],
-        "summary": "Creates rating message and adds rating to the customer inquiry",
-        "operationId": "postCustomerInquiryRating",
-        "parameters": [
-          {
-            "name": "customerInquiryId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RatingPost"
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomerInquiryGet"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body",
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      }
-    },
-    "/customerInquiries/{customerInquiryId}/resolve": {
-      "post": {
-        "tags": [
-          "customerInquiries"
-        ],
-        "summary": "Resolves customer inquiry and adds resolve message to it",
-        "operationId": "postCustomerInquiryResolve",
-        "parameters": [
-          {
-            "name": "customerInquiryId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomerInquiryGet"
                 }
               }
             }
@@ -6673,6 +6385,39 @@
           }
         }
       }
+    },
+    "/customerInquiries": {
+      "get": {
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      },
+      "post": {
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
+    "/customerInquiries/attachments": {
+      "post": {
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
+    "/customerInquiries/{customerInquiryId}": {
+      "get": {
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
+    "/customerInquiries/{customerInquiryId}/messages": {
+      "post": {
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
+    "/customerInquiries/{customerInquiryId}/ratings": {
+      "post": {
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
+    "/customerInquiries/{customerInquiryId}/resolve": {
+      "post": {
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
     }
   },
   "components": {
@@ -6882,50 +6627,43 @@
         }
       },
       "AddressDetail": {
-        "required": [
-          "city",
-          "street"
-        ],
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
-          },
-          "company": {
-            "type": "string",
-            "description": "Name of the company."
-          },
-          "phone": {
-            "type": "string",
-            "description": "Phone number of the recipient. <br>The phone number is usually optional."
-          },
-          "email": {
-            "type": "string",
-            "description": "E-Mail address of the recipient."
-          },
-          "zip": {
-            "type": "string",
-            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
-          },
-          "city": {
-            "type": "string",
-            "description": "City of the recipient. <br>The city should always be specified."
-          },
-          "state": {
-            "type": "string",
-            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
-          },
-          "countryIso2": {
+          "name1": {
             "type": "string"
           },
-          "street": {
-            "type": "string",
-            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+          "name2": {
+            "type": "string"
           },
-          "street2": {
-            "type": "string",
-            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
+          "company": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "address3": {
+            "type": "string"
+          },
+          "zip": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         }
       },
@@ -8506,48 +8244,6 @@
           }
         }
       },
-      "AttachmentGet": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "url": {
-            "$ref": "#/components/schemas/Link"
-          },
-          "filename": {
-            "type": "string"
-          }
-        }
-      },
-      "AttachmentPost": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "mimeType": {
-            "type": "string"
-          },
-          "filename": {
-            "type": "string"
-          }
-        }
-      },
-      "AttachmentPostResult": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "uploadUrl": {
-            "type": "string"
-          },
-          "mimeType": {
-            "type": "string"
-          }
-        }
-      },
       "AuditGet": {
         "type": "object",
         "properties": {
@@ -9790,512 +9486,6 @@
           }
         }
       },
-      "CustomerInquiryGet": {
-        "required": [
-          "sellerId",
-          "subject",
-          "warehouseId"
-        ],
-        "type": "object",
-        "properties": {
-          "topic": {
-            "type": "string",
-            "description": "The topic of the Customer Inquiry.",
-            "enum": [
-              "ONBOARDING",
-              "FULFILMENT",
-              "SERVICE",
-              "ACCOUNTING",
-              "TECH_IT",
-              "MISCELLANEOUS_OTHER",
-              "REPORTS"
-            ]
-          },
-          "category": {
-            "type": "string",
-            "description": "The category of the Customer Inquiry.",
-            "enum": [
-              "INBOUND",
-              "PICKING_AND_PACKING",
-              "SHIPMENT_AND_OUTBOUND",
-              "ARTICLES_ITEMS_IN_ORDER",
-              "DAMAGES",
-              "RETURNS",
-              "STOCK_DISCREPANCIES",
-              "CARRIER_PICKUPS",
-              "TRACKING_NUMBERS",
-              "MISCELLANEOUS_OTHER_FULFILLMENT",
-              "CARRIERS",
-              "INVESTIGATIONS",
-              "ACCOUNT_DETAILS_CHANGES",
-              "MAPPING_BUNDLES_FULFILMENT_PLANS",
-              "MISCELLANEOUS_OTHER_SERVICE",
-              "KEY_ACCOUNTS",
-              "NEW_SHOP",
-              "INVOICE_ENQUIRIES",
-              "REFUNDS_CREDIT_NOTES",
-              "SERVICE_REPORT_ENQUIRIES",
-              "SURCHARGES",
-              "INSURANCE_CUSTOMS",
-              "DUNNING",
-              "CARRIER_RELATED_CHARGES",
-              "CUSTOMS",
-              "ONBOARDING_FEE",
-              "DOUBLE_CHARGES_TRANSFERS",
-              "PAYMENT_METHODS",
-              "SEPA",
-              "PAYMENT_CONFIRMATIONS",
-              "SPECIAL_REQUESTS",
-              "MISCELLANEOUS_OTHER_ACCOUNTING",
-              "SYSTEM_ERRORS",
-              "SHOP_INTEGRATION",
-              "ADDING_USERS",
-              "CHANGES_IN_CONNECTOR_ACCOUNT",
-              "API_KEY_ROTATION",
-              "MISCELLANEOUS_OTHER_TECH_IT",
-              "SALES_ENQUIRY",
-              "TRANSPORT_ENQUIRY",
-              "ACCOUNT_DETAILS_CHANGE",
-              "MAPPING_BUNDLE_FULFILMENT_PLAN",
-              "CONTACTED_SALES_INSTEAD_OF_SERVICE",
-              "KEY_ACCOUNT",
-              "MISCELLANEOUS_OTHER",
-              "ONBOARDING_SELF_SIGNUP",
-              "OTHER_ONBOARDING_ISSUES",
-              "ARTICLE_WEIGHT_REPORT",
-              "CARTONAGE_REPORT",
-              "RETURNS_REPORT",
-              "BUNDLE_REPORT"
-            ]
-          },
-          "subCategory": {
-            "type": "string",
-            "description": "The sub category of the Customer Inquiry.",
-            "enum": [
-              "FULFILMENT_WAREHOUSE",
-              "INSURANCE",
-              "CUSTOMS",
-              "LOST_ITEMS",
-              "DAMAGES",
-              "CARRIER_DISPUTES",
-              "MISCELLANEOUS_OTHER",
-              "SHIPPING_PRICES",
-              "OTHER_CHARGES"
-            ]
-          },
-          "subject": {
-            "type": "string",
-            "description": "The subject of the Customer Inquiry."
-          },
-          "sellerId": {
-            "type": "integer",
-            "description": "The seller which initiated Customer Inquiry.",
-            "format": "int64"
-          },
-          "warehouseId": {
-            "type": "integer",
-            "description": "The warehouse associated to the Customer Inquiry.",
-            "format": "int64"
-          },
-          "parentInquiryId": {
-            "type": "integer",
-            "description": "The Customer Inquiry on which this Customer Inquiry is based. <br>This field is optional.",
-            "format": "int64"
-          },
-          "metaInfo": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Additional information for the Customer Inquiry. <br>This field is optional."
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomerInquiryMessageGet"
-            }
-          },
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "WITH_YOU",
-              "WITH_LOGSTA",
-              "RESOLVED"
-            ]
-          },
-          "caseNumber": {
-            "type": "string"
-          },
-          "resolvedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "currentRating": {
-            "type": "number",
-            "format": "float"
-          },
-          "resolvedBy": {
-            "type": "string",
-            "enum": [
-              "LOGSTA",
-              "CLIENT"
-            ]
-          }
-        }
-      },
-      "CustomerInquiryMessageGet": {
-        "type": "object",
-        "properties": {
-          "category": {
-            "type": "string",
-            "enum": [
-              "RATING_MESSAGE",
-              "INITIAL_MESSAGE",
-              "REOPEN_MESSAGE",
-              "LOGSTA_MESSAGE",
-              "CUSTOMER_MESSAGE",
-              "EXTERNAL_MESSAGE",
-              "LOGSTA_RESOLVE_MESSAGE",
-              "CUSTOMER_RESOLVE_MESSAGE",
-              "LOGSTA_REMINDER_MESSAGE",
-              "LAST_MESSAGE"
-            ]
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "postedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "userEmail": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          },
-          "fullName": {
-            "type": "string"
-          },
-          "metaInfo": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          },
-          "attachments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentGet"
-            }
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      },
-      "CustomerInquiryMessagePost": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "maxLength": 10000,
-            "minLength": 0,
-            "type": "string"
-          },
-          "attachments": {
-            "maxItems": 10,
-            "minItems": 0,
-            "type": "array",
-            "description": "Customer Inquiry Message attachments. <br>No more than 10 attachments allowed.",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentPost"
-            }
-          }
-        }
-      },
-      "CustomerInquiryPost": {
-        "required": [
-          "messages",
-          "sellerId",
-          "subject",
-          "warehouseId"
-        ],
-        "type": "object",
-        "properties": {
-          "topic": {
-            "type": "string",
-            "description": "The topic of the Customer Inquiry.",
-            "enum": [
-              "ONBOARDING",
-              "FULFILMENT",
-              "SERVICE",
-              "ACCOUNTING",
-              "TECH_IT",
-              "MISCELLANEOUS_OTHER",
-              "REPORTS"
-            ]
-          },
-          "category": {
-            "type": "string",
-            "description": "The category of the Customer Inquiry.",
-            "enum": [
-              "INBOUND",
-              "PICKING_AND_PACKING",
-              "SHIPMENT_AND_OUTBOUND",
-              "ARTICLES_ITEMS_IN_ORDER",
-              "DAMAGES",
-              "RETURNS",
-              "STOCK_DISCREPANCIES",
-              "CARRIER_PICKUPS",
-              "TRACKING_NUMBERS",
-              "MISCELLANEOUS_OTHER_FULFILLMENT",
-              "CARRIERS",
-              "INVESTIGATIONS",
-              "ACCOUNT_DETAILS_CHANGES",
-              "MAPPING_BUNDLES_FULFILMENT_PLANS",
-              "MISCELLANEOUS_OTHER_SERVICE",
-              "KEY_ACCOUNTS",
-              "NEW_SHOP",
-              "INVOICE_ENQUIRIES",
-              "REFUNDS_CREDIT_NOTES",
-              "SERVICE_REPORT_ENQUIRIES",
-              "SURCHARGES",
-              "INSURANCE_CUSTOMS",
-              "DUNNING",
-              "CARRIER_RELATED_CHARGES",
-              "CUSTOMS",
-              "ONBOARDING_FEE",
-              "DOUBLE_CHARGES_TRANSFERS",
-              "PAYMENT_METHODS",
-              "SEPA",
-              "PAYMENT_CONFIRMATIONS",
-              "SPECIAL_REQUESTS",
-              "MISCELLANEOUS_OTHER_ACCOUNTING",
-              "SYSTEM_ERRORS",
-              "SHOP_INTEGRATION",
-              "ADDING_USERS",
-              "CHANGES_IN_CONNECTOR_ACCOUNT",
-              "API_KEY_ROTATION",
-              "MISCELLANEOUS_OTHER_TECH_IT",
-              "SALES_ENQUIRY",
-              "TRANSPORT_ENQUIRY",
-              "ACCOUNT_DETAILS_CHANGE",
-              "MAPPING_BUNDLE_FULFILMENT_PLAN",
-              "CONTACTED_SALES_INSTEAD_OF_SERVICE",
-              "KEY_ACCOUNT",
-              "MISCELLANEOUS_OTHER",
-              "ONBOARDING_SELF_SIGNUP",
-              "OTHER_ONBOARDING_ISSUES",
-              "ARTICLE_WEIGHT_REPORT",
-              "CARTONAGE_REPORT",
-              "RETURNS_REPORT",
-              "BUNDLE_REPORT"
-            ]
-          },
-          "subCategory": {
-            "type": "string",
-            "description": "The sub category of the Customer Inquiry.",
-            "enum": [
-              "FULFILMENT_WAREHOUSE",
-              "INSURANCE",
-              "CUSTOMS",
-              "LOST_ITEMS",
-              "DAMAGES",
-              "CARRIER_DISPUTES",
-              "MISCELLANEOUS_OTHER",
-              "SHIPPING_PRICES",
-              "OTHER_CHARGES"
-            ]
-          },
-          "subject": {
-            "type": "string",
-            "description": "The subject of the Customer Inquiry."
-          },
-          "sellerId": {
-            "type": "integer",
-            "description": "The seller which initiated Customer Inquiry.",
-            "format": "int64"
-          },
-          "warehouseId": {
-            "type": "integer",
-            "description": "The warehouse associated to the Customer Inquiry.",
-            "format": "int64"
-          },
-          "parentInquiryId": {
-            "type": "integer",
-            "description": "The Customer Inquiry on which this Customer Inquiry is based. <br>This field is optional.",
-            "format": "int64"
-          },
-          "metaInfo": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Additional information for the Customer Inquiry. <br>This field is optional."
-          },
-          "messages": {
-            "type": "array",
-            "description": "Messages of the Customer Inquiry.",
-            "items": {
-              "$ref": "#/components/schemas/CustomerInquiryMessagePost"
-            }
-          }
-        }
-      },
-      "CustomerInquirySummary": {
-        "required": [
-          "sellerId",
-          "subject",
-          "warehouseId"
-        ],
-        "type": "object",
-        "properties": {
-          "topic": {
-            "type": "string",
-            "description": "The topic of the Customer Inquiry.",
-            "enum": [
-              "ONBOARDING",
-              "FULFILMENT",
-              "SERVICE",
-              "ACCOUNTING",
-              "TECH_IT",
-              "MISCELLANEOUS_OTHER",
-              "REPORTS"
-            ]
-          },
-          "category": {
-            "type": "string",
-            "description": "The category of the Customer Inquiry.",
-            "enum": [
-              "INBOUND",
-              "PICKING_AND_PACKING",
-              "SHIPMENT_AND_OUTBOUND",
-              "ARTICLES_ITEMS_IN_ORDER",
-              "DAMAGES",
-              "RETURNS",
-              "STOCK_DISCREPANCIES",
-              "CARRIER_PICKUPS",
-              "TRACKING_NUMBERS",
-              "MISCELLANEOUS_OTHER_FULFILLMENT",
-              "CARRIERS",
-              "INVESTIGATIONS",
-              "ACCOUNT_DETAILS_CHANGES",
-              "MAPPING_BUNDLES_FULFILMENT_PLANS",
-              "MISCELLANEOUS_OTHER_SERVICE",
-              "KEY_ACCOUNTS",
-              "NEW_SHOP",
-              "INVOICE_ENQUIRIES",
-              "REFUNDS_CREDIT_NOTES",
-              "SERVICE_REPORT_ENQUIRIES",
-              "SURCHARGES",
-              "INSURANCE_CUSTOMS",
-              "DUNNING",
-              "CARRIER_RELATED_CHARGES",
-              "CUSTOMS",
-              "ONBOARDING_FEE",
-              "DOUBLE_CHARGES_TRANSFERS",
-              "PAYMENT_METHODS",
-              "SEPA",
-              "PAYMENT_CONFIRMATIONS",
-              "SPECIAL_REQUESTS",
-              "MISCELLANEOUS_OTHER_ACCOUNTING",
-              "SYSTEM_ERRORS",
-              "SHOP_INTEGRATION",
-              "ADDING_USERS",
-              "CHANGES_IN_CONNECTOR_ACCOUNT",
-              "API_KEY_ROTATION",
-              "MISCELLANEOUS_OTHER_TECH_IT",
-              "SALES_ENQUIRY",
-              "TRANSPORT_ENQUIRY",
-              "ACCOUNT_DETAILS_CHANGE",
-              "MAPPING_BUNDLE_FULFILMENT_PLAN",
-              "CONTACTED_SALES_INSTEAD_OF_SERVICE",
-              "KEY_ACCOUNT",
-              "MISCELLANEOUS_OTHER",
-              "ONBOARDING_SELF_SIGNUP",
-              "OTHER_ONBOARDING_ISSUES",
-              "ARTICLE_WEIGHT_REPORT",
-              "CARTONAGE_REPORT",
-              "RETURNS_REPORT",
-              "BUNDLE_REPORT"
-            ]
-          },
-          "subCategory": {
-            "type": "string",
-            "description": "The sub category of the Customer Inquiry.",
-            "enum": [
-              "FULFILMENT_WAREHOUSE",
-              "INSURANCE",
-              "CUSTOMS",
-              "LOST_ITEMS",
-              "DAMAGES",
-              "CARRIER_DISPUTES",
-              "MISCELLANEOUS_OTHER",
-              "SHIPPING_PRICES",
-              "OTHER_CHARGES"
-            ]
-          },
-          "subject": {
-            "type": "string",
-            "description": "The subject of the Customer Inquiry."
-          },
-          "sellerId": {
-            "type": "integer",
-            "description": "The seller which initiated Customer Inquiry.",
-            "format": "int64"
-          },
-          "warehouseId": {
-            "type": "integer",
-            "description": "The warehouse associated to the Customer Inquiry.",
-            "format": "int64"
-          },
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "WITH_YOU",
-              "WITH_LOGSTA",
-              "RESOLVED"
-            ]
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "resolvedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "resolvedBy": {
-            "type": "string",
-            "enum": [
-              "LOGSTA",
-              "CLIENT"
-            ]
-          },
-          "username": {
-            "type": "string"
-          },
-          "userEmail": {
-            "type": "string"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/JsonNode"
-          }
-        }
-      },
       "CustomsPosition": {
         "required": [
           "description",
@@ -11162,12 +10352,27 @@
           "shippingServiceGroupName": {
             "type": "string"
           },
+          "termsOfTrade": {
+            "type": "string",
+            "enum": [
+              "DAP",
+              "DDP"
+            ]
+          },
           "expectedTotalWeight": {
             "type": "number"
           },
           "numberOfSkus": {
             "type": "integer",
             "format": "int32"
+          },
+          "dangerousGoodsLevel": {
+            "type": "string",
+            "enum": [
+              "NON_DG",
+              "REQUIRES_DG_STAFF",
+              "REQUIRES_DG_SUPERVISOR"
+            ]
           }
         }
       },
@@ -11293,6 +10498,13 @@
           "shippingServiceGroupName": {
             "type": "string"
           },
+          "termsOfTrade": {
+            "type": "string",
+            "enum": [
+              "DAP",
+              "DDP"
+            ]
+          },
           "numberOfSkus": {
             "type": "integer",
             "format": "int32"
@@ -11303,6 +10515,14 @@
           "fulfilledAtSla": {
             "type": "string",
             "format": "date-time"
+          },
+          "dangerousGoodsLevel": {
+            "type": "string",
+            "enum": [
+              "NON_DG",
+              "REQUIRES_DG_STAFF",
+              "REQUIRES_DG_SUPERVISOR"
+            ]
           }
         },
         "description": "Provides an overview of a planned fulfillment operation, detailing its unique identifier, current status in the warehouse, the inventory positions assigned to it, and any resulting shipments."
@@ -12663,9 +11883,6 @@
           "short": {
             "type": "boolean"
           },
-          "float": {
-            "type": "boolean"
-          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12680,6 +11897,9 @@
               "STRING"
             ]
           },
+          "float": {
+            "type": "boolean"
+          },
           "number": {
             "type": "boolean"
           },
@@ -12689,13 +11909,13 @@
           "integralNumber": {
             "type": "boolean"
           },
-          "boolean": {
+          "long": {
             "type": "boolean"
           },
           "double": {
             "type": "boolean"
           },
-          "long": {
+          "boolean": {
             "type": "boolean"
           },
           "int": {
@@ -13408,6 +12628,9 @@
           "customerPurchaseOrderNumber": {
             "type": "string"
           },
+          "customerPurchaseOrderNumber2": {
+            "type": "string"
+          },
           "ssccLabel": {
             "type": "boolean"
           },
@@ -13582,6 +12805,9 @@
             "type": "string"
           },
           "customerPurchaseOrderNumber": {
+            "type": "string"
+          },
+          "customerPurchaseOrderNumber2": {
             "type": "string"
           },
           "ssccLabel": {
@@ -14455,6 +13681,12 @@
             "type": "string",
             "description": "Optional value which specifies reference code that is assigned to a purchase\n Example: PO-89225"
           },
+          "customerPurchaseOrderNumber2": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "description": "Optional value which specifies a second reference code that is assigned to a purchase\n Example: PO-89225"
+          },
           "ssccLabel": {
             "type": "boolean",
             "description": "Optional value setting whether to create ssccLabel or not based on customerPurchaseOrderNumber value."
@@ -14939,6 +14171,9 @@
             "type": "string",
             "description": "A reference code assigned to the purchase order by the customer."
           },
+          "customerPurchaseOrderNumber2": {
+            "type": "string"
+          },
           "channelId": {
             "type": "string",
             "description": "The ID of the sales channel associated with the order."
@@ -15342,18 +14577,6 @@
           },
           "when": {
             "$ref": "#/components/schemas/PlanWhenPost"
-          }
-        }
-      },
-      "RatingPost": {
-        "type": "object",
-        "properties": {
-          "rating": {
-            "type": "number",
-            "format": "float"
-          },
-          "ratingMessage": {
-            "type": "string"
           }
         }
       },
