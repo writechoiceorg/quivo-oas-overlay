@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "61f7d7a, 2026-06-30T15:19:41Z",
+    "version": "833aedc, 2026-07-01T15:01:20Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -37,6 +37,9 @@
     },
     {
       "name": "currencies"
+    },
+    {
+      "name": "customerInquiries"
     },
     {
       "name": "dashboards"
@@ -1704,6 +1707,111 @@
         "description": "ADD ENDPOINT DESCRIPTION HERE"
       }
     },
+    "/customerInquiries": {
+      "get": {
+        "tags": [
+          "customerInquiries"
+        ],
+        "summary": "Search customer inquiries",
+        "operationId": "searchGetCustomerInquiries",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query string used to filter results. This field supports specific syntax for filtering across multiple fields."
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional sorting criteria for the results. Format is typically 'field:direction' (e.g., 'created:desc')."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The page number to retrieve when using offset-based pagination. Ignored if 'searchAfter' is provided."
+          },
+          {
+            "name": "searchAfter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Used for cursor-based pagination. Pass the 'sort' key value from the last item of the previous page to retrieve the next set of results efficiently. Overrides 'page'."
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The maximum number of items to return per page. Used for both offset and cursor-based pagination."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerInquirySummary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      },
+      "post": {
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
+    "/customerInquiries/{customerInquiryId}": {
+      "get": {
+        "tags": [
+          "customerInquiries"
+        ],
+        "summary": "Get details of customer inquiry by customerInquiryId",
+        "operationId": "getCustomerInquiry",
+        "parameters": [
+          {
+            "name": "customerInquiryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerInquiryGet"
+                }
+              }
+            }
+          }
+        },
+        "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
     "/dashboards": {
       "get": {
         "tags": [
@@ -1794,6 +1902,59 @@
         },
         "x-codegen-request-body-name": "body",
         "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
+    "/dashboards/qore": {
+      "get": {
+        "tags": [
+          "dashboards"
+        ],
+        "summary": "Order-count dashboard tile counts for the Qore warehouse overview",
+        "operationId": "qoreDashboardGet",
+        "parameters": [
+          {
+            "name": "warehouse",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sellerId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The unique identifier for the seller account. This ID is used to scope operations to a specific seller's data and resources."
+          },
+          {
+            "name": "rangeStart",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rangeEnd",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FulfillmentOrderCounts"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/files": {
@@ -6386,21 +6547,8 @@
         }
       }
     },
-    "/customerInquiries": {
-      "get": {
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      },
-      "post": {
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      }
-    },
     "/customerInquiries/attachments": {
       "post": {
-        "description": "ADD ENDPOINT DESCRIPTION HERE"
-      }
-    },
-    "/customerInquiries/{customerInquiryId}": {
-      "get": {
         "description": "ADD ENDPOINT DESCRIPTION HERE"
       }
     },
@@ -8244,6 +8392,20 @@
           }
         }
       },
+      "AttachmentGet": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "url": {
+            "$ref": "#/components/schemas/Link"
+          },
+          "filename": {
+            "type": "string"
+          }
+        }
+      },
       "AuditGet": {
         "type": "object",
         "properties": {
@@ -9442,13 +9604,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "symbol": {
-            "type": "string"
-          },
           "numericCodeAsString": {
             "type": "string"
           },
           "displayName": {
+            "type": "string"
+          },
+          "symbol": {
             "type": "string"
           }
         }
@@ -9483,6 +9645,364 @@
         "properties": {
           "customerExamined": {
             "type": "boolean"
+          }
+        }
+      },
+      "CustomerInquiryGet": {
+        "required": [
+          "sellerId",
+          "subject",
+          "warehouseId"
+        ],
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "description": "The topic of the Customer Inquiry.",
+            "enum": [
+              "ONBOARDING",
+              "FULFILMENT",
+              "SERVICE",
+              "ACCOUNTING",
+              "TECH_IT",
+              "MISCELLANEOUS_OTHER",
+              "REPORTS"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "description": "The category of the Customer Inquiry.",
+            "enum": [
+              "INBOUND",
+              "PICKING_AND_PACKING",
+              "SHIPMENT_AND_OUTBOUND",
+              "ARTICLES_ITEMS_IN_ORDER",
+              "DAMAGES",
+              "RETURNS",
+              "STOCK_DISCREPANCIES",
+              "CARRIER_PICKUPS",
+              "TRACKING_NUMBERS",
+              "MISCELLANEOUS_OTHER_FULFILLMENT",
+              "CARRIERS",
+              "INVESTIGATIONS",
+              "ACCOUNT_DETAILS_CHANGES",
+              "MAPPING_BUNDLES_FULFILMENT_PLANS",
+              "MISCELLANEOUS_OTHER_SERVICE",
+              "KEY_ACCOUNTS",
+              "NEW_SHOP",
+              "INVOICE_ENQUIRIES",
+              "REFUNDS_CREDIT_NOTES",
+              "SERVICE_REPORT_ENQUIRIES",
+              "SURCHARGES",
+              "INSURANCE_CUSTOMS",
+              "DUNNING",
+              "CARRIER_RELATED_CHARGES",
+              "CUSTOMS",
+              "ONBOARDING_FEE",
+              "DOUBLE_CHARGES_TRANSFERS",
+              "PAYMENT_METHODS",
+              "SEPA",
+              "PAYMENT_CONFIRMATIONS",
+              "SPECIAL_REQUESTS",
+              "MISCELLANEOUS_OTHER_ACCOUNTING",
+              "SYSTEM_ERRORS",
+              "SHOP_INTEGRATION",
+              "ADDING_USERS",
+              "CHANGES_IN_CONNECTOR_ACCOUNT",
+              "API_KEY_ROTATION",
+              "MISCELLANEOUS_OTHER_TECH_IT",
+              "SALES_ENQUIRY",
+              "TRANSPORT_ENQUIRY",
+              "ACCOUNT_DETAILS_CHANGE",
+              "MAPPING_BUNDLE_FULFILMENT_PLAN",
+              "CONTACTED_SALES_INSTEAD_OF_SERVICE",
+              "KEY_ACCOUNT",
+              "MISCELLANEOUS_OTHER",
+              "ONBOARDING_SELF_SIGNUP",
+              "OTHER_ONBOARDING_ISSUES",
+              "ARTICLE_WEIGHT_REPORT",
+              "CARTONAGE_REPORT",
+              "RETURNS_REPORT",
+              "BUNDLE_REPORT"
+            ]
+          },
+          "subCategory": {
+            "type": "string",
+            "description": "The sub category of the Customer Inquiry.",
+            "enum": [
+              "FULFILMENT_WAREHOUSE",
+              "INSURANCE",
+              "CUSTOMS",
+              "LOST_ITEMS",
+              "DAMAGES",
+              "CARRIER_DISPUTES",
+              "MISCELLANEOUS_OTHER",
+              "SHIPPING_PRICES",
+              "OTHER_CHARGES"
+            ]
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject of the Customer Inquiry."
+          },
+          "sellerId": {
+            "type": "integer",
+            "description": "The seller which initiated Customer Inquiry.",
+            "format": "int64"
+          },
+          "warehouseId": {
+            "type": "integer",
+            "description": "The warehouse associated to the Customer Inquiry.",
+            "format": "int64"
+          },
+          "parentInquiryId": {
+            "type": "integer",
+            "description": "The Customer Inquiry on which this Customer Inquiry is based. <br>This field is optional.",
+            "format": "int64"
+          },
+          "metaInfo": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Additional information for the Customer Inquiry. <br>This field is optional."
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerInquiryMessageGet"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "WITH_YOU",
+              "WITH_LOGSTA",
+              "RESOLVED"
+            ]
+          },
+          "caseNumber": {
+            "type": "string"
+          },
+          "resolvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentRating": {
+            "type": "number",
+            "format": "float"
+          },
+          "resolvedBy": {
+            "type": "string",
+            "enum": [
+              "LOGSTA",
+              "CLIENT"
+            ]
+          }
+        }
+      },
+      "CustomerInquiryMessageGet": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "RATING_MESSAGE",
+              "INITIAL_MESSAGE",
+              "REOPEN_MESSAGE",
+              "LOGSTA_MESSAGE",
+              "CUSTOMER_MESSAGE",
+              "EXTERNAL_MESSAGE",
+              "LOGSTA_RESOLVE_MESSAGE",
+              "CUSTOMER_RESOLVE_MESSAGE",
+              "LOGSTA_REMINDER_MESSAGE",
+              "LAST_MESSAGE"
+            ]
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "postedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userEmail": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "metaInfo": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentGet"
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerInquirySummary": {
+        "required": [
+          "sellerId",
+          "subject",
+          "warehouseId"
+        ],
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "description": "The topic of the Customer Inquiry.",
+            "enum": [
+              "ONBOARDING",
+              "FULFILMENT",
+              "SERVICE",
+              "ACCOUNTING",
+              "TECH_IT",
+              "MISCELLANEOUS_OTHER",
+              "REPORTS"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "description": "The category of the Customer Inquiry.",
+            "enum": [
+              "INBOUND",
+              "PICKING_AND_PACKING",
+              "SHIPMENT_AND_OUTBOUND",
+              "ARTICLES_ITEMS_IN_ORDER",
+              "DAMAGES",
+              "RETURNS",
+              "STOCK_DISCREPANCIES",
+              "CARRIER_PICKUPS",
+              "TRACKING_NUMBERS",
+              "MISCELLANEOUS_OTHER_FULFILLMENT",
+              "CARRIERS",
+              "INVESTIGATIONS",
+              "ACCOUNT_DETAILS_CHANGES",
+              "MAPPING_BUNDLES_FULFILMENT_PLANS",
+              "MISCELLANEOUS_OTHER_SERVICE",
+              "KEY_ACCOUNTS",
+              "NEW_SHOP",
+              "INVOICE_ENQUIRIES",
+              "REFUNDS_CREDIT_NOTES",
+              "SERVICE_REPORT_ENQUIRIES",
+              "SURCHARGES",
+              "INSURANCE_CUSTOMS",
+              "DUNNING",
+              "CARRIER_RELATED_CHARGES",
+              "CUSTOMS",
+              "ONBOARDING_FEE",
+              "DOUBLE_CHARGES_TRANSFERS",
+              "PAYMENT_METHODS",
+              "SEPA",
+              "PAYMENT_CONFIRMATIONS",
+              "SPECIAL_REQUESTS",
+              "MISCELLANEOUS_OTHER_ACCOUNTING",
+              "SYSTEM_ERRORS",
+              "SHOP_INTEGRATION",
+              "ADDING_USERS",
+              "CHANGES_IN_CONNECTOR_ACCOUNT",
+              "API_KEY_ROTATION",
+              "MISCELLANEOUS_OTHER_TECH_IT",
+              "SALES_ENQUIRY",
+              "TRANSPORT_ENQUIRY",
+              "ACCOUNT_DETAILS_CHANGE",
+              "MAPPING_BUNDLE_FULFILMENT_PLAN",
+              "CONTACTED_SALES_INSTEAD_OF_SERVICE",
+              "KEY_ACCOUNT",
+              "MISCELLANEOUS_OTHER",
+              "ONBOARDING_SELF_SIGNUP",
+              "OTHER_ONBOARDING_ISSUES",
+              "ARTICLE_WEIGHT_REPORT",
+              "CARTONAGE_REPORT",
+              "RETURNS_REPORT",
+              "BUNDLE_REPORT"
+            ]
+          },
+          "subCategory": {
+            "type": "string",
+            "description": "The sub category of the Customer Inquiry.",
+            "enum": [
+              "FULFILMENT_WAREHOUSE",
+              "INSURANCE",
+              "CUSTOMS",
+              "LOST_ITEMS",
+              "DAMAGES",
+              "CARRIER_DISPUTES",
+              "MISCELLANEOUS_OTHER",
+              "SHIPPING_PRICES",
+              "OTHER_CHARGES"
+            ]
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject of the Customer Inquiry."
+          },
+          "sellerId": {
+            "type": "integer",
+            "description": "The seller which initiated Customer Inquiry.",
+            "format": "int64"
+          },
+          "warehouseId": {
+            "type": "integer",
+            "description": "The warehouse associated to the Customer Inquiry.",
+            "format": "int64"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "WITH_YOU",
+              "WITH_LOGSTA",
+              "RESOLVED"
+            ]
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "resolvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "resolvedBy": {
+            "type": "string",
+            "enum": [
+              "LOGSTA",
+              "CLIENT"
+            ]
+          },
+          "username": {
+            "type": "string"
+          },
+          "userEmail": {
+            "type": "string"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/JsonNode"
           }
         }
       },
@@ -10294,6 +10814,59 @@
           },
           "uploadUrl": {
             "type": "string"
+          }
+        }
+      },
+      "FulfillmentOrderCounts": {
+        "type": "object",
+        "properties": {
+          "pending": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "needsReplenishment": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "outOfStock": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "onPicklist": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "picking": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "readyToPack": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "packing": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "completed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "problemAtPicking": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "problemAtPacking": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "processingInbounds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lateFulfillment": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -11883,6 +12456,9 @@
           "short": {
             "type": "boolean"
           },
+          "float": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -11897,9 +12473,6 @@
               "STRING"
             ]
           },
-          "float": {
-            "type": "boolean"
-          },
           "number": {
             "type": "boolean"
           },
@@ -11909,13 +12482,13 @@
           "integralNumber": {
             "type": "boolean"
           },
-          "long": {
+          "boolean": {
             "type": "boolean"
           },
           "double": {
             "type": "boolean"
           },
-          "boolean": {
+          "long": {
             "type": "boolean"
           },
           "int": {
