@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "4727246, 2026-07-08T15:59:43Z",
+    "version": "3012cba, 2026-07-14T10:27:29Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -3882,6 +3882,43 @@
         "description": "ADD ENDPOINT DESCRIPTION HERE"
       }
     },
+    "/orders/fulfillmentOrders/{fulfillmentOrderId}": {
+      "patch": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Update fulfillment order (pickability status, shipping service group, terms of trade)",
+        "operationId": "fulfillmentOrderPatch",
+        "parameters": [
+          {
+            "name": "fulfillmentOrderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FulfillmentOrderPatch"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/orders/{orderId}": {
       "get": {
         "tags": [
@@ -6777,51 +6814,41 @@
       "AddressDetail": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "The first and lastname. <br>Either name or company is required."
+          "name1": {
+            "type": "string"
+          },
+          "name2": {
+            "type": "string"
           },
           "company": {
-            "type": "string",
-            "description": "Name of the company. <br>Either name or company is required."
+            "type": "string"
           },
-          "phone": {
-            "type": "string",
-            "description": "Phone number. <br>The phone number is usually optional."
+          "address1": {
+            "type": "string"
           },
-          "email": {
-            "type": "string",
-            "description": "E-Mail address."
+          "address2": {
+            "type": "string"
+          },
+          "address3": {
+            "type": "string"
           },
           "zip": {
-            "type": "string",
-            "description": "ZIP Code. <br>This field is optional."
+            "type": "string"
           },
           "city": {
-            "type": "string",
-            "description": "City. <br>This field is optional."
+            "type": "string"
           },
           "state": {
-            "type": "string",
-            "description": "State. <br>This field is optional."
+            "type": "string"
           },
-          "countryIso2": {
-            "type": "string",
-            "description": "Country. <br>This field is optional."
+          "country": {
+            "type": "string"
           },
-          "street": {
-            "type": "string",
-            "description": "Street (or Address Line 1). <br>This field is optional."
+          "phone": {
+            "type": "string"
           },
-          "street2": {
-            "type": "string",
-            "description": "Street (or Address Line 2). <br>This field is optional."
-          },
-          "addressIdentifier": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string",
-            "description": "Optional identifier for address. <br>This field is optional."
+          "email": {
+            "type": "string"
           }
         }
       },
@@ -8840,6 +8867,23 @@
             "items": {
               "type": "string"
             }
+          },
+          "deliveryNoteUrls": {
+            "type": "array",
+            "description": "List of URLs where delivery notes can be downloaded.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "messageKey": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings for the booked shipment, such as export declaration document required.",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentWarning"
+            }
           }
         }
       },
@@ -10009,6 +10053,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10301,6 +10347,10 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -10932,6 +10982,37 @@
               "NON_DG",
               "REQUIRES_DG_STAFF",
               "REQUIRES_DG_SUPERVISOR"
+            ]
+          }
+        }
+      },
+      "FulfillmentOrderPatch": {
+        "type": "object",
+        "properties": {
+          "pickabilityStatus": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "example": "Pickable",
+            "enum": [
+              "Pickable",
+              "Replenishable",
+              "Out of Stock"
+            ]
+          },
+          "shippingServiceGroupId": {
+            "type": "integer",
+            "description": "Id of the shipping service group to assign to this fulfillment order",
+            "format": "int64",
+            "example": 42
+          },
+          "termsOfTrade": {
+            "type": "string",
+            "description": "Terms of trade to assign to this fulfillment order",
+            "example": "DAP",
+            "enum": [
+              "DAP",
+              "DDP"
             ]
           }
         }
@@ -12440,6 +12521,12 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "short": {
+            "type": "boolean"
+          },
+          "float": {
+            "type": "boolean"
+          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12454,22 +12541,16 @@
               "STRING"
             ]
           },
-          "float": {
-            "type": "boolean"
-          },
-          "short": {
-            "type": "boolean"
-          },
           "number": {
             "type": "boolean"
           },
           "binary": {
             "type": "boolean"
           },
-          "boolean": {
+          "integralNumber": {
             "type": "boolean"
           },
-          "integralNumber": {
+          "boolean": {
             "type": "boolean"
           },
           "double": {
@@ -16668,7 +16749,8 @@
               "WIX",
               "OTTO_MARKETPLACE",
               "SHOPIFY",
-              "TIKTOK"
+              "TIKTOK",
+              "NOON"
             ]
           },
           "oauthCode": {
