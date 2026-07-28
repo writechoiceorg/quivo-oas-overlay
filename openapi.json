@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "aea9a08, 2026-07-17T10:31:50Z",
+    "version": "ff66734, 2026-07-24T08:22:55Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -6819,43 +6819,50 @@
         }
       },
       "AddressDetail": {
+        "required": [
+          "city",
+          "street"
+        ],
         "type": "object",
         "properties": {
-          "name1": {
-            "type": "string"
-          },
-          "name2": {
-            "type": "string"
+          "name": {
+            "type": "string",
+            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
           },
           "company": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "address3": {
-            "type": "string"
-          },
-          "zip": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the company."
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "Phone number of the recipient. <br>The phone number is usually optional."
           },
           "email": {
+            "type": "string",
+            "description": "E-Mail address of the recipient."
+          },
+          "zip": {
+            "type": "string",
+            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
+          },
+          "city": {
+            "type": "string",
+            "description": "City of the recipient. <br>The city should always be specified."
+          },
+          "state": {
+            "type": "string",
+            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
+          },
+          "countryIso2": {
             "type": "string"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+          },
+          "street2": {
+            "type": "string",
+            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
           }
         }
       },
@@ -9608,7 +9615,6 @@
                 "RETURN_SHIPMENTS",
                 "ITEMS",
                 "INBOUNDS",
-                "CUSTOMER_INQUIRY",
                 "SHOPS",
                 "RETURN_LINK_LABEL",
                 "SHIPMENT_LABEL",
@@ -9648,13 +9654,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "symbol": {
+          "displayName": {
             "type": "string"
           },
           "numericCodeAsString": {
             "type": "string"
           },
-          "displayName": {
+          "symbol": {
             "type": "string"
           }
         }
@@ -10941,6 +10947,9 @@
             "type": "boolean"
           },
           "cancelled": {
+            "type": "boolean"
+          },
+          "allowPartial": {
             "type": "boolean"
           },
           "positions": {
@@ -12568,13 +12577,13 @@
           "float": {
             "type": "boolean"
           },
-          "short": {
-            "type": "boolean"
-          },
           "number": {
             "type": "boolean"
           },
           "binary": {
+            "type": "boolean"
+          },
+          "short": {
             "type": "boolean"
           },
           "integralNumber": {
@@ -12892,11 +12901,6 @@
               "INBOUND_STATUS_CHANGE",
               "INBOUND_UNKNOWN_SKU",
               "INBOUND_INFORMATION_MISSING",
-              "CUSTOMER_INQUIRY_UPDATE",
-              "CUSTOMER_INQUIRY_RESOLVED",
-              "INQUIRY_REMINDER",
-              "CUSTOMER_INQUIRY_NEW_QUIVO",
-              "CUSTOMER_INQUIRY_NEW",
               "SHOP_ERROR",
               "ITEM_NOT_FOUND",
               "SHOP_DEACTIVATED",
@@ -13053,11 +13057,6 @@
               "INBOUND_STATUS_CHANGE",
               "INBOUND_UNKNOWN_SKU",
               "INBOUND_INFORMATION_MISSING",
-              "CUSTOMER_INQUIRY_UPDATE",
-              "CUSTOMER_INQUIRY_RESOLVED",
-              "INQUIRY_REMINDER",
-              "CUSTOMER_INQUIRY_NEW_QUIVO",
-              "CUSTOMER_INQUIRY_NEW",
               "SHOP_ERROR",
               "ITEM_NOT_FOUND",
               "SHOP_DEACTIVATED",
@@ -13411,6 +13410,9 @@
           "trackingEnabled": {
             "type": "boolean"
           },
+          "allowPartial": {
+            "type": "boolean"
+          },
           "orderPriority": {
             "type": "integer",
             "format": "int32"
@@ -13588,6 +13590,9 @@
             "type": "string"
           },
           "trackingEnabled": {
+            "type": "boolean"
+          },
+          "allowPartial": {
             "type": "boolean"
           },
           "orderPriority": {
@@ -14333,6 +14338,10 @@
             "type": "boolean",
             "description": "Optional value setting whether to turn on/off tracking functionality for an order. Additional charges will apply when set to true."
           },
+          "allowPartial": {
+            "type": "boolean",
+            "description": "Optional value setting whether the order may be fulfilled partially when not all items are in stock. Defaults to the seller setting."
+          },
           "orderPriority": {
             "maximum": 3,
             "minimum": 1,
@@ -14608,6 +14617,10 @@
           "trackingEnabled": {
             "type": "boolean",
             "description": "Optional value setting whether to turn on/off tracking functionality for an order. Additional charges will apply when set to true."
+          },
+          "allowPartial": {
+            "type": "boolean",
+            "description": "Optional value setting whether the order may be fulfilled partially when not all items are in stock."
           },
           "customAttributes": {
             "type": "object",
@@ -15943,6 +15956,10 @@
           },
           "exportTrackingEventToShop": {
             "type": "boolean"
+          },
+          "allowPartialDefault": {
+            "type": "boolean",
+            "description": "Default for the allowPartial flag of new orders of this seller."
           },
           "customAttributes": {
             "type": "object",
