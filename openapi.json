@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "41985c4, 2026-08-07T10:17:53Z",
+    "version": "194eafb, 2026-08-12T09:31:13Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -8890,6 +8890,23 @@
             "items": {
               "type": "string"
             }
+          },
+          "deliveryNoteUrls": {
+            "type": "array",
+            "description": "List of URLs where delivery notes can be downloaded.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "messageKey": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings for the booked shipment, such as export declaration document required.",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentWarning"
+            }
           }
         }
       },
@@ -9646,10 +9663,10 @@
             "type": "integer",
             "format": "int32"
           },
-          "displayName": {
+          "numericCodeAsString": {
             "type": "string"
           },
-          "numericCodeAsString": {
+          "displayName": {
             "type": "string"
           },
           "symbol": {
@@ -10058,6 +10075,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10350,6 +10369,10 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -10938,6 +10961,9 @@
           "allowPartial": {
             "type": "boolean"
           },
+          "rebalancing": {
+            "$ref": "#/components/schemas/RebalancingDetail"
+          },
           "positions": {
             "type": "array",
             "items": {
@@ -11015,6 +11041,16 @@
             "enum": [
               "DAP",
               "DDP"
+            ]
+          },
+          "rebalancingClientResponse": {
+            "type": "string",
+            "description": "The client's answer to a needs-input rebalancing state: SHIP_AVAILABLE reduces the fulfillment order to the available quantities, SPLIT additionally carries the missing quantities into a new fulfillment order, WAIT returns the picked items to the shelf and re-creates the fulfillment order whole. Only accepted while the fulfillment order is in CLIENT_INPUT_REQUIRED",
+            "example": "WAIT",
+            "enum": [
+              "WAIT",
+              "SHIP_AVAILABLE",
+              "SPLIT"
             ]
           }
         }
@@ -11119,6 +11155,14 @@
           "fulfillmentStatus": {
             "type": "string",
             "description": "The current status of the fulfillment order (e.g., 'READY_FOR_PICKING', 'SHIPPED')."
+          },
+          "rebalancingStatus": {
+            "type": "string",
+            "enum": [
+              "REQUIRED",
+              "FAILED",
+              "CLIENT_INPUT_REQUIRED"
+            ]
           },
           "positions": {
             "type": "array",
@@ -12546,6 +12590,9 @@
       "JsonNode": {
         "type": "object",
         "properties": {
+          "short": {
+            "type": "boolean"
+          },
           "float": {
             "type": "boolean"
           },
@@ -12563,19 +12610,16 @@
               "STRING"
             ]
           },
-          "short": {
+          "number": {
+            "type": "boolean"
+          },
+          "binary": {
             "type": "boolean"
           },
           "integralNumber": {
             "type": "boolean"
           },
           "boolean": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "boolean"
-          },
-          "binary": {
             "type": "boolean"
           },
           "double": {
@@ -15250,6 +15294,48 @@
           }
         }
       },
+      "RebalancingDetail": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "REQUIRED",
+              "FAILED",
+              "CLIENT_INPUT_REQUIRED"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "clientResponse": {
+            "type": "string",
+            "enum": [
+              "WAIT",
+              "SHIP_AVAILABLE",
+              "SPLIT"
+            ]
+          },
+          "missingItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RebalancingMissingItemDetail"
+            }
+          }
+        }
+      },
+      "RebalancingMissingItemDetail": {
+        "type": "object",
+        "properties": {
+          "warehouseSku": {
+            "type": "string"
+          },
+          "missingQuantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "Response": {
         "type": "object",
         "properties": {
@@ -15936,6 +16022,53 @@
           },
           "trackingEnabled": {
             "type": "boolean"
+          },
+          "trackingEnabledCarriers": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "Carriers for which tracking events are enabled for all shipments of this seller.",
+            "items": {
+              "type": "string",
+              "enum": [
+                "DHL_PARCEL",
+                "DHL_PARCEL_UK",
+                "DHL_EXPRESS",
+                "DPD",
+                "GLS",
+                "GO_EXPRESS",
+                "POST_AT",
+                "POST_AT_LETTER",
+                "USPS",
+                "ONTRAC",
+                "UPS",
+                "LASERSHIP",
+                "FEDEX",
+                "POST_DE",
+                "ROYAL_MAIL",
+                "SWISS_POST",
+                "EVRI",
+                "EVRI_DIRECT",
+                "CARGO_BOARD",
+                "COLISSIMO",
+                "DPD_FRANCE",
+                "DPD_DE",
+                "LETTRE_SUIVIE",
+                "TNT_EXPRESS",
+                "DELIVENGO",
+                "MONDIAL_RELAY",
+                "PARCEL_ONE",
+                "BARTOLINI",
+                "INSTABEE",
+                "GEODIS",
+                "AMAZON",
+                "COLIS_PRIVE",
+                "GWC",
+                "ARAMEX",
+                "OTO",
+                "SEVEN_SENDERS",
+                "UNTRACKED"
+              ]
+            }
           },
           "dimensionsRequired": {
             "type": "boolean"
