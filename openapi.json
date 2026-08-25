@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "6742360, 2026-08-18T08:03:26Z",
+    "version": "46b339c, 2026-08-24T12:48:16Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -4914,6 +4914,98 @@
         }
       }
     },
+    "/returns/warehouse/{warehouseId}/seller/{sellerId}/reasons": {
+      "get": {
+        "tags": [
+          "returns"
+        ],
+        "summary": "Get the return reason codes available for a seller in one of its fulfillment warehouses. Returns the seller specific codes together with the ones configured for all sellers of that warehouse. Map the codes returned by the positions of <code>/returns</code>, not the descriptions, as those may change. Use <code>translations</code> where present to show a code in the language of your user, and the <code>label</code> otherwise.",
+        "operationId": "returnReasonsGet",
+        "parameters": [
+          {
+            "name": "sellerId",
+            "in": "path",
+            "description": "The unique identifier for the seller account. This ID is used to scope operations to a specific seller's data and resources.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "description": "The unique identifier for the warehouse location where items are stored and orders are fulfilled.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReturnCodeGet"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/returns/warehouse/{warehouseId}/seller/{sellerId}/resolutions": {
+      "get": {
+        "tags": [
+          "returns"
+        ],
+        "summary": "Get the return resolution codes available for a seller in one of its fulfillment warehouses, i.e. the outcomes a consumer can request for a returned item, such as a credit note or a replacement. Returns the seller specific codes together with the ones configured for all sellers of that warehouse. Use <code>translations</code> where present to show a code in the language of your user, and the <code>label</code> otherwise.",
+        "operationId": "returnResolutionsGet",
+        "parameters": [
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "description": "The unique identifier for the warehouse location where items are stored and orders are fulfilled.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "sellerId",
+            "in": "path",
+            "description": "The unique identifier for the seller account. This ID is used to scope operations to a specific seller's data and resources.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReturnCodeGet"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/returns/{returnShipmentId}": {
       "get": {
         "tags": [
@@ -6819,43 +6911,50 @@
         }
       },
       "AddressDetail": {
+        "required": [
+          "city",
+          "street"
+        ],
         "type": "object",
         "properties": {
-          "name1": {
-            "type": "string"
-          },
-          "name2": {
-            "type": "string"
+          "name": {
+            "type": "string",
+            "description": "Name of the recipient. <br>Usually this is the first and lastname of the recipient."
           },
           "company": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "address3": {
-            "type": "string"
-          },
-          "zip": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the company."
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "Phone number of the recipient. <br>The phone number is usually optional."
           },
           "email": {
+            "type": "string",
+            "description": "E-Mail address of the recipient."
+          },
+          "zip": {
+            "type": "string",
+            "description": "ZIP Code of the recipient <br>The ZIP code is optional for some countries, but required for most."
+          },
+          "city": {
+            "type": "string",
+            "description": "City of the recipient. <br>The city should always be specified."
+          },
+          "state": {
+            "type": "string",
+            "description": "State of the recipient. <br>This is not required for most countries, but required in some (eg: United States)."
+          },
+          "countryIso2": {
             "type": "string"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street (or Address Line 1) of the recipient. <br>This field should always be specified."
+          },
+          "street2": {
+            "type": "string",
+            "description": "Street (or Address Line 2) of the recipient. <br>This field is optional."
           }
         }
       },
@@ -9636,13 +9735,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "symbol": {
+          "displayName": {
             "type": "string"
           },
           "numericCodeAsString": {
             "type": "string"
           },
-          "displayName": {
+          "symbol": {
             "type": "string"
           }
         }
@@ -11257,6 +11356,12 @@
           },
           "reasonDescription": {
             "type": "string"
+          },
+          "resolutionCode": {
+            "type": "string"
+          },
+          "resolutionDescription": {
+            "type": "string"
           }
         }
       },
@@ -11296,6 +11401,12 @@
             "type": "string"
           },
           "reasonDescription": {
+            "type": "string"
+          },
+          "resolutionCode": {
+            "type": "string"
+          },
+          "resolutionDescription": {
             "type": "string"
           },
           "classDescription": {
@@ -12557,9 +12668,6 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "short": {
-            "type": "boolean"
-          },
           "float": {
             "type": "boolean"
           },
@@ -12577,19 +12685,22 @@
               "STRING"
             ]
           },
-          "number": {
+          "short": {
             "type": "boolean"
           },
           "binary": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "boolean"
+          },
+          "double": {
             "type": "boolean"
           },
           "integralNumber": {
             "type": "boolean"
           },
           "boolean": {
-            "type": "boolean"
-          },
-          "double": {
             "type": "boolean"
           },
           "long": {
@@ -15350,6 +15461,23 @@
           }
         }
       },
+      "ReturnCodeGet": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "translations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "ReturnLinkGet": {
         "required": [
           "sellerId",
@@ -15629,6 +15757,12 @@
           "reasonDescription": {
             "type": "string"
           },
+          "resolutionCode": {
+            "type": "string"
+          },
+          "resolutionDescription": {
+            "type": "string"
+          },
           "positionIdentifier": {
             "type": "string"
           },
@@ -15676,6 +15810,12 @@
             "type": "string"
           },
           "reasonDescription": {
+            "type": "string"
+          },
+          "resolutionCode": {
+            "type": "string"
+          },
+          "resolutionDescription": {
             "type": "string"
           },
           "classDescription": {
@@ -17046,6 +17186,12 @@
           },
           "excludeOrderImportOnWeekends": {
             "type": "boolean"
+          },
+          "importGracePeriodMinutes": {
+            "maximum": 60,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
           },
           "id": {
             "type": "integer",
