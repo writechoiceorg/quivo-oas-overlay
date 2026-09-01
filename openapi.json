@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "05e9709, 2026-08-28T15:39:09Z",
+    "version": "7103a01, 2026-08-31T11:10:29Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -22,6 +22,9 @@
     },
     {
       "name": "audits"
+    },
+    {
+      "name": "auth"
     },
     {
       "name": "bundles"
@@ -1186,6 +1189,21 @@
           }
         },
         "description": "ADD ENDPOINT DESCRIPTION HERE"
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Tombstones the caller's session for immediate server-side logout",
+        "operationId": "logout",
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {}
+          }
+        }
       }
     },
     "/bundles": {
@@ -8942,6 +8960,23 @@
             "items": {
               "type": "string"
             }
+          },
+          "deliveryNoteUrls": {
+            "type": "array",
+            "description": "List of URLs where delivery notes can be downloaded.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "messageKey": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings for the booked shipment, such as export declaration document required.",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentWarning"
+            }
           }
         }
       },
@@ -9698,13 +9733,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "symbol": {
-            "type": "string"
-          },
           "displayName": {
             "type": "string"
           },
           "numericCodeAsString": {
+            "type": "string"
+          },
+          "symbol": {
             "type": "string"
           }
         }
@@ -10110,6 +10145,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string",
             "description": "Name or short description of product."
           },
@@ -10402,6 +10439,10 @@
           "unNumber": {
             "type": "string",
             "description": "Optional value. The UN number of the position."
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Optional value. The barcode of the position."
           }
         }
       },
@@ -12631,9 +12672,6 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "float": {
-            "type": "boolean"
-          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12651,25 +12689,28 @@
           "short": {
             "type": "boolean"
           },
-          "boolean": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "boolean"
-          },
-          "binary": {
-            "type": "boolean"
-          },
-          "long": {
-            "type": "boolean"
-          },
-          "double": {
+          "float": {
             "type": "boolean"
           },
           "integralNumber": {
             "type": "boolean"
           },
+          "binary": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "boolean"
+          },
           "int": {
+            "type": "boolean"
+          },
+          "boolean": {
+            "type": "boolean"
+          },
+          "double": {
+            "type": "boolean"
+          },
+          "long": {
             "type": "boolean"
           },
           "valueNode": {
