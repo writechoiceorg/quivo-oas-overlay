@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Connector",
-    "version": "f68bbe4, 2026-09-01T12:13:27Z",
+    "version": "e21e704, 2026-09-03T13:46:59Z",
     "description": "Enhanced Quivo API documentation with additional descriptions and examples"
   },
   "servers": [
@@ -9716,13 +9716,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "symbol": {
-            "type": "string"
-          },
           "numericCodeAsString": {
             "type": "string"
           },
           "displayName": {
+            "type": "string"
+          },
+          "symbol": {
             "type": "string"
           }
         }
@@ -11203,6 +11203,10 @@
             "type": "string",
             "description": "The current status of the fulfillment order (e.g., 'READY_FOR_PICKING', 'SHIPPED')."
           },
+          "warehouseId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "rebalancingStatus": {
             "type": "string",
             "enum": [
@@ -12649,12 +12653,6 @@
       "JsonNode": {
         "type": "object",
         "properties": {
-          "float": {
-            "type": "boolean"
-          },
-          "short": {
-            "type": "boolean"
-          },
           "nodeType": {
             "type": "string",
             "enum": [
@@ -12669,7 +12667,13 @@
               "STRING"
             ]
           },
+          "float": {
+            "type": "boolean"
+          },
           "number": {
+            "type": "boolean"
+          },
+          "short": {
             "type": "boolean"
           },
           "binary": {
@@ -13502,6 +13506,9 @@
           "allowPartial": {
             "type": "boolean"
           },
+          "freeHandling": {
+            "type": "boolean"
+          },
           "orderPriority": {
             "type": "integer",
             "format": "int32"
@@ -13682,6 +13689,9 @@
             "type": "boolean"
           },
           "allowPartial": {
+            "type": "boolean"
+          },
+          "freeHandling": {
             "type": "boolean"
           },
           "orderPriority": {
